@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 1. 2018-04-25 20:57:04
 Duration: 196 hours and 1 minutes
 Branch: <b>BBM-1001-invite-referral </b>Staging: <code>staging21.vm</code>
@@ -19,8 +18,3 @@ Duration: 581 hours and 46 minutes
 Branch: <b>BBM-1058-fix-back-btn-broadcast </b>Staging: <code>staging51.vm</code>
 Deployer: @mpermperpisang
 
-=======
-{"chat_id"=>"-192957412"}
-{"chat_id"=>"-192957413"}
-{"chat_id"=>"-317359831"}
->>>>>>> f283ac5038ede1fcad4cc2453ee61073fbc54e0e

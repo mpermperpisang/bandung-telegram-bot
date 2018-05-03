@@ -1,9 +1,6 @@
 require './helper/bot_detail.rb'
 
-<<<<<<< HEAD
 # Untuk memeriksa status bot, online atau offline
-=======
->>>>>>> f283ac5038ede1fcad4cc2453ee61073fbc54e0e
 class BotStatus
   include BotDetail
 
