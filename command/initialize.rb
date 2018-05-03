@@ -13,6 +13,7 @@ module Bot
       @message = message
       @txt = txt
       @username = @message.from.username
+      @firstname = @message.from.first_name
       @chatid = @message.chat.id
       @fromid = @message.from.id
     end

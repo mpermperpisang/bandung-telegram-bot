@@ -45,3 +45,11 @@ end
 def empty_deployment(user)
   "Sekarang aku lagi ngga deploy apa-apa, Kak @#{user}"
 end
+
+def blocked_bot(user)
+  "#{user} ngeblock botnya, please check @mpermperpisang"
+end
+
+def welcome_text(user)
+  "Selamat datang, #{user}\nSilahkan ketik /help untuk tahu informasi lebih lanjut yaa"
+end

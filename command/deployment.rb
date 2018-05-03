@@ -2,6 +2,10 @@ module Bot
   class Command
     # daftar deployment branch ke staging
     class Deployment < Command
+      def check_text
+        deployment_staging if @txt.start_with?('/deployment')
+      end
+
       def deployment_staging
         @db = Connection.new
         @send = SendMessage.new
