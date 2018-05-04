@@ -73,4 +73,13 @@ class Connection
     @client.query("update deploy_staging set deploy_duration='#{duration}'
     where deploy_type='deploy' and deploy_branch='#{branch.strip}'")
   end
+
+  def status_booking(stg)
+    @client.query("select book_status, book_name from booking_staging where book_staging='#{stg}'")
+  end
+
+  def book_staging(name, id, stg)
+    @client.query("update booking_staging set book_name='#{name}', book_from_id='#{id}', book_status='booked'
+    where book_staging='#{stg}' and book_status='done'")
+  end
 end

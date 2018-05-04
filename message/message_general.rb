@@ -72,3 +72,15 @@ end
 def normalize(stg, date)
   "Date of <code>staging#{stg}</code> become <b>#{date}</b>"
 end
+
+def msg_book_staging(user, stg)
+  "@#{user} is booking <code>staging#{stg}</code>"
+end
+
+def msg_still_book(stg, user)
+  "You are still book <code>staging#{stg}</code>, @#{user}"
+end
+
+def msg_using_staging(user, stg, name)
+  "<code>@#{user}</code> is still using <code>staging#{stg}</code>, @#{name}"
+end

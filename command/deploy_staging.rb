@@ -8,6 +8,10 @@ module Bot
     # antri deploy branch ke suatu staging
     class DeployStaging < Command
       def check_text
+        check_stg_empty if @txt.start_with?("/deploy_#{@msg.stg}", '/deploy') && @txt == @msg.req && @txt == @msg.deploy
+      end
+
+      def check_stg_empty
         @msg = MessageText.new
         @msg.read_text(@txt)
         @is_staging = Staging.new
@@ -16,10 +20,6 @@ module Bot
         @db = Connection.new
         @send = SendMessage.new
 
-        check_stg_empty if @txt.start_with?("/deploy_#{@msg.stg}", '/deploy') && @txt == @msg.req && @txt == @msg.deploy
-      end
-
-      def check_stg_empty
         next_stg_not_empty unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
       end
 
@@ -41,7 +41,7 @@ module Bot
         staging = check_booked.first['book_status']
         @status = staging.empty? ? nil : staging
 
-        return if @is_staging.booked?(@bot, @id, @username, @status) || @status.nil? || @status == ''
+        return if @is_staging.booked?(@bot, @id, @username, @status, false, @staging) || @status.nil? || @status == ''
         check_stg_book_user
       end
 
