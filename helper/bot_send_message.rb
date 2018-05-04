@@ -41,7 +41,7 @@ class SendMessage
   end
 
   def check_empty_staging(id, txt, user)
-    @sendmessage = {
+    @message = {
       chat_id: id,
       text: empty_staging(txt, user),
       parse_mode: 'HTML'

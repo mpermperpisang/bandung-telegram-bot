@@ -55,10 +55,14 @@ def welcome_text(user)
 end
 
 def msg_queue_cap(type, stg, queue)
-  case type
-  when 'lock'
-    "Lock release <code>staging#{stg}</code>\nCap queue: #{queue}"
-  when 'start', 'restart', 'stop'
-    "Backburner #{type} <code>staging#{stg}</code>\nCap queue: #{queue}"
-  end
+  cap = "Lock release <code>staging#{stg}</code>" if type == 'lock'
+  cap = "Backburner #{type} <code>staging#{stg}</code>" if type == 'start' || type == 'restart' || type == 'stop'
+  cap + "\nCap queue: #{queue}"
+end
+
+def msg_queue_rake(type, stg, queue)
+  rake = "Database migrate <code>staging#{stg}</code>" if type == 'migrate'
+  rake = "Database reindex <code>staging#{stg}</code>" if type == 'reindex'
+  rake = "Asset precompile <code>staging#{stg}</code>" if type == 'precompile'
+  rake + "\nRake queue: #{queue}"
 end
