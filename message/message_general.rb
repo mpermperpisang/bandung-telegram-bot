@@ -24,7 +24,7 @@ end
 
 def new_staging(name, staging)
   "<code>staging#{staging}.vm</code> staging baru yaa, Kak @#{name}?
-  Bilang ke Kak @mpermperpisang dulu yaa buat ditambahin ke daftar 😉"
+Bilang ke Kak @mpermperpisang dulu yaa buat ditambahin ke daftar 😉"
 end
 
 def error_deploy(user, staging, name)
@@ -52,4 +52,13 @@ end
 
 def welcome_text(user)
   "Selamat datang, #{user}\nSilahkan ketik /help untuk tahu informasi lebih lanjut yaa"
+end
+
+def msg_queue_cap(type, stg, queue)
+  case type
+  when 'lock'
+    "Lock release <code>staging#{stg}</code>\nCap queue: #{queue}"
+  when 'start', 'restart', 'stop'
+    "Backburner #{type} <code>staging#{stg}</code>\nCap queue: #{queue}"
+  end
 end

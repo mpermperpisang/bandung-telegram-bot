@@ -3,12 +3,12 @@ class Staging
   attr_reader :bot_staging
 
   def empty?(bot, id, staging, user, txt)
-    @sendmessage = {
-      chat_id: id,
-      text: empty_staging(txt, user),
-      parse_mode: 'HTML'
-    }
-    bot.api.send_message(@sendmessage) if staging.nil? || staging == false
+    @msg = MessageText.new
+    @msg.read_text(txt)
+    @send = SendMessage.new
+
+    @send.check_empty_staging(id, txt, user)
+    bot.api.send_message(@send.message) if staging.nil? || staging == false
   end
 
   def bbm?(staging)

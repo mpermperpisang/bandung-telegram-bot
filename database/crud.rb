@@ -38,17 +38,17 @@ class Connection
     #{date.strftime('%H')}:#{date.strftime('%M')}:#{date.strftime('%S')}"
     @client.query("update deploy_staging set deployer='#{name}', deploy_status='queueing', deploy_date='#{now}',
     deploy_ip='#{ip_stg}',
-    deploy_stg='#{staging}', deploy_type='#{type}', chat_id='#{chat}' where deploy_branch='#{branch}'
+    deploy_stg='#{staging}', deploy_type='#{type}', chat_id='#{chat}' where deploy_branch='#{branch.strip}'
     and (deploy_status<>'queueing')")
   end
 
   def insert_queue(name, chat, ip_stg, staging, branch, type)
     date = DateTime.now
     now = "#{date.strftime('%Y')}-#{date.strftime('%m')}-#{date.strftime('%d')}_
-    #{day.strftime('%H')}:#{day.strftime('%M')}:#{day.strftime('%S')}"
+    #{date.strftime('%H')}:#{date.strftime('%M')}:#{date.strftime('%S')}"
     @client.query("insert into deploy_staging (deploy_branch, deploy_status, deployer, deploy_date, deploy_ip,
     deploy_stg,deploy_type, chat_id)
-    values ('#{branch}', 'queueing', '#{name}', '#{now}', '#{ip_stg}', '#{staging}', '#{type}', '#{chat}')")
+    values ('#{branch.strip}', 'queueing', '#{name}', '#{now}', '#{ip_stg}', '#{staging}', '#{type}', '#{chat}')")
   end
 
   def number_queue_cap
@@ -71,6 +71,6 @@ class Connection
 
   def deploy_duration(duration, branch)
     @client.query("update deploy_staging set deploy_duration='#{duration}'
-    where deploy_type='deploy' and deploy_branch='#{branch}'")
+    where deploy_type='deploy' and deploy_branch='#{branch.strip}'")
   end
 end
