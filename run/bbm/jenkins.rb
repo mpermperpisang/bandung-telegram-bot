@@ -42,7 +42,7 @@ Telegram::Bot::Client.run(@token) do |bot|
           @chat.delete(bot, message.chat.id, message.message_id)
         end
       else
-        jenkins_private(@token, @chat_id, bot, message, @txt)
+        jenkins_private(@token, message.from.id, bot, message, @txt)
       end
     end
   rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
