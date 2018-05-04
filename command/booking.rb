@@ -10,10 +10,10 @@ module Bot
         @is_staging = Staging.new
         @db = Connection.new
 
-        next_stg_not_empty unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
+        next_stg_is_bbm unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
       end
 
-      def next_stg_not_empty
+      def next_stg_is_bbm
         booking_stg unless @is_staging.bbm?(@bot, @chatid, @staging, @username)
       end
 

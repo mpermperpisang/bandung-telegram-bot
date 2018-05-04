@@ -14,7 +14,7 @@ class Staging
   def bbm?(bot, id, stg, user)
     vm = %w[21 51 103]
 
-    bot.api.send_message(chat_id: id, text: errorStaging(user)) unless vm.include?(stg)
+    bot.api.send_message(chat_id: id, text: error_staging(user)) unless vm.include?(stg)
   end
 
   def booked?(bot, id, user, status, name, stg)

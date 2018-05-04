@@ -31,6 +31,10 @@ def error_deploy(user, staging, name)
   "@#{user} did not booking <code>staging#{staging}</code> but trying to deploy into it\nFYI @#{name}"
 end
 
+def error_staging(user)
+  "Bukan staging milik squad BBM, @#{user}"
+end
+
 def msg_queue_deploy(user, staging, branch, name, queue)
   "@#{user} is deploying <code>staging#{staging}</code>
 Branch: <b>#{branch.strip}</b>
@@ -83,4 +87,8 @@ end
 
 def msg_using_staging(user, stg, name)
   "<code>@#{user}</code> is still using <code>staging#{stg}</code>, @#{name}"
+end
+
+def msg_done_staging(user, stg)
+  "@#{user} has done using <code>staging#{stg}</code>"
 end

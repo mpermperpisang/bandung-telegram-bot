@@ -1,5 +1,6 @@
 def booking_group(token, id, bot, msg, txt)
   Bot::Command::Booking.new(token, id, bot, msg, txt).check_text
+  Bot::Command::DoneBooking.new(token, id, bot, msg, txt).check_text
   Bot::Command::Help.new(token, id, bot, msg, txt).check_text
 end
 

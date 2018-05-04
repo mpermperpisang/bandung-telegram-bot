@@ -23,6 +23,10 @@ class Connection
     @client.query("select book_name, book_from_id from booking_staging where book_staging='#{stg}'")
   end
 
+  def done_staging(stg)
+    @client.query("update booking_staging set book_status='done' where book_staging='#{stg}' and book_status='booked'")
+  end
+
   def list_requester(branch)
     @client.query("select deploy_request from deploy_staging where deploy_branch='#{branch.strip}'
     and deploy_status='requesting'")
