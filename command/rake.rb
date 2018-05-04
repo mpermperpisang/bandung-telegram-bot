@@ -1,5 +1,6 @@
 module Bot
   class Command
+    # untuk migrate database, reindex tabel dan asset precompile
     class Rake < Command
       def check_text
         check_stg_empty if @txt.start_with?('/migrate', '/reindex', '/precompile')

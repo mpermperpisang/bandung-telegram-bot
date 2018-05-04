@@ -47,4 +47,12 @@ class SendMessage
       parse_mode: 'HTML'
     }
   end
+
+  def success_normalize_date(id, stg, date, time)
+    @message = {
+      chat_id: id,
+      text: normalize(stg, "#{date} #{time}"),
+      parse_mode: 'HTML'
+    }
+  end
 end

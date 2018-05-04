@@ -55,8 +55,10 @@ def welcome_text(user)
 end
 
 def msg_queue_cap(type, stg, queue)
+  bb = %w[start restart stop]
+
   cap = "Lock release <code>staging#{stg}</code>" if type == 'lock'
-  cap = "Backburner #{type} <code>staging#{stg}</code>" if type == 'start' || type == 'restart' || type == 'stop'
+  cap = "Backburner #{type} <code>staging#{stg}</code>" if bb.include?(type)
   cap + "\nCap queue: #{queue}"
 end
 
@@ -65,4 +67,8 @@ def msg_queue_rake(type, stg, queue)
   rake = "Database reindex <code>staging#{stg}</code>" if type == 'reindex'
   rake = "Asset precompile <code>staging#{stg}</code>" if type == 'precompile'
   rake + "\nRake queue: #{queue}"
+end
+
+def normalize(stg, date)
+  "Date of <code>staging#{stg}</code> become <b>#{date}</b>"
 end
