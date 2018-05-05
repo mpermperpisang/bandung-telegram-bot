@@ -111,4 +111,13 @@ class Connection
     @client.query("update deploy_staging set deploy_request='#{name}', deploy_status='requesting', deploy_date='#{now}'
     where deploy_branch='#{branch.strip}'")
   end
+
+  def check_deploy_req(branch)
+    @client.query("select deploy_branch from deploy_staging where deploy_branch='#{branch.strip}'
+    and deploy_status='requesting'")
+  end
+
+  def cancel_deploy(branch)
+    @client.query("update deploy_staging set deploy_status='cancelled' where deploy_branch='#{branch.strip}'")
+  end
 end

@@ -114,3 +114,12 @@ end
 def msg_list_request(list)
   "List of deploy requests :\n\n#{list}\n\n@mpermperpisang @rezaldy08"
 end
+
+def cancel_empty(user, branch)
+  "Branch <code>#{branch.strip}</code> tidak ditemukan dalam daftar request deploy
+Jadi ga bisa dicancel, Kak @#{user}"
+end
+
+def msg_cancel_deploy(branch)
+  "Request deploy branch <b>#{branch.strip}</b> has been cancelled"
+end
