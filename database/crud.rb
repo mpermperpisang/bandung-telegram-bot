@@ -120,4 +120,47 @@ class Connection
   def cancel_deploy(branch)
     @client.query("update deploy_staging set deploy_status='cancelled' where deploy_branch='#{branch.strip}'")
   end
+
+  def status_staging
+    File.open('./require_ruby.rb', 'w+') do |f|
+      f.puts("PIC -\nstaging21 : ")
+      @client.query("select book_status from booking_staging where book_staging='21'").each do |row|
+        f.puts(row.to_s)
+      end
+
+      @client.query("select book_branch from booking_staging where book_staging='21'").each do |row|
+        f.puts(row.to_s)
+      end
+
+      @client.query("select book_name from booking_staging where book_staging='21'").each do |row|
+        f.puts("@#{row}")
+      end
+
+      f.puts("\nPIC Muhammad Rezaldy\nstaging51 : ")
+      @client.query("select book_status from booking_staging where book_staging='51'").each do |row|
+        f.puts(row.to_s)
+      end
+
+      @client.query("select book_branch from booking_staging where book_staging='51'").each do |row|
+        f.puts(row.to_s)
+      end
+
+      @client.query("select book_name from booking_staging where book_staging='51'").each do |row|
+        f.puts("@#{row}")
+      end
+
+      f.puts("\nPIC Ferawati Hartanti Pratiwi\nstaging103 : ")
+      @client.query("select book_status from booking_staging where book_staging='103'").each do |row|
+        f.puts(row.to_s)
+      end
+
+      @client.query("select book_branch from booking_staging where book_staging='103'").each do |row|
+        f.puts(row.to_s)
+      end
+
+      @client.query("select book_name from booking_staging where book_staging='103'").each do |row|
+        f.puts("@#{row}")
+      end
+    end
+  end
 end
