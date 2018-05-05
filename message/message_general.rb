@@ -18,8 +18,8 @@ def send_off(bot)
   "#{bot} offline, please check @mpermperpisang"
 end
 
-def empty_branch(command, user)
-  "@#{user} forgot to type the branch 😒\nExample: <code>#{command} master</code>"
+def empty_branch(comm, user)
+  "@#{user} forgot to type the branch 😒\nExample: <code>#{comm} master</code>"
 end
 
 def new_staging(name, staging)
@@ -33,6 +33,16 @@ end
 
 def error_staging(user)
   "Bukan staging milik squad BBM, @#{user}"
+end
+
+def error_dev(user)
+  "Sorry @#{user}, only BE or FE can request deploy to staging"
+end
+
+def error_qa(user)
+  "Sorry @#{user}, you're not QA or at least you're not added in QA list yet 😬
+Private message @mpermperpisang, please
+Or maybe you want to try other features such like /lock, /start, /restart, /stop, /migrate, /reindex or /precompile ☺️"
 end
 
 def msg_queue_deploy(user, staging, branch, name, queue)
@@ -91,4 +101,16 @@ end
 
 def msg_done_staging(user, stg)
   "@#{user} has done using <code>staging#{stg}</code>"
+end
+
+def msg_deploy(user, branch)
+  "@#{user} is requesting to deploy.\nBranch: <b>#{branch.strip}</b>"
+end
+
+def deployed
+  "Already deployed all branch to staging\nOtsukaresamadeshita"
+end
+
+def msg_list_request(list)
+  "List of deploy requests :\n\n#{list}\n\n@mpermperpisang @rezaldy08"
 end

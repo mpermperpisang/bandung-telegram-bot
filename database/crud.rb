@@ -32,6 +32,11 @@ class Connection
     and deploy_status='requesting'")
   end
 
+  def list_request
+    @client.query("select deploy_request, deploy_branch from deploy_staging where deploy_status='requesting'
+    order by deploy_date asc")
+  end
+
   def check_queue(branch)
     @client.query("select deploy_branch from deploy_staging where deploy_branch='#{branch.strip}'")
   end
@@ -85,5 +90,25 @@ class Connection
   def book_staging(name, id, stg)
     @client.query("update booking_staging set book_name='#{name}', book_from_id='#{id}', book_status='booked'
     where book_staging='#{stg}' and book_status='done'")
+  end
+
+  def check_deploy(branch)
+    @client.query("select deploy_branch from deploy_staging where deploy_branch='#{branch.strip}'")
+  end
+
+  def deploy(branch, name)
+    date = DateTime.now
+    now = "#{date.strftime('%Y')}-#{date.strftime('%m')}-#{date.strftime('%d')}_
+    #{date.strftime('%H')}:#{date.strftime('%M')}:#{date.strftime('%S')}"
+    @client.query("insert into deploy_staging (deploy_branch, deploy_status, deploy_request, deploy_date)
+    values('#{branch.strip}', 'requesting', '#{name}', '#{now}')")
+  end
+
+  def update_deploy(branch, name)
+    date = DateTime.now
+    now = "#{date.strftime('%Y')}-#{date.strftime('%m')}-#{date.strftime('%d')}_
+    #{date.strftime('%H')}:#{date.strftime('%M')}:#{date.strftime('%S')}"
+    @client.query("update deploy_staging set deploy_request='#{name}', deploy_status='requesting', deploy_date='#{now}'
+    where deploy_branch='#{branch.strip}'")
   end
 end

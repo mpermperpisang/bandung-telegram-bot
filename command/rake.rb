@@ -8,12 +8,13 @@ module Bot
 
       def check_stg_empty
         @is_staging = Staging.new
-        @send = SendMessage.new
 
         rake_general unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
       end
 
       def rake_general
+        @send = SendMessage.new
+
         staging = [*1..127].include?(@staging.to_i) ? @staging : 'new'
 
         @send.check_new_staging(@id, @username, @staging)

@@ -15,15 +15,14 @@ module Bot
         @msg = MessageText.new
         @msg.read_text(@txt)
         @is_staging = Staging.new
-        @is_branch = Branch.new
-        @is_user = User.new
-        @db = Connection.new
-        @send = SendMessage.new
 
         next_stg_not_empty unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
       end
 
       def next_stg_not_empty
+        @is_branch = Branch.new
+        @send = SendMessage.new
+
         staging = [*1..127].include?(@staging.to_i) ? @staging : 'new'
         @branch = @space.nil? ? nil : @space.strip
         return if @is_branch.empty?(@bot, @id, @branch, @txt, @username)
@@ -33,10 +32,14 @@ module Bot
       end
 
       def check_user_qa
+        @is_user = User.new
+
         check_stg_booked unless @is_user.quality_assurance?(@bot, @id, @username, @txt)
       end
 
       def check_stg_booked
+        @db = Connection.new
+
         check_booked = @db.check_booked(@staging)
         staging = check_booked.first['book_status']
         @status = staging.empty? ? nil : staging

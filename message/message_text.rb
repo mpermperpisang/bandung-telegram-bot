@@ -5,7 +5,7 @@ class MessageText
   #------------------------
   attr_reader :host, :host_remote, :username, :user, :password
   #------------------------
-  attr_reader :squad, :admin, :pm, :qa
+  attr_reader :squad, :admin, :pm, :dana_qa, :qa
 
   def read_text(txt)
     @bot_name = txt[/\/[a-z]\w+/]

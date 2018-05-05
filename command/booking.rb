@@ -8,7 +8,6 @@ module Bot
 
       def check_stg_empty
         @is_staging = Staging.new
-        @db = Connection.new
 
         next_stg_is_bbm unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
       end
@@ -18,6 +17,8 @@ module Bot
       end
 
       def booking_stg
+        @db = Connection.new
+
         check_booked = @db.status_booking(@staging)
         staging = check_booked.first['book_status'] || check_booked.first['book_name']
         book_status = staging.empty? ? nil : check_booked.first['book_status']

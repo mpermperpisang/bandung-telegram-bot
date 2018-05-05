@@ -55,4 +55,12 @@ class SendMessage
       parse_mode: 'HTML'
     }
   end
+
+  def empty_brc(id, com, name)
+    @message = {
+      chat_id: id,
+      text: empty_branch(com, name),
+      parse_mode: 'HTML'
+    }
+  end
 end

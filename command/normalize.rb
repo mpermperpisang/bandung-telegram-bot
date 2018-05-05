@@ -8,7 +8,6 @@ module Bot
 
       def check_stg_empty
         @is_staging = Staging.new
-        @send = SendMessage.new
 
         normalize_date unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
       end
@@ -28,6 +27,8 @@ module Bot
       end
 
       def run_normalize
+        @send = SendMessage.new
+
         EnvBash.load(ENV['DOWNLOAD_URL'] + '/helper/jenkins/exec_normalize.bash')
         @send.success_normalize_date(@id, @staging, @year_month_date, @time)
         @bot.api.send_message(@send.message)
