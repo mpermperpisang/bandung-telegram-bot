@@ -34,10 +34,10 @@ Telegram::Bot::Client.run(@token) do |bot|
       if @is_group.not_private_chat?(message.chat.type)
         command = [
           '/deploy', '/lock', '/start', '/restart', '/stop', '/deployment',
-          '/migrate', '/reindex', '/precompile', '/normalize', '/help'
+          '/migrate', '/reindex', '/precompile', '/normalize', "/help@#{ENV['BOT_JENKINS']}"
         ]
 
-        if command.include?(@msg.bot_name) || command.include?(@msg.booking_name)
+        if command.include?(@msg.bot_name) || command.include?(@msg.booking_name) || command.include?(@msg.command)
           jenkins_group(@token, @chat_id, bot, message, @txt)
           @chat.delete(bot, message.chat.id, message.message_id)
         end

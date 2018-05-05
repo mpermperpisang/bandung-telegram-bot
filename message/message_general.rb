@@ -123,3 +123,54 @@ end
 def msg_cancel_deploy(branch)
   "Request deploy branch <b>#{branch.strip}</b> has been cancelled"
 end
+
+def default_poin
+  '0 adalah angka default, Kak'
+end
+
+def accepted_poin
+  'Poin diterima. Kakak ga bisa ubah nilai yang udah diberikan yaa 😇'
+end
+
+def next_chance
+  'tunggu kloter berikutnya yaa'
+end
+
+def next_poin
+  'Menunggu poin selanjutnya'
+end
+
+def not_member_market
+  'Kakak belum terdaftar untuk ikut marketplace\nCoba tanya ke Kak @mpermperpisang ajah yaa'
+end
+
+def empty_edit(error)
+  "There is no message to edit, please check @mpermperpisang\n#{error}"
+end
+
+def list_poin_market(poin)
+  "Poin for marketplace\n======================================\n#{poin}\n
+colek @ak_fahmi @Maharaniar"
+end
+
+def empty_poin
+  'Belum ada orang yang memberikan poin untuk marketplace'
+end
+
+def msg_new_poin_member
+  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM Bot Announcements yaa\n
+Kloter sudah dibuka, tunggu aba-aba dari PM/APM yaa"
+end
+
+def msg_new_poin
+  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM Bot Announcements yaa"
+end
+
+def done_poin(poin)
+  "Yang sudah memberikan poin:\n#{poin}\n\nKalau sudah selesai, klik /show yaa, Kak"
+end
+
+def show_command
+  "Daripada capek ngetik terus, mending klik /show (untuk menampilkan poin) atau klik /keyboard (untuk menampilkan poin), Kak
+Have a nice marketplace ☺️"
+end

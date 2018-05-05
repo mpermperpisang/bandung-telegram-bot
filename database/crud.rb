@@ -163,4 +163,67 @@ class Connection
       end
     end
   end
+
+  def update_id_closed(id)
+    @client.query("update squad_marketplace set chat_id_market='#{id}', status_market='closed' where id_market>0")
+  end
+
+  def list_poin
+    File.open('./require_ruby.rb', 'w+') do |f|
+      @client.query("select member_market, poin_market from squad_marketplace where status_market='closed'
+      and poin_market<>'0' order by member_market asc").each do |row|
+        f.puts("#{row}")
+      end
+    end
+  end
+
+  def check_poin_open(user)
+    @client.query("select status_market from squad_marketplace where status_market='open' and member_market='@#{user}'")
+  end
+
+  def check_member_market(user)
+    @client.query("select member_market from squad_marketplace where member_market='@#{user}'")
+  end
+
+  def show_message_id
+    @client.query("select distinct message_id_market from squad_marketplace where message_id_market<>0")
+  end
+
+  def update_market_closed(poin, user)
+    @client.query("update squad_marketplace set poin_market='#{poin}', status_market='closed'
+    where member_market='@#{user}'")
+  end
+
+  def list_accepted_poin
+    File.open('./require_ruby.rb', 'w+') do |f|
+      @client.query("select member_market from squad_marketplace where poin_market<>'0' and status_market='closed'").each do |row|
+        f.puts(row)
+      end
+    end
+  end
+
+  def chat_market
+    @client.query("select distinct chat_id_market from squad_marketplace where message_id_market<>0")
+  end
+
+  def id_get_poin(user, id)
+    @client.query("update squad_marketplace set from_id_market='#{id}'
+    where member_market='@#{user}' and from_id_market<>'#{id}'")
+  end
+
+  def message_from_id
+    File.open('./require_ruby.rb', 'w+') do |f|
+      @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'").each do |row|
+        f.puts(row)
+      end
+    end
+  end
+
+  def update_market_open
+    @client.query("update squad_marketplace set poin_market='0', status_market='open' where id_market>0")
+  end
+
+  def update_message_id(id)
+    @client.query("update squad_marketplace set message_id_market='#{id}' where id_market>0")
+  end
 end

@@ -23,9 +23,12 @@ Telegram::Bot::Client.run(@token) do |bot|
         @msg.read_text(@txt)
 
         if @is_group.not_private_chat?(message.chat.type)
-          command = ['/deploy_request', '/cancel_request', '/done', '/list_request', '/booking', '/status', '/help']
+          command = [
+            '/deploy_request', '/cancel_request', '/done', '/list_request', '/booking', '/status',
+            "/help@#{ENV['BOT_BOOKING']}"
+          ]
 
-          if command.include?(@msg.bot_name) || command.include?(@msg.booking_name)
+          if command.include?(@msg.bot_name) || command.include?(@msg.booking_name) || command.include?(@msg.command)
             booking_group(@token, @chat_id, bot, message, @txt)
             @chat.delete(bot, message.chat.id, message.message_id)
           end

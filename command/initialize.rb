@@ -14,8 +14,10 @@ module Bot
       @txt = txt
       @username = @message.from.username
       @firstname = @message.from.first_name
-      @chatid = @message.chat.id
       @fromid = @message.from.id
+      @chatid = @message.chat.id
+    rescue StandardError
+      @chatid = false
     end
 
     def comm_var
