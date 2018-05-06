@@ -23,7 +23,7 @@ module Bot
         @msg = MessageText.new
         @send = SendMessage.new
 
-        @send.err_add_snack(@id, @command)
+        @send.err_day_snack(@id, @command)
         @msg.weekdays
 
         day = @space.nil? ? nil : @space.strip

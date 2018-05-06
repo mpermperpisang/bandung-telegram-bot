@@ -188,8 +188,8 @@ def error_general_day
   "Format is invalid, please use only <b>mon</b>, <b>tue</b>, <b>wed</b>, <b>thu</b> or <b>fri</b>\nExample:"
 end
 
-def error_add_day(command)
-  error_general_day + " <code>#{command} mon @username</code>"
+def error_day(com)
+  error_general_day + " <code>#{com} mon @username</code>"
 end
 
 def msg_weather(weather, poem)
@@ -201,6 +201,14 @@ def msg_add_people(user, name, day)
 Catat juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end
 
+def msg_edit_people(user, name, day)
+  "Oi oi oi #{name} jadwal snacknya udah diganti sama <code>@#{user}</code> jadi hari #{day} yaa"
+end
+
 def error_spam(user)
   "@#{user} terdeteksi sebagai spammer"
+end
+
+def empty_people(user)
+  "<code>#{user}</code> ngga ada di squad Bandung 👻"
 end

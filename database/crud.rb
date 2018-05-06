@@ -288,4 +288,8 @@ class Connection
   def check_people(name)
     @client.query("select name from bandung_snack where name='#{name}'")
   end
+
+  def edit_people(day, name)
+    @client.query("update bandung_snack set day='#{day.strip}' where name='#{name}'")
+  end
 end

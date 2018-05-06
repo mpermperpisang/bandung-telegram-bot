@@ -64,10 +64,10 @@ class SendMessage
     }
   end
 
-  def err_add_snack(id, com)
+  def err_day_snack(id, com)
     @message = {
       chat_id: id,
-      text: error_add_day(com),
+      text: error_day(com),
       parse_mode: 'HTML'
     }
   end
