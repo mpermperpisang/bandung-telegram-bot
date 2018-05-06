@@ -42,12 +42,28 @@ class User
   def spammer?(bot, id, user, message, data)
     @msg = MessageText.new
     @msg.bot_user
-    @msg.quality_assurance
 
-    admin = @msg.admin
-    squad = @msg.squad
-    grup_id = squad.include?(data) ? message.from.id : id
+    count_spam = check_spammer(user, data)
+    @attempt = count_spam.first['bot_attempt']
 
-    check_spammer(admin, bot, user, data, grup_id)
+    @count = @msg.admin.include?(user) ? 5 : 1
+    @last_count = @count + 1
+
+    check_user_spam(bot, id, user, message, data)
+    save_spammer(user, data)
+  end
+
+  def check_user_spam(bot, id, user, msg, data)
+    if (@attempt.to_i >= 0 && @attempt.to_i <= @count) || @attempt == '' || @attempt.nil?
+      @spam = false
+    elsif @attempt.to_i == @last_count
+      @spam = true
+
+      @idchat = @msg.squad.include?(data) ? msg.from.id : id
+
+      bot.api.send_message(chat_id: @idchat, text: error_spam(user))
+    else
+      @spam = true
+    end
   end
 end

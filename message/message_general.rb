@@ -179,3 +179,28 @@ def show_command
 Kalau butuh bantuan, klik /help yaa
 Have a nice marketplace ☺️"
 end
+
+def msg_duplicate_add_people(user, name)
+  "@#{user}, kok <code>#{name}</code> didaftarin lagi sih? 😅"
+end
+
+def error_general_day
+  "Format is invalid, please use only <b>mon</b>, <b>tue</b>, <b>wed</b>, <b>thu</b> or <b>fri</b>\nExample:"
+end
+
+def error_add_day(command)
+  error_general_day + " <code>#{command} mon @username</code>"
+end
+
+def msg_weather(weather, poem)
+  "Hari ini katanya sih cuacanya #{weather} loh#{poem} 🤗"
+end
+
+def msg_add_people(user, name, day)
+  "Cihuy <code>@#{user}</code> nambahin #{name} buat bawa snack di hari #{day}
+Catat juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+end
+
+def error_spam(user)
+  "@#{user} terdeteksi sebagai spammer"
+end

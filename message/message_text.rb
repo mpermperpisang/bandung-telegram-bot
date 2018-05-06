@@ -5,7 +5,7 @@ class MessageText
   #------------------------
   attr_reader :host, :host_remote, :username, :user, :password
   #------------------------
-  attr_reader :squad, :admin, :pm, :dana_qa, :qa
+  attr_reader :squad, :admin, :pm, :dana_qa, :qa, :days
 
   def read_text(txt)
     @bot_name = txt[/\/[a-z]\w+/]
@@ -60,5 +60,9 @@ class MessageText
       ragapinilih agungenrico jeanclaudya fixcocandra lelimhr anisahnurh Yulinare irwinharnia Apreliamaisara
       syarifahzura reifa fitrilarasati trimamanurung
     ]
+  end
+
+  def weekdays
+    @days = %w[mon tue wed thu fri]
   end
 end

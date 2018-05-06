@@ -226,4 +226,66 @@ class Connection
   def update_message_id(id)
     @client.query("update squad_marketplace set message_id_market='#{id}' where id_market>0")
   end
+
+  def add_people(day, name)
+    @client.query("insert into bandung_snack values ('#{day.strip}', '#{day.strip}', '#{name}', 'belum')")
+  end
+
+  def checking_spam(name, com)
+    @client.query("select bot_attempt from bot_spam where spammer_name='#{name}' and bot_command='#{com}'")
+  end
+
+  def saving_spam(name, com)
+    File.open('./require_ruby.rb', 'w+') do |f|
+      @client.query("select bot_command from bot_spam where bot_command='#{com}'").each do |row|
+        f.puts(row)
+      end
+    end
+
+    list = File.read('./require_ruby.rb')
+    name1 = list.gsub('{"bot_command"=>"', '')
+    name2 = name1.gsub('"}', '')
+    spam = name2.gsub("\n", '')
+
+    case spam
+    when nil, ""
+      attempt = 1
+      @client.query("insert bot_spam values (#{attempt}, '#{name}', '#{com}')")
+    else
+      File.open('./require_ruby.rb', 'w+') do |f|
+        @client.query("select spammer_name from bot_spam where spammer_name='#{name}' and bot_command='#{com}'").each do |row|
+          f.puts(row)
+        end
+      end
+
+      list = File.read('./require_ruby.rb')
+      name1 = list.gsub('{"spammer_name"=>"', '')
+      name2 = name1.gsub('"}', '')
+      spam_name = name2.gsub("\n", '')
+
+      case spam_name
+      when nil, ""
+        @client.query("update bot_spam set bot_attempt=1, spammer_name='#{name}' where bot_command='#{com}'")
+      else
+        File.open('./require_ruby.rb', 'w+') do |f|
+          @client.query("select bot_attempt from bot_spam where spammer_name='#{name}' and bot_command='#{com}'").each do |row|
+            f.puts(row)
+          end
+        end
+
+        line = File.read('././require_ruby.rb')
+        att1 = line.gsub('{"bot_attempt"=>', "")
+        att2 = att1.gsub('}', "")
+        att = att2.gsub("\n", "")
+
+        attempt = att.to_i + 1
+
+        @client.query("update bot_spam set bot_attempt=#{attempt} where spammer_name='#{name}' and bot_command='#{com}'")
+      end
+    end
+  end
+
+  def check_people(name)
+    @client.query("select name from bandung_snack where name='#{name}'")
+  end
 end

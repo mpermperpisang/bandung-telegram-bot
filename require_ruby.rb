@@ -1,1 +1,1 @@
-{"member_market"=>"@mpermperpisang"}
+{"bot_attempt"=>0}
