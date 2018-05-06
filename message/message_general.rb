@@ -45,6 +45,10 @@ Private message @mpermperpisang, please
 Or maybe you want to try other features such like /lock, /start, /restart, /stop, /migrate, /reindex or /precompile ☺️"
 end
 
+def error_pm(user)
+  "@#{user}, maap anda belum beruntung :p (kudu ama PM, APM atau admin)"
+end
+
 def msg_queue_deploy(user, staging, branch, name, queue)
   "@#{user} is deploying <code>staging#{staging}</code>
 Branch: <b>#{branch.strip}</b>
@@ -171,6 +175,7 @@ def done_poin(poin)
 end
 
 def show_command
-  "Daripada capek ngetik terus, mending klik /show (untuk menampilkan poin) atau klik /keyboard (untuk menampilkan poin), Kak
+  "Klik /show (untuk menampilkan poin) atau klik /keyboard (untuk memilih poin)
+Kalau butuh bantuan, klik /help yaa
 Have a nice marketplace ☺️"
 end

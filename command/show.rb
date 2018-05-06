@@ -18,8 +18,12 @@ module Bot
 
         @db.update_id_closed(@fromid)
         list_poin = @db.list_poin
+        list = File.read('./require_ruby.rb')
+        list1 = list.gsub('{"member_market"=>"', '')
+        list2 = list1.gsub('", "poin_market"=>"', ' ngasih poin ')
+        list3 = list2.gsub('"}', '')
 
-        poin_number = list_poin.empty? ? empty_poin : list_poin_market(list_poin)
+        poin_number = list_poin.empty? ? empty_poin : list_poin_market(list3)
         @bot.api.send_message(chat_id: @chatid, text: poin_number)
         @bot.api.send_message(chat_id: @chatid, text: next_poin)
         @db.message_from_id
@@ -42,6 +46,7 @@ module Bot
                             msg_new_poin_member
                           end
             @bot.api.send_message(chat_id: id_private, text: txt_private)
+            @bot.api.send_message(chat_id: id_private, text: show_command)
           end
         end
 

@@ -182,16 +182,11 @@ module BotDetail
     1/2, 1, 2, 3, 5, 8, 13, 20, 40, 100, kopi, unlimited
     0 (zero) is default number so it will not displaying
 
-    2. Displaying marketplace poin result (group)
+    2. Displaying poin in inline keyboard (private)
+    /keyboard
+
+    3. Displaying marketplace poin result (group)
     /show
-
-    3. Note for retrospective (private)
-    /retro sprint_number retro_comment
-    Example: /retro 100 retro is good
-
-    4. Displaying retrospective result (group)
-    /list_retro sprint_number
-    Example: /list_retro 100
 
     🐾 Only admin, PM and APM can show the poin"
   end

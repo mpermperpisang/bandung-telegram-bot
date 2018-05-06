@@ -13,7 +13,7 @@ module Bot
       end
 
       def val_poin
-        @bot.api.send_message(chat_id: @chatid, text: default_poin) if @txt == '0'
+        @bot.api.send_message(chat_id: @fromid, text: default_poin) if @txt == '0'
         input_poin if @txt != '0'
       end
 
@@ -34,7 +34,6 @@ module Bot
       def member_exist
         @bot.api.send_message(chat_id: @fromid, text: accepted_poin)
         @db.update_market_closed(@txt, @username)
-        @bot.api.send_message(chat_id: @fromid, text: show_command)
         @msgid = @db.show_message_id
         edit_msg unless @msgid.nil?
       end
