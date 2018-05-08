@@ -71,4 +71,12 @@ class SendMessage
       parse_mode: 'HTML'
     }
   end
+
+  def remind_snack(id, day, list, user)
+    @message = {
+      chat_id: id,
+      text: msg_reminder_people(day, list, user),
+      parse_mode: 'HTML'
+    }
+  end
 end

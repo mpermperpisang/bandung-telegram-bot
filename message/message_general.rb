@@ -240,3 +240,22 @@ end
 def msg_done_people(user)
   "Yeay dapat cemilan dari #{user}.\nSelamat menggendutkan diri, kawan-kawan\n😈"
 end
+
+def see_schedule
+  'Lihat jadwal snack'
+end
+
+def msg_reminder_people(day, name, user)
+  "Ayoyo ojo lali. Daftar yang belum bawa hari #{day}
+#{name}
+
+*yang merasa belum diwajibkan untuk membawa snake, abaikan saja pesan ini\nby : <code>@#{user}</code>"
+end
+
+def holiday_schedule
+  "Libur telah tiba\nHatiku gembira ⛱🏖🏝"
+end
+
+def empty_schedule
+  "Yeay banyak cemilan.\nSelamat menggendutkan diri, kawan-kawan\n😈"
+end

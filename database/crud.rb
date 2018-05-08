@@ -308,4 +308,16 @@ class Connection
   def done_people(day, name)
     @client.query("update bandung_snack set status='sudah' where name='#{name}' and day='#{day}' and status='belum'")
   end
+
+  def remind_people(day)
+    @client.query("select name from bandung_snack where day='#{day}' and status='belum'")
+  end
+
+  def reset_reminder(day)
+    @client.query("update bandung_snack set status='belum' where day<>'#{day}'")
+  end
+
+  def people_holiday(day)
+    @client.query("select name from bandung_snack where day='#{day}' and status='sudah'")
+  end
 end
