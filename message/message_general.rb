@@ -224,3 +224,19 @@ end
 def msg_delete_people(user)
   "ByBy #{user}"
 end
+
+def msg_reminder_schedule(day, user)
+  "Jadwal kamu kan hari #{day}, Sayang\n#{user} lupa yaa? 😤"
+end
+
+def msg_done_spam(user, name)
+  "<code>#{name}</code> udah bawa 🐍 kok\n@#{user} ngga usah nge-spam deh"
+end
+
+def msg_holiday_spam(user, name)
+  "<code>#{name}</code> lagi libur bawa 🐍 tau\n@#{user} ngga usah nge-spam deh"
+end
+
+def msg_done_people(user)
+  "Yeay dapat cemilan dari #{user}.\nSelamat menggendutkan diri, kawan-kawan\n😈"
+end

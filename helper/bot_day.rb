@@ -4,6 +4,12 @@ class Day
   attr_reader :hari
   attr_reader :snack
 
+  def read_today
+    @today = Date.today
+    @day = @today.strftime('%a')
+    @hari = @day.downcase
+  end
+
   def read_day(day)
     @day_name = case day.strip
                 when 'mon'
@@ -19,11 +25,5 @@ class Day
                 else
                   'Libur'
                 end
-  end
-
-  def read_today
-    @today = Date.today
-    @day = @today.strftime('%a')
-    @hari = @day.downcase
   end
 end

@@ -296,4 +296,16 @@ class Connection
   def delete_people(name)
     @client.query("delete from bandung_snack where name='#{name}'")
   end
+
+  def check_day(name)
+    @client.query("select day from bandung_snack where name='#{name}'")
+  end
+
+  def check_done(name)
+    @client.query("select status from bandung_snack where name='#{name}'")
+  end
+
+  def done_people(day, name)
+    @client.query("update bandung_snack set status='sudah' where name='#{name}' and day='#{day}' and status='belum'")
+  end
 end
