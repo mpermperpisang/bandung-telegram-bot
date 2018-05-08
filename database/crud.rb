@@ -292,4 +292,8 @@ class Connection
   def edit_people(day, name)
     @client.query("update bandung_snack set day='#{day.strip}' where name='#{name}'")
   end
+
+  def delete_people(name)
+    @client.query("delete from bandung_snack where name='#{name}'")
+  end
 end

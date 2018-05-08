@@ -212,3 +212,15 @@ end
 def empty_people(user)
   "<code>#{user}</code> ngga ada di squad Bandung 👻"
 end
+
+def error_general_empty(com)
+  "Formatnya salah, Kak\nCobain deh <code>#{com} @username1 @username2</code>"
+end
+
+def empty_snack(com, user)
+  "Nice try @#{user} but useless\n" + error_general_empty(com)
+end
+
+def msg_delete_people(user)
+  "ByBy #{user}"
+end
