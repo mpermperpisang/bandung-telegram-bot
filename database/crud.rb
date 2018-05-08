@@ -320,4 +320,8 @@ class Connection
   def people_holiday(day)
     @client.query("select name from bandung_snack where day='#{day}' and status='sudah'")
   end
+
+  def cancel_people(name)
+    @client.query("update bandung_snack set status='belum' where name='#{name}'")
+  end
 end

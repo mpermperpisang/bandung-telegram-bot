@@ -259,3 +259,7 @@ end
 def empty_schedule
   "Yeay banyak cemilan.\nSelamat menggendutkan diri, kawan-kawan\n😈"
 end
+
+def msg_cancel_people(user)
+  "#{user} ndak jadi bawa 🐍"
+end
