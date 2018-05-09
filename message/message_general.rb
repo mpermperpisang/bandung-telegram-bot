@@ -16,6 +16,12 @@ def empty_status
   general_empty_stg + "\nExample: <code>#{@comm} 21 51 103</code>"
 end
 
+def stg_not_exist(stg)
+  general_stg = 'dilihat statusnya' if @txt.start_with?('/status')
+  general_stg = 'di-done-kan' if @txt.start_with?('/done')
+  "Belum pernah ada yang booking <code>staging#{stg}.vm</code>, jadi ga bisa " + general_stg + ", Kak"
+end
+
 def chat_not_found
   'Jenkins chat not found, please check @mpermperpisang'
 end

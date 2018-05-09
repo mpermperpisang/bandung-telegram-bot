@@ -29,7 +29,7 @@ module Bot
           name.each do |stg_name|
             user = @db.status_staging(stg_name)
             if user.size.zero?
-              @bot.api.send_message(chat_id: @chatid, text: new_staging(@username, stg_name), parse_mode: 'HTML')
+              @bot.api.send_message(chat_id: @chatid, text: stg_not_exist(stg_name), parse_mode: 'HTML')
             else
               f.puts("<code>staging#{stg_name}</code> : <b>" + user.first['book_status'].upcase + '</b>')
               f.puts(user.first['book_branch'])
@@ -42,7 +42,7 @@ module Bot
 
       def show_status
         list_status_stg = File.read('./require_ruby.rb')
-        @bot.api.send_message(chat_id: @chatid, text: list_status_stg, parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @chatid, text: list_status_stg, parse_mode: 'HTML') if list_status_stg =~ /:/
       end
     end
   end

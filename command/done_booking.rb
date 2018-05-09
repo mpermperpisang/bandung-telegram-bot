@@ -24,10 +24,18 @@ module Bot
 
       def check_user_booked
         book_staging = @db.done_booking(@staging)
-        book_name = book_staging.size.zero? ? nil : book_staging.first['book_name']
+        @book_name = book_staging.size.zero? ? nil : book_staging.first['book_name']
         @db.done_staging(@staging)
 
-        @bot.api.send_message(chat_id: @id, text: msg_done_staging(book_name, @staging), parse_mode: 'HTML')
+        @book_name.nil? ? not_exist_staging : done_staging
+      end
+
+      def not_exist_staging
+        @bot.api.send_message(chat_id: @id, text: stg_not_exist(@staging), parse_mode: 'HTML')
+      end
+
+      def done_staging
+        @bot.api.send_message(chat_id: @id, text: msg_done_staging(@book_name, @staging), parse_mode: 'HTML')
       end
     end
   end
