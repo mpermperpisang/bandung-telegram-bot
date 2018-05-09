@@ -5,6 +5,9 @@ def snack_group(token, id, bot, msg, txt)
   Bot::Command::DoneSnack.new(token, id, bot, msg, txt).check_text
   Bot::Command::Reminder.new(token, id, bot, msg, txt).check_text
   Bot::Command::CancelSnack.new(token, id, bot, msg, txt).check_text
+  Bot::Command::Holiday.new(token, id, bot, msg, txt).check_text
+  Bot::Command::Normal.new(token, id, bot, msg, txt).check_text
+  Bot::Command::Change.new(token, id, bot, msg, txt).check_text
   Bot::Command::Help.new(token, id, bot, msg, txt).check_text
 end
 

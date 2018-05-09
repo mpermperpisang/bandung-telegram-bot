@@ -19,3 +19,11 @@ def left_member(message, bot)
 rescue StandardError => e
   puts e
 end
+
+def check_data(token, id, bot, message, data)
+  if data == 'email'
+    Bot::Command::Hi5.new(token, id, bot, message, data).member_email
+  else
+    Bot::Command::Hi5.new(token, id, bot, message, data).hi5_member(data)
+  end
+end

@@ -23,7 +23,7 @@ module Bot
         @day = day_name.size.zero? ? nil : day_name.first['day']
         @dday.read_today
 
-        @day.eql?(@dday.hari) ? update_done : reminder_done
+        @day.eql?(@dday.hari) ? update_done : reminder_done(@name)
       end
 
       def update_done
@@ -41,7 +41,10 @@ module Bot
         end
       end
 
-      def reminder_done
+      def reminder_done(name)
+        @db = Connection.new
+        @name = name
+
         user = @db.check_people(@name)
         reminder_name = user.size.zero? ? nil : user.first['name']
 

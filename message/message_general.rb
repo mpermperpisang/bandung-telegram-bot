@@ -245,6 +245,10 @@ def see_schedule
   'Lihat jadwal snack'
 end
 
+def msg_holiday_all
+  'Selamat hari libur berjamaah yaa, Kak'
+end
+
 def msg_reminder_people(day, name, user)
   "Ayoyo ojo lali. Daftar yang belum bawa hari #{day}
 #{name}
@@ -262,4 +266,17 @@ end
 
 def msg_cancel_people(user)
   "#{user} ndak jadi bawa 🐍"
+end
+
+def msg_holiday_people(user)
+  "<code>#{user}</code> izin libur dulu yaa"
+end
+
+def msg_normal_snack
+  "Snack sudah kembali sesuai jadwal di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+end
+
+def msg_change_people(user, name, day)
+  "Haeyo #{name}, sekarang jadwalnya jadi hari #{day}
+<code>@#{user}</code> ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end

@@ -79,4 +79,12 @@ class SendMessage
       parse_mode: 'HTML'
     }
   end
+
+  def day_schedule(id, name, count, amount)
+    @message = {
+      chat_id: id,
+      text: list_schedule(name, count, amount),
+      parse_mode: 'HTML'
+    }
+  end
 end

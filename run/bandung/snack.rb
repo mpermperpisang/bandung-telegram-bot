@@ -9,6 +9,10 @@ require './require.rb'
 @msg = MessageText.new
 @is_group = Group.new
 @chat = Chat.new
+@is_user = User.new
+@dday = Day.new
+@db = Connection.new
+@send = SendMessage.new
 
 bot_start = Telegram::Bot::Client.new(@token)
 @status.online(@token, @chat_id, bot_start, msg_weather(@today.weather, @today.poem))
@@ -23,9 +27,16 @@ Telegram::Bot::Client.run(@token) do |bot|
       when Telegram::Bot::Types::CallbackQuery
         case message.data
         when 'wtb', 'bbm', 'art', 'core', 'disco', 'bandung', 'email'
-          p '1'
+          @is_user.spammer?(@bot, @id, @username, @message, @command)
+          return 'spammer' if @is_user.spam == true
+          check_data(@token, @chat_id, bot, message, message.data)
         when 'mon', 'tue', 'wed', 'thu', 'fri'
-          p '2'
+          @dday.read_day(message.data)
+          count_schedule = @db.snack_schedule(message.data)
+          amount = count_schedule.count
+
+          @send.day_schedule(message.from.id, @dday.day_name, count_schedule, amount)
+          bot.api.send_message(@send.message)
         end
       when Telegram::Bot::Types::Message
         @txt = message.text

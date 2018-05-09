@@ -324,4 +324,24 @@ class Connection
   def cancel_people(name)
     @client.query("update bandung_snack set status='belum' where name='#{name}'")
   end
+
+  def holiday_people(name)
+    @client.query("update bandung_snack set status='libur' where name='#{name}'")
+  end
+
+  def holiday_all(day)
+    @client.query("update bandung_snack set status='libur' where day='#{day}'")
+  end
+
+  def change_people(day, name)
+    @client.query("update bandung_snack set fix_day='#{day.strip}', day='#{day.strip}' where name='#{name}'")
+  end
+
+  def normal_snack
+    @client.query("update bandung_snack set day='mon' where fix_day<>day and name<>'' and fix_day='mon'")
+    @client.query("update bandung_snack set day='tue' where fix_day<>day and name<>'' and fix_day='tue'")
+    @client.query("update bandung_snack set day='wed' where fix_day<>day and name<>'' and fix_day='wed'")
+    @client.query("update bandung_snack set day='thu' where fix_day<>day and name<>'' and fix_day='thu'")
+    @client.query("update bandung_snack set day='fri' where fix_day<>day and name<>'' and fix_day='fri'")
+  end
 end

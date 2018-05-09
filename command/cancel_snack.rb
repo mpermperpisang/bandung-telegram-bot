@@ -1,5 +1,6 @@
 module Bot
   class Command
+    # membatalkan seseorang membawa snack jika berbohong
     class CancelSnack < Command
       def check_text
         check_user_spam if @txt.start_with?('/cancel')
@@ -24,12 +25,12 @@ module Bot
         @db = Connection.new
 
         name = @txt.scan(/\B@\S+/)
-        name.each { |cancel_name|
+        name.each do |cancel_name|
           user = @db.check_people(cancel_name)
           name = user.size.zero? ? nil : user.first['name']
 
           name.nil? ? empty_snack(cancel_name) : cancel_snack(cancel_name)
-        }
+        end
       end
 
       def empty_snack(name)
