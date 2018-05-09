@@ -9,22 +9,30 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        next_stg_is_bbm unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
-      end
-
-      def next_stg_is_bbm
-        booking_stg unless @is_staging.bbm?(@bot, @chatid, @staging, @username)
+        booking_stg unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
       end
 
       def booking_stg
         @db = Connection.new
+        @send = SendMessage.new
 
-        check_booked = @db.status_booking(@staging)
-        staging = check_booked.first['book_status'] || check_booked.first['book_name']
-        book_status = staging.empty? ? nil : check_booked.first['book_status']
-        book_name = staging.empty? ? nil : check_booked.first['book_name']
+        staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
 
-        return if @is_staging.booked?(@bot, @id, @username, book_status, book_name, @staging)
+        @send.check_new_staging(@id, @username, @staging)
+        staging == 'new' ? @bot.api.send_message(@send.message) : check_user_booked
+      end
+
+      def insert_staging
+        @db.add_staging(@staging, @username, @fromid)
+      end
+
+      def check_user_booked
+        check_booked = @db.check_booked(@staging)
+        insert_staging if check_booked.size.zero?
+        book_status = check_booked.size.zero? ? nil : check_booked.first['book_status']
+        book_name = check_booked.size.zero? ? nil : check_booked.first['book_name']
+
+        return if @is_staging.done?(@bot, @id, @username, book_status, book_name, @staging)
         book_staging
       end
 

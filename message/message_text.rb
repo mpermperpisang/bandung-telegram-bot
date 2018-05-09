@@ -44,7 +44,7 @@ class MessageText
   end
 
   def bot_user
-    @squad = %w[wtb bbm art core disco email]
+    @squad = %w[wtb bbm art core disco bandung email]
     @admin = %w[mpermperpisang ak_fahmi tomifadlan teguhn duvadilon]
     @pm = %w[mpermperpisang ak_fahmi Maharaniar]
     @dana_qa = %w[mpermperpisang rezaldy08]

@@ -15,17 +15,7 @@ module Bot
       end
 
       def remind_schedule
-        @kb = [
-          [
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Senin', callback_data: 'mon'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Selasa', callback_data: 'tue'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Rabu', callback_data: 'wed')
-          ],
-          [
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Kamis', callback_data: 'thu'),
-            Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Jumat', callback_data: 'fri')
-          ]
-        ]
+        key_day
         @markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: @kb)
       end
 

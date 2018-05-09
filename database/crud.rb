@@ -12,7 +12,7 @@ class Connection
   end
 
   def check_booked(stg)
-    @client.query("select book_status from booking_staging where book_staging='#{stg}'")
+    @client.query("select book_status, book_name from booking_staging where book_staging='#{stg}'")
   end
 
   def message_chat_id
@@ -83,10 +83,6 @@ class Connection
     where deploy_type='deploy' and deploy_branch='#{branch.strip}'")
   end
 
-  def status_booking(stg)
-    @client.query("select book_status, book_name from booking_staging where book_staging='#{stg}'")
-  end
-
   def book_staging(name, id, stg)
     @client.query("update booking_staging set book_name='#{name}', book_from_id='#{id}', book_status='booked'
     where book_staging='#{stg}' and book_status='done'")
@@ -121,47 +117,8 @@ class Connection
     @client.query("update deploy_staging set deploy_status='cancelled' where deploy_branch='#{branch.strip}'")
   end
 
-  def status_staging
-    File.open('./require_ruby.rb', 'w+') do |f|
-      f.puts("PIC -\nstaging21 : ")
-      @client.query("select book_status from booking_staging where book_staging='21'").each do |row|
-        f.puts(row.to_s)
-      end
-
-      @client.query("select book_branch from booking_staging where book_staging='21'").each do |row|
-        f.puts(row.to_s)
-      end
-
-      @client.query("select book_name from booking_staging where book_staging='21'").each do |row|
-        f.puts("@#{row}")
-      end
-
-      f.puts("\nPIC Muhammad Rezaldy\nstaging51 : ")
-      @client.query("select book_status from booking_staging where book_staging='51'").each do |row|
-        f.puts(row.to_s)
-      end
-
-      @client.query("select book_branch from booking_staging where book_staging='51'").each do |row|
-        f.puts(row.to_s)
-      end
-
-      @client.query("select book_name from booking_staging where book_staging='51'").each do |row|
-        f.puts("@#{row}")
-      end
-
-      f.puts("\nPIC Ferawati Hartanti Pratiwi\nstaging103 : ")
-      @client.query("select book_status from booking_staging where book_staging='103'").each do |row|
-        f.puts(row.to_s)
-      end
-
-      @client.query("select book_branch from booking_staging where book_staging='103'").each do |row|
-        f.puts(row.to_s)
-      end
-
-      @client.query("select book_name from booking_staging where book_staging='103'").each do |row|
-        f.puts("@#{row}")
-      end
-    end
+  def status_staging(stg)
+    @client.query("select * from booking_staging where book_staging='#{stg}'")
   end
 
   def update_id_closed(id)
@@ -343,5 +300,54 @@ class Connection
     @client.query("update bandung_snack set day='wed' where fix_day<>day and name<>'' and fix_day='wed'")
     @client.query("update bandung_snack set day='thu' where fix_day<>day and name<>'' and fix_day='thu'")
     @client.query("update bandung_snack set day='fri' where fix_day<>day and name<>'' and fix_day='fri'")
+  end
+
+  def bandung_email
+    File.open('./require_ruby.rb', 'w+') do |f|
+      @client.query("select distinct hi_email from bandung_hi5 order by hi_email").each do |row|
+        f.puts(row)
+      end
+    end
+  end
+
+  def bandung_hi5_squad(squad)
+    if squad.strip.upcase == 'BANDUNG'
+      File.open('./require_ruby.rb', 'w+') do |f|
+        @client.query("select distinct hi_name from bandung_hi5 order by hi_name").each do |row|
+          f.puts(row)
+        end
+      end
+    else
+      File.open('./require_ruby.rb', 'w+') do |f|
+        @client.query("select hi_name from bandung_hi5 where hi_squad='#{squad.upcase}' order by hi_name").each do |row|
+          f.puts(row)
+        end
+      end
+    end
+  end
+
+  def check_hi5(squad, name)
+    @client.query("select hi_name from bandung_hi5 where hi_name='#{name}' and hi_squad='#{squad}'")
+  end
+
+  def delete_hi5(squad, name)
+    @client.query("delete from bandung_hi5 where hi_name='#{name}' and hi_squad='#{squad.strip}'")
+  end
+
+  def check_hi5_bandung(name)
+    @client.query("select hi_name from bandung_hi5 where hi_name='#{name}' and hi_squad='Bandung'")
+  end
+
+  def add_hi5(squad, name)
+    @client.query("insert into bandung_hi5 (hi_name, hi_squad) values ('#{name}', '#{squad.strip.upcase}')")
+  end
+
+  def edit_hi5(squad, name)
+    @client.query("update bandung_hi5 set hi_squad='#{squad.upcase.strip}' where hi_name='#{name}' and hi_squad='BANDUNG'")
+  end
+
+  def add_staging(stg, name, id)
+    @client.query("insert into booking_staging (book_staging, book_name, book_from_id, book_status)
+    values ('#{stg}', '#{name}', '#{id}', 'booked')")
   end
 end

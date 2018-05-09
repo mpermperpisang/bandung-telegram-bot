@@ -20,7 +20,6 @@ module Bot
       end
 
       def check_empty_day
-        @msg = MessageText.new
         @send = SendMessage.new
 
         @send.err_day_snack(@id, @command)

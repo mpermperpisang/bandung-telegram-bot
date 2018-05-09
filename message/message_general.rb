@@ -1,5 +1,19 @@
-def empty_staging(command, user)
-  "@#{user} forgot to type staging name 😒\nExample: <code>#{command}_103</code>"
+def empty_staging(com, user)
+  @comm = com
+  @user = user
+  @comm == '/status' ? empty_status : empty_general
+end
+
+def general_empty_stg
+  "@#{@user} forgot to type staging name 😒"
+end
+
+def empty_general
+  general_empty_stg + "\nExample: <code>#{@comm}_103</code>"
+end
+
+def empty_status
+  general_empty_stg + "\nExample: <code>#{@comm} 21 51 103</code>"
 end
 
 def chat_not_found
@@ -256,6 +270,11 @@ def msg_reminder_people(day, name, user)
 *yang merasa belum diwajibkan untuk membawa snake, abaikan saja pesan ini\nby : <code>@#{user}</code>"
 end
 
+def msg_invalid_squad(squad, user)
+  "<code>#{squad.upcase}</code> squad apa tuch, Kak @#{user}?
+Aku cuma tau squad <b>WTB</b>, <b>BBM</b>, <b>ART</b>, <b>CORE</b> (Apps) dan <b>DISCO</b>"
+end
+
 def holiday_schedule
   "Libur telah tiba\nHatiku gembira ⛱🏖🏝"
 end
@@ -279,4 +298,37 @@ end
 def msg_change_people(user, name, day)
   "Haeyo #{name}, sekarang jadwalnya jadi hari #{day}
 <code>@#{user}</code> ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+end
+
+def private_message(user)
+  "Tolong japri aku dulu yaa, Kak #{user} buat tau list Hi5nya"
+end
+
+def by_user(user)
+  "\n\nBy: <code>@#{user}</code>"
+end
+
+def choosing_squad(user)
+  "Pilih squadnya yaa, Kak @#{user}"
+end
+
+def list_hi5(squad, count)
+  "Hi5 squad <b>#{squad.upcase}</b>\nKalo daftar ini ga update, mohon kasih tau <code>@mpermperpisang</code> yaa
+Jumlah: #{count} orang"
+end
+
+def empty_member(squad, user)
+  "Stok anggota squad #{squad.upcase} lagi kosong, Kak @#{user}"
+end
+
+def msg_delete_hi5(squad, name)
+  "Berhasil menghapus #{name} di squad #{squad.upcase.strip}"
+end
+
+def msg_add_hi5(squad, name)
+  "Berhasil menambahkan #{name} di squad #{squad.upcase.strip}"
+end
+
+def msg_edit_hi5(squad, name)
+  "Berhasil mengubah #{name} di squad #{squad.upcase.strip}"
 end

@@ -11,15 +11,12 @@ class Staging
     bot.api.send_message(@send.message) if stg.nil? || stg == false
   end
 
-  def bbm?(bot, id, stg, user)
-    vm = %w[21 51 103]
-
-    bot.api.send_message(chat_id: id, text: error_staging(user)) unless vm.include?(stg)
+  def booked?(bot, id, user, status)
+    bot.api.send_message(chat_id: id, text: msg_block_deploy(user)) if status == 'done'
   end
 
-  def booked?(bot, id, user, status, name, stg)
-    bot.api.send_message(chat_id: id, text: msg_block_deploy(user)) if status == 'done' && name == false
-    txt = user.eql?(name) ? msg_still_book(stg, user) : msg_using_staging(name, stg, user)
-    bot.api.send_message(chat_id: id, text: txt, parse_mode: 'HTML') if status == 'booked'
+  def done?(bot, id, user, status, name, stg)
+    text_booking = user.eql?(name) ? msg_still_book(stg, user) : msg_using_staging(name, stg, user)
+    bot.api.send_message(chat_id: id, text: text_booking, parse_mode: 'HTML') if status == 'booked'
   end
 end

@@ -19,7 +19,7 @@ module Bot
 
       def private
         @message.message = @token
-        @bot.api.send_message(chat_id: @chatid, text: @message.help_private(@username), parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @fromid, text: @message.help_private(@username), parse_mode: 'HTML')
       end
     end
   end

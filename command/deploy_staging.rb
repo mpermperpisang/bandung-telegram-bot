@@ -1,14 +1,9 @@
-require './is_true/staging.rb'
-require './is_true/branch.rb'
-require './is_true/user.rb'
-require './database/crud.rb'
-
 module Bot
   class Command
     # antri deploy branch ke suatu staging
     class DeployStaging < Command
       def check_text
-        check_stg_empty if @txt.start_with?("/deploy_#{@msg.stg}", '/deploy') && @txt == @msg.req && @txt == @msg.deploy
+        check_stg_empty if @txt.start_with?("/deploy_#{@staging}", '/deploy') && @txt == @msg.req && @txt == @msg.deploy
       end
 
       def check_stg_empty
@@ -16,14 +11,14 @@ module Bot
         @msg.read_text(@txt)
         @is_staging = Staging.new
 
-        next_stg_not_empty unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
+        next_stg_not_empty unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
       end
 
       def next_stg_not_empty
         @is_branch = Branch.new
         @send = SendMessage.new
 
-        staging = [*1..127].include?(@staging.to_i) ? @staging : 'new'
+        staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
         @branch = @space.nil? ? nil : @space.strip
         return if @is_branch.empty?(@bot, @id, @branch, @txt, @username)
 
@@ -41,29 +36,33 @@ module Bot
         @db = Connection.new
 
         check_booked = @db.check_booked(@staging)
-        staging = check_booked.first['book_status']
-        @status = staging.empty? ? nil : staging
+        @status = check_booked.size.zero? ? nil : check_booked.first['book_status']
+        @name = check_booked.size.zero? ? nil : check_booked.first['book_name']
 
-        return if @is_staging.booked?(@bot, @id, @username, @status, false, @staging) || @status.nil? || @status == ''
+        return if @is_staging.booked?(@bot, @id, @username, @status)
         check_stg_book_user
       end
 
       def check_stg_book_user
         check_done = @db.done_booking(@staging)
-        staging = check_done.first['book_name'] || check_done.first['book_from_id']
-        book_name = staging.empty? ? nil : check_done.first['book_name']
-        from_id = staging.empty? ? nil : check_done.first['book_from_id']
+        @book_name = check_done.size.zero? ? nil : check_done.first['book_name']
+        @from_id = check_done.size.zero? ? nil : check_done.first['book_from_id']
 
         return check_requester if book_name == @username
-        @send.err_deploy_chat(@id, @username, @staging, book_name)
-        @bot.api.send_message(@send.message)
-
-        begin
-          @send.err_deploy_from(from_id, @username, @staging, book_name)
+        if book_name.nil?
+          @bot.api.send_message(chat_id: @chatid, text: msg_block_deploy(@username))
+        else
+          @send.err_deploy_chat(@id, @username, @staging, @book_name)
           @bot.api.send_message(@send.message)
-        rescue StandardError => e
-          p "#{e}\n#{from_id} #{book_name} belum japri jenkins bot"
         end
+        send_to_id
+      end
+
+      def send_to_id
+        @send.err_deploy_from(@from_id, @username, @staging, @book_name)
+        @bot.api.send_message(@send.message)
+      rescue StandardError => e
+        p "#{e}\n#{from_id} #{book_name} belum japri jenkins bot"
       end
 
       def check_requester

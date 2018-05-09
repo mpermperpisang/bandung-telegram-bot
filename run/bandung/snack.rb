@@ -27,9 +27,8 @@ Telegram::Bot::Client.run(@token) do |bot|
       when Telegram::Bot::Types::CallbackQuery
         case message.data
         when 'wtb', 'bbm', 'art', 'core', 'disco', 'bandung', 'email'
-          @is_user.spammer?(@bot, @id, @username, @message, @command)
-          return 'spammer' if @is_user.spam == true
-          check_data(@token, @chat_id, bot, message, message.data)
+          @is_user.spammer?(bot, @chat_id, message.from.username, message, message.data)
+          check_data(@token, @chat_id, bot, message, message.data) if @is_user.spam == false
         when 'mon', 'tue', 'wed', 'thu', 'fri'
           @dday.read_day(message.data)
           count_schedule = @db.snack_schedule(message.data)

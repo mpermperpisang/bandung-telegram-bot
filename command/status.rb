@@ -3,24 +3,46 @@ module Bot
     # untuk melihat status staging
     class Status < Command
       def check_text
-        status_staging if @txt.start_with?('/status')
+        check_stg_empty if @txt.start_with?('/status')
+      end
+
+      def check_stg_empty
+        @is_staging = Staging.new
+
+        check_staging unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
+      end
+
+      def check_staging
+        @db = Connection.new
+        @send = SendMessage.new
+
+        staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
+
+        @send.check_new_staging(@id, @username, @staging)
+        staging == 'new' ? @bot.api.send_message(@send.message) : status_staging
       end
 
       def status_staging
-        @db = Connection.new
+        name = @txt.scan(/\d+/)
+        File.open('./require_ruby.rb', 'w+') do |f|
+          f.puts("Status staging\n\n")
+          name.each do |stg_name|
+            user = @db.status_staging(stg_name)
+            if user.size.zero?
+              @bot.api.send_message(chat_id: @chatid, text: new_staging(@username, stg_name), parse_mode: 'HTML')
+            else
+              f.puts("<code>staging#{stg_name}</code> : <b>" + user.first['book_status'].upcase + '</b>')
+              f.puts(user.first['book_branch'])
+              f.puts('@' + user.first['book_name'] + "\n\n")
+            end
+          end
+        end
+        show_status
+      end
 
-        @db.status_staging
-
-        @test = File.read('./require_ruby.rb')
-        @test1 = @test.delete('"', '')
-        @test2 = @test1.delete('}', '')
-        @test3 = @test2.gsub("\n{book_status=>", '')
-        @test4 = @test3.gsub('{book_branch=>', '')
-        @test5 = @test4.gsub('{book_name=>', '')
-        @test6 = @test5.gsub('booked', '<b>BOOKED</b>')
-        @test7 = @test6.gsub('done', '<b>DONE</b>')
-
-        @bot.api.send_message(chat_id: @chatid, text: @test7, parse_mode: 'HTML')
+      def show_status
+        list_status_stg = File.read('./require_ruby.rb')
+        @bot.api.send_message(chat_id: @chatid, text: list_status_stg, parse_mode: 'HTML')
       end
     end
   end

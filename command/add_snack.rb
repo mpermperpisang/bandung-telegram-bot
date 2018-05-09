@@ -1,7 +1,7 @@
 module Bot
   class Command
     # untuk menambahkan orang ke jadwal snack
-    class Add < Command
+    class AddSnack < Command
       def check_text
         check_user_spam if @txt.start_with?('/add')
       end
@@ -20,7 +20,6 @@ module Bot
       end
 
       def check_empty_day
-        @msg = MessageText.new
         @send = SendMessage.new
 
         @send.err_day_snack(@id, @command)

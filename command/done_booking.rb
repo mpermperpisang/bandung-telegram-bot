@@ -9,16 +9,20 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        next_stg_is_bbm unless @is_staging.empty?(@bot, @chatid, @staging, @username, @txt)
-      end
-
-      def next_stg_is_bbm
-        done_book_stg unless @is_staging.bbm?(@bot, @chatid, @staging, @username)
+        done_book_stg unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
       end
 
       def done_book_stg
         @db = Connection.new
+        @send = SendMessage.new
 
+        staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
+
+        @send.check_new_staging(@id, @username, @staging)
+        staging == 'new' ? @bot.api.send_message(@send.message) : check_user_booked
+      end
+
+      def check_user_booked
         book_staging = @db.done_booking(@staging)
         book_name = book_staging.size.zero? ? nil : book_staging.first['book_name']
         @db.done_staging(@staging)
