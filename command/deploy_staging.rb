@@ -48,8 +48,8 @@ module Bot
         @book_name = check_done.size.zero? ? nil : check_done.first['book_name']
         @from_id = check_done.size.zero? ? nil : check_done.first['book_from_id']
 
-        return check_requester if book_name == @username
-        if book_name.nil?
+        return check_requester if @book_name == @username
+        if @book_name.nil?
           @bot.api.send_message(chat_id: @chatid, text: msg_block_deploy(@username))
         else
           @send.err_deploy_chat(@id, @username, @staging, @book_name)

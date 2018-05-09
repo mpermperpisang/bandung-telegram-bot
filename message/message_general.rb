@@ -158,6 +158,15 @@ def next_poin
   'Menunggu poin selanjutnya'
 end
 
+def choose_poin
+  'Pilih poin'
+end
+
+def block_poin
+  'Pemberian poin hanya bisa lewat inline keyboard saja, Kak
+Silahkan pilih poin di bawah ini atau klik /keyboard'
+end
+
 def not_member_market
   'Kakak belum terdaftar untuk ikut marketplace\nCoba tanya ke Kak @mpermperpisang ajah yaa'
 end
@@ -189,7 +198,7 @@ def done_poin(poin)
 end
 
 def show_command
-  "Klik /show (untuk menampilkan poin) atau klik /keyboard (untuk memilih poin)
+  "Ketik /show (untuk menampilkan poin) atau klik /keyboard (untuk memilih poin)
 Kalau butuh bantuan, klik /help yaa
 Have a nice marketplace ☺️"
 end
@@ -331,4 +340,8 @@ end
 
 def msg_edit_hi5(squad, name)
   "Berhasil mengubah #{name} di squad #{squad.upcase.strip}"
+end
+
+def list_schedule(day, name, count)
+  "Jadwal snack #{day}:\n<code>#{name}</code>\nJumlah: #{count} orang"
 end

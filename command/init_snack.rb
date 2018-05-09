@@ -15,5 +15,6 @@ end
 def snack_private(token, id, bot, msg, txt)
   Bot::Command::WelcomeText.new(token, id, bot, msg, txt).check_text
   Bot::Command::Help.new(token, id, bot, msg, txt).check_text
+  Bot::Command::Hi5.new(token, id, bot, msg, txt).check_text
   Bot::Command::AddHi5.new(token, id, bot, msg, txt).check_text
 end

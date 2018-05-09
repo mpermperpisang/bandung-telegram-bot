@@ -6,6 +6,5 @@ end
 def todo_private(token, id, bot, msg, txt)
   Bot::Command::WelcomeText.new(token, id, bot, msg, txt).check_text
   Bot::Command::Help.new(token, id, bot, msg, txt).check_text
-  Bot::Command::Poin.new(token, id, bot, msg, txt).check_text
   Bot::Command::InlinePoin.new(token, id, bot, msg, txt).check_text
 end

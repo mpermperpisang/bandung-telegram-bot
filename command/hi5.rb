@@ -3,7 +3,8 @@ module Bot
     # menampilkan daftar anggota hi5 squad Bandung
     class Hi5 < Command
       def check_text
-        check_user_spam if @txt.start_with?('/hi5', "/hi5 #{@space}")
+        @squad = @space.nil? ? nil : @space.strip
+        check_user_spam if ['/hi5', "/hi5@#{ENV['BOT_REMINDER']}", "/hi5 #{@squad}"].include?(@txt)
       end
 
       def check_user_spam

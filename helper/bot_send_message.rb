@@ -1,6 +1,7 @@
 # default untuk send message bot
 class SendMessage
   attr_reader :message
+
   def err_deploy_chat(chatid, user, stg, name)
     @message = {
       chat_id: chatid,

@@ -3,7 +3,8 @@ module Bot
     # untuk menghapus, menambah atau mengedit anggota ke daftar hi5
     class AddHi5 < Command
       def check_text
-        check_squad if @txt.start_with?("/hi5 #{@space.strip} #{@symbol}")
+        @squad = @space.nil? ? '' : @space.strip
+        check_squad if @txt == "/hi5 #{@squad} #{@symbol}"
       end
 
       def check_squad

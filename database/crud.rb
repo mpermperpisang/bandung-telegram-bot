@@ -163,11 +163,6 @@ class Connection
     @client.query("select distinct chat_id_market from squad_marketplace where message_id_market<>0")
   end
 
-  def id_get_poin(user, id)
-    @client.query("update squad_marketplace set from_id_market='#{id}'
-    where member_market='@#{user}' and from_id_market<>'#{id}'")
-  end
-
   def message_from_id
     File.open('./require_ruby.rb', 'w+') do |f|
       @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'").each do |row|
@@ -182,6 +177,11 @@ class Connection
 
   def update_message_id(id)
     @client.query("update squad_marketplace set message_id_market='#{id}' where id_market>0")
+  end
+
+  def id_get_poin(user, id)
+    @client.query("update squad_marketplace set from_id_market='#{id}'
+    where member_market='@#{user}' and from_id_market<>'#{id}'")
   end
 
   def add_people(day, name)
@@ -349,5 +349,13 @@ class Connection
   def add_staging(stg, name, id)
     @client.query("insert into booking_staging (book_staging, book_name, book_from_id, book_status)
     values ('#{stg}', '#{name}', '#{id}', 'booked')")
+  end
+
+  def snack_schedule(day)
+    File.open('./require_ruby.rb', 'w+') do |f|
+      @client.query("select name from bandung_snack where fix_day='#{day}'").each do |row|
+        f.puts(row)
+      end
+    end
   end
 end

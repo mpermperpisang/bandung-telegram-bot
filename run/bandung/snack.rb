@@ -34,7 +34,10 @@ Telegram::Bot::Client.run(@token) do |bot|
           count_schedule = @db.snack_schedule(message.data)
           amount = count_schedule.count
 
-          @send.day_schedule(message.from.id, @dday.day_name, count_schedule, amount)
+          list = File.read('./require_ruby.rb')
+          line = list.gsub('{"name"=>"', '')
+          name = line.gsub('"}', '')
+          @send.day_schedule(message.from.id, @dday.day_name, name, amount)
           bot.api.send_message(@send.message)
         end
       when Telegram::Bot::Types::Message
@@ -50,7 +53,7 @@ Telegram::Bot::Client.run(@token) do |bot|
 
           if command.include?(@msg.bot_name) || command.include?(@msg.booking_name) || command.include?(@msg.command)
             snack_group(@token, @chat_id, bot, message, @txt)
-            @chat.delete(bot, @chat_id, message.message_id)
+            @chat.delete(bot, message.chat.id, message.message_id)
           end
         else
           snack_private(@token, message.from.id, bot, message, @txt)
