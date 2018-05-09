@@ -72,7 +72,7 @@ module BotDetail
     6. See list of deploy branch request (group)
     /list_request
 
-    🐾 You can not use another staging than 21, 51 or 103 (under development)"
+    🐾 You can use another staging, not only 21, 51 or 103"
   end
 
   def help_jenkins

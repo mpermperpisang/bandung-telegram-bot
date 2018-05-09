@@ -81,7 +81,8 @@ def list_deployment(list, user)
 end
 
 def empty_deployment(user)
-  "Sekarang aku lagi ngga deploy apa-apa, Kak @#{user}"
+  "Sekarang aku lagi ngga deploy apa-apa, Kak @#{user}
+Silahkan kalau mau deploy, ga akan antri lama loh"
 end
 
 def blocked_bot(user)
