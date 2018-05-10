@@ -8,7 +8,7 @@ module Bot
       end
 
       def check_squad
-        @msg.bot_user
+        @msg.bot_squad
         check_member if @msg.squad.include?(@space.strip)
       end
 

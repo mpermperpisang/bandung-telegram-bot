@@ -5,11 +5,10 @@ class User
 
   def developer?(bot, id, user)
     @msg = MessageText.new
-    @msg.bot_user
     @msg.quality_assurance
 
-    qa = @msg.dana_qa
-    bot.api.send_message(chat_id: id, text: error_dev(user)) if qa.include?(user)
+    blqa = @msg.qa
+    bot.api.send_message(chat_id: id, text: error_dev(user)) if blqa.include?(user)
   end
 
   def quality_assurance?(bot, id, user, txt)
@@ -42,6 +41,7 @@ class User
   def spammer?(bot, id, user, message, data)
     @msg = MessageText.new
     @msg.bot_user
+    @msg.bot_squad
 
     count_spam = check_spammer(user, data)
     @attempt = count_spam.size.zero? ? nil : count_spam.first['bot_attempt']

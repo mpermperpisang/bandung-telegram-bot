@@ -9,7 +9,7 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        rake_general unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
+        rake_general unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
       end
 
       def rake_general

@@ -9,7 +9,7 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        normalize_date unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
+        normalize_date unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
       end
 
       def normalize_date

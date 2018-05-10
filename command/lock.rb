@@ -9,7 +9,7 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        release_lock unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
+        release_lock unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
       end
 
       def release_lock

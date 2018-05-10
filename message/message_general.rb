@@ -9,7 +9,7 @@ def general_empty_stg
 end
 
 def empty_general
-  general_empty_stg + "\nExample: <code>#{@comm}_103</code>"
+  general_empty_stg + "\nExample: <code>#{@comm} 103</code>"
 end
 
 def empty_status
@@ -19,7 +19,7 @@ end
 def stg_not_exist(stg)
   general_stg = 'dilihat statusnya' if @txt.start_with?('/status')
   general_stg = 'di-done-kan' if @txt.start_with?('/done')
-  "Belum pernah ada yang booking <code>staging#{stg}.vm</code>, jadi ga bisa " + general_stg + ", Kak"
+  "Belum pernah ada yang booking <code>staging#{stg}.vm</code>, jadi ga bisa " + general_stg + ', Kak'
 end
 
 def chat_not_found
@@ -351,4 +351,8 @@ end
 
 def list_schedule(day, name, count)
   "Jadwal snack #{day}:\n<code>#{name}</code>\nJumlah: #{count} orang"
+end
+
+def telegram_error
+  'Telegram stuff, dont worry'
 end

@@ -17,7 +17,7 @@ module Bot
 
       def check_squad
         @msg = MessageText.new
-        @msg.bot_user
+        @msg.bot_squad
 
         @squad = @space.nil? ? nil : @space.strip
 

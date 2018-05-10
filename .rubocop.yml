@@ -1,0 +1,53 @@
+Metrics/LineLength:
+  Max: 125
+
+Metrics/BlockLength:
+  Max: 50
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ClassLength:
+  Max: 125
+
+Metrics/AbcSize:
+  Max: 35
+
+Metrics/BlockNesting:
+  Max: 5
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/DateTime:
+  Enabled: false
+
+Style/ZeroLengthPredicate:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Max: 6
+
+AllCops:
+  Exclude:
+    - '/Users/bukalapak/project/bandung-telegram-bot/cron_job/reminder_normal.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/cron_job/reminder_cron.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/cron_job/cap_cron.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/cron_job/rake_cron.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/require/helper_cap.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/require/helper_ruby.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/require/ruby_cap.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/require_ruby.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/require_helper.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/Gemfile'
+    - '/Users/bukalapak/project/bandung-telegram-bot/Gemfile.lock'
+    - '/Users/bukalapak/project/bandung-telegram-bot/helper/bot_detail.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/database/crud.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/helper/bot_weather.rb'
+    - '/Users/bukalapak/project/bandung-telegram-bot/command/list_keyboard.rb'

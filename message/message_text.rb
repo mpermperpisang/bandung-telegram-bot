@@ -5,7 +5,7 @@ class MessageText
   #------------------------
   attr_reader :host, :host_remote, :username, :user, :password
   #------------------------
-  attr_reader :squad, :admin, :pm, :dana_qa, :qa, :days
+  attr_reader :squad, :admin, :pm, :qa, :days
 
   def read_text(txt)
     @bot_name = txt[/\/[a-z]\w+/]
@@ -44,10 +44,8 @@ class MessageText
   end
 
   def bot_user
-    @squad = %w[wtb bbm art core disco bandung email]
     @admin = %w[mpermperpisang ak_fahmi tomifadlan teguhn duvadilon]
     @pm = %w[mpermperpisang ak_fahmi Maharaniar]
-    @dana_qa = %w[mpermperpisang rezaldy08]
   end
 
   def quality_assurance
@@ -60,6 +58,10 @@ class MessageText
       ragapinilih agungenrico jeanclaudya fixcocandra lelimhr anisahnurh Yulinare irwinharnia Apreliamaisara
       syarifahzura reifa fitrilarasati trimamanurung
     ]
+  end
+
+  def bot_squad
+    @squad = %w[wtb bbm art core disco bandung email]
   end
 
   def weekdays

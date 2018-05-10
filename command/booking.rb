@@ -9,7 +9,7 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        booking_stg unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
+        booking_stg unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
       end
 
       def booking_stg

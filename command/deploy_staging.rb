@@ -11,7 +11,7 @@ module Bot
         @msg.read_text(@txt)
         @is_staging = Staging.new
 
-        next_stg_not_empty unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
+        next_stg_not_empty unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
       end
 
       def next_stg_not_empty
@@ -74,7 +74,7 @@ module Bot
         define_queue
         define_ip
 
-        @req = @space.nil? ? @msg.bot_name : @space
+        @req = @space.nil? ? @msg.bot_name : @txt
         check_req_branch = @db.list_requester(@req)
         request_branch = check_req_branch.first['deploy_request'] unless check_req_branch.size.zero?
         requester = check_req_branch.size > 0 ? request_branch : nil
@@ -118,8 +118,8 @@ module Bot
         results_cap = @db.number_queue_cap
         @queue_cap = results_cap.count
 
-        results_rake = @db.number_queue_rake
-        @queue_rake = results_rake.count
+        p results_rake = @db.number_queue_rake
+        p @queue_rake = results_rake.count
       end
 
       def queueing_deployment

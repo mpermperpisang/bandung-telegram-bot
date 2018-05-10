@@ -9,7 +9,7 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        backburner_general unless @is_staging.empty?(@bot, @chatid, @staging, @username, @base_command)
+        backburner_general unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
       end
 
       def backburner_general
