@@ -22,7 +22,7 @@ module Bot
       end
 
       def check_user_request
-        Bot::Command::DeployStaging.new(@token, @id, @bot, @message, @txt).check_requester
+        Bot::Command::DeployStaging.new(@token, @chatid, @bot, @message, @txt).check_requester
       end
     end
   end

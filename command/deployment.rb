@@ -12,7 +12,7 @@ module Bot
 
         @deploy = @db.list_deployment
 
-        @send.empty_deploy(@id, @username)
+        @send.empty_deploy(@chatid, @username)
         @deploy.size.zero? ? @bot.api.send_message(@send.message) : list_stg_deploy
       end
 
@@ -39,7 +39,7 @@ Deployer: @#{row['deployer']}\n\n")
 
       def read_deployment
         list_deploy = File.read('./require_ruby.rb')
-        @bot.api.send_message(chat_id: @id, text: list_deployment(list_deploy, @username), parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @chatid, text: list_deployment(list_deploy, @username), parse_mode: 'HTML')
       end
     end
   end

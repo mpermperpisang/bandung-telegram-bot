@@ -22,7 +22,7 @@ module Bot
       end
 
       def normalize_date
-        Bot::Command::DeployStaging.new(@token, @id, @bot, @message, @txt).define_ip
+        Bot::Command::DeployStaging.new(@token, @chatid, @bot, @message, @txt).define_ip
 
         date = DateTime.now
         @year_month_date = "#{date.strftime('%Y')}-#{date.strftime('%m')}-#{date.strftime('%d')}"
@@ -39,7 +39,7 @@ module Bot
         @send = SendMessage.new
 
         EnvBash.load(ENV['DOWNLOAD_URL'] + '/helper/jenkins/exec_normalize.bash')
-        @send.success_normalize_date(@id, @staging, @year_month_date, @time)
+        @send.success_normalize_date(@chatid, @staging, @year_month_date, @time)
         @bot.api.send_message(@send.message)
       end
     end
