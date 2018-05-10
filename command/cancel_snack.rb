@@ -28,6 +28,7 @@ module Bot
         name.each do |cancel_name|
           user = @db.check_people(cancel_name)
           name = user.size.zero? ? nil : user.first['name']
+          @status = user.size.zero? ? nil : user.first['status']
 
           name.nil? ? empty_snack(cancel_name) : cancel_snack(cancel_name)
         end
@@ -39,7 +40,7 @@ module Bot
 
       def cancel_snack(name)
         @db.cancel_people(name)
-        @bot.api.send_message(chat_id: @id, text: msg_cancel_people(name))
+        @bot.api.send_message(chat_id: @id, text: msg_cancel_people(name)) if %w[sudah libur].include?(@status)
       end
     end
   end

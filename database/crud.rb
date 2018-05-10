@@ -243,7 +243,7 @@ class Connection
   end
 
   def check_people(name)
-    @client.query("select name from bandung_snack where name='#{name}'")
+    @client.query("select name, status from bandung_snack where name='#{name}'")
   end
 
   def edit_people(day, name)

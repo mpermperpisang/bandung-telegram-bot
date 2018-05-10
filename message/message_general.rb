@@ -312,8 +312,8 @@ def msg_normal_snack
 end
 
 def msg_change_people(user, name, day)
-  "Haeyo #{name}, sekarang jadwalnya jadi hari #{day}
-<code>@#{user}</code> ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+  "Haeyo #{name}, sekarang jadwalnya udah diganti sama <code>@#{user}</code> jadi hari #{day}
+Ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end
 
 def private_message(user)
