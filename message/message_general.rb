@@ -1,7 +1,7 @@
 def empty_staging(com, user)
   @comm = com
   @user = user
-  @comm == '/status' ? empty_status : empty_general
+  @comm.start_with?('/status') ? empty_status : empty_general
 end
 
 def general_empty_stg
@@ -51,10 +51,6 @@ def error_deploy(user, staging, name)
   "@#{user} did not booking <code>staging#{staging}</code> but trying to deploy into it\nFYI @#{name}"
 end
 
-def error_staging(user)
-  "Bukan staging milik squad BBM, @#{user}"
-end
-
 def error_dev(user)
   "Sorry @#{user}, only BE or FE can request deploy to staging"
 end
@@ -82,7 +78,7 @@ end
 
 def empty_deployment(user)
   "Sekarang aku lagi ngga deploy apa-apa, Kak @#{user}
-Silahkan kalau mau deploy, ga akan antri lama loh"
+Kalau deploy, ga akan antri lama loh"
 end
 
 def blocked_bot(user)
@@ -192,12 +188,12 @@ def empty_poin
 end
 
 def msg_new_poin_member
-  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM Bot Announcements yaa\n
+  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM-DANA Bot Announcements yaa\n
 Kloter sudah dibuka, tunggu aba-aba dari PM/APM yaa"
 end
 
 def msg_new_poin
-  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM Bot Announcements yaa"
+  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM-DANA Bot Announcements yaa"
 end
 
 def done_poin(poin)
@@ -288,7 +284,7 @@ end
 
 def msg_invalid_squad(squad, user)
   "<code>#{squad.upcase}</code> squad apa tuch, Kak @#{user}?
-Aku cuma tau squad <b>WTB</b>, <b>BBM</b>, <b>ART</b>, <b>CORE</b> (Apps) dan <b>DISCO</b>"
+Aku cuma tau squad <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b> (Apps) dan <b>DISCO</b>"
 end
 
 def holiday_schedule

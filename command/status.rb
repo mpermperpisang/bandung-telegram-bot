@@ -18,7 +18,7 @@ module Bot
 
         staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
 
-        @send.check_new_staging(@id, @username, @staging)
+        @send.check_new_staging(@chatid, @username, @staging)
         staging == 'new' ? @bot.api.send_message(@send.message) : status_staging
       end
 

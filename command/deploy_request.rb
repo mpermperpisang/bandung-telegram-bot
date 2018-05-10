@@ -15,7 +15,7 @@ module Bot
       def next_is_developer
         @is_user = User.new
 
-        deploy_branch unless @is_user.developer?(@bot, @id, @username)
+        deploy_branch unless @is_user.developer?(@bot, @chatid, @username)
       end
 
       def deploy_branch

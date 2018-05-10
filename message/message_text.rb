@@ -61,7 +61,7 @@ class MessageText
   end
 
   def bot_squad
-    @squad = %w[wtb bbm art core disco bandung email]
+    @squad = %w[wtb dana art core disco bandung email]
   end
 
   def weekdays

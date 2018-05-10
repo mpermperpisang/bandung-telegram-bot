@@ -22,7 +22,7 @@ module Bot
         @branch = @space.nil? ? nil : @space.strip
         return if @is_branch.empty?(@bot, @id, @branch, @txt, @username)
 
-        @send.check_new_staging(@id, @username, @staging)
+        @send.check_new_staging(@chatid, @username, @staging)
         staging == 'new' ? @bot.api.send_message(@send.message) : check_user_qa
       end
 
@@ -39,7 +39,7 @@ module Bot
         @status = check_booked.size.zero? ? nil : check_booked.first['book_status']
         @name = check_booked.size.zero? ? nil : check_booked.first['book_name']
 
-        return if @is_staging.booked?(@bot, @id, @username, @status)
+        return if @is_staging.booked?(@bot, @chatid, @username, @status)
         check_stg_book_user
       end
 

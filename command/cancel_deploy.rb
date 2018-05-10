@@ -18,10 +18,10 @@ module Bot
         cancel = @db.check_deploy_req(@space)
 
         if cancel.nil? || cancel.size.zero?
-          @bot.api.send_message(chat_id: @id, text: cancel_empty(@username, @space), parse_mode: 'HTML')
+          @bot.api.send_message(chat_id: @chatid, text: cancel_empty(@username, @space), parse_mode: 'HTML')
         else
           @db.cancel_deploy(@space)
-          @bot.api.send_message(chat_id: @id, text: msg_cancel_deploy(@space), parse_mode: 'HTML')
+          @bot.api.send_message(chat_id: @chatid, text: msg_cancel_deploy(@space), parse_mode: 'HTML')
         end
       end
     end

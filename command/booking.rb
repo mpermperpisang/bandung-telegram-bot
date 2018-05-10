@@ -18,7 +18,7 @@ module Bot
 
         staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
 
-        @send.check_new_staging(@id, @username, @staging)
+        @send.check_new_staging(@chatid, @username, @staging)
         staging == 'new' ? @bot.api.send_message(@send.message) : check_user_booked
       end
 
@@ -32,13 +32,13 @@ module Bot
         book_status = check_booked.size.zero? ? nil : check_booked.first['book_status']
         book_name = check_booked.size.zero? ? nil : check_booked.first['book_name']
 
-        return if @is_staging.done?(@bot, @id, @username, book_status, book_name, @staging)
+        return if @is_staging.done?(@bot, @chatid, @username, book_status, book_name, @staging)
         book_staging
       end
 
       def book_staging
         @db.book_staging(@username, @fromid, @staging)
-        @bot.api.send_message(chat_id: @id, text: msg_book_staging(@username, @staging), parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @chatid, text: msg_book_staging(@username, @staging), parse_mode: 'HTML')
       end
     end
   end

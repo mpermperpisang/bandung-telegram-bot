@@ -1,4 +1,4 @@
-# Untuk memeriksa apakah staging kosong, milik bbm dan sudah terbooking
+# Untuk memeriksa apakah staging kosong dan sudah terbooking
 class Staging
   attr_reader :bot_staging
 

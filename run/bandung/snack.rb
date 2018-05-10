@@ -26,7 +26,7 @@ Telegram::Bot::Client.run(@token) do |bot|
       case message
       when Telegram::Bot::Types::CallbackQuery
         case message.data
-        when 'wtb', 'bbm', 'art', 'core', 'disco', 'bandung', 'email'
+        when 'wtb', 'dana', 'art', 'core', 'disco', 'bandung', 'email'
           @is_user.spammer?(bot, @chat_id, message.from.username, message, message.data)
           check_data(@token, @chat_id, bot, message, message.data) if @is_user.spam == false
         when 'mon', 'tue', 'wed', 'thu', 'fri'

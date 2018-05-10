@@ -45,7 +45,8 @@ module Bot
         @count = @result.count
         list_hi5_name
 
-        @hi5_name = @result.size.zero? ? empty_member(@squad, @username) : @list3
+        @team = @squad.nil? ? @txt : @squad
+        @hi5_name = @result.size.zero? ? empty_member(@team, @username) : @list3
 
         if @hi5_name =~ /kosong/
           @bot.api.send_message(chat_id: @fromid, text: @hi5_name.to_s)

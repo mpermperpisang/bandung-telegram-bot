@@ -52,11 +52,11 @@ module BotDetail
     "
     1. Requesting deploy a branch (group)
     /deploy_request branch_name
-    Example: /deploy_request BBM-123-456-789
+    Example: /deploy_request DANA-123-456-789
 
     2. Cancel deploy branch request (group)
     /cancel_request branch_name
-    Example: /cancel_request BBM-123-456-789
+    Example: /cancel_request DANA-123-456-789
 
     3. Booking staging for hard code, deploy or testing (group)
     /booking (staging_number)
@@ -80,8 +80,8 @@ module BotDetail
     "
     1. Deploy in specific staging (group)
     /deploy (staging_number) (branch_name)
-    Example: /deploy 21 BBM-123, /deploy 51 BBM-456, or
-    /deploy 103 BBM-789
+    Example: /deploy 21 DANA-123, /deploy 51 DANA-456, or
+    /deploy 103 DANA-789
 
     2. Lock release in staging (group)
     /lock (staging_number)

@@ -41,7 +41,7 @@ def key_squad
   @kb = [
     [
       Telegram::Bot::Types::InlineKeyboardButton.new(text: 'WTB', callback_data: 'wtb'),
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'BBM', callback_data: 'bbm')
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'DANA', callback_data: 'dana')
     ],
     [
       Telegram::Bot::Types::InlineKeyboardButton.new(text: 'ART', callback_data: 'art'),
