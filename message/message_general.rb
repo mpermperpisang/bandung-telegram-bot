@@ -328,6 +328,14 @@ def choosing_squad(user)
   "Pilih squadnya yaa, Kak @#{user}"
 end
 
+def msg_invalid_hi5
+  "Tapi kalau maksud Kakak buat nambahin anggota ke daftar HI5, formatnya salah, Kak
+Squad Bandung yang ada saat ini: <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b> (Apps) dan <b>DISCO</b>
+Contoh buat nambahin username ke daftar HI5\n\n<code>/hi5 dana @username1 @username2</code>
+
+🐾 Kalau ada perubahan squad di Bandung tolong kasih tau @mpermperpisang yaa"
+end
+
 def list_hi5(squad, count)
   "Hi5 squad <b>#{squad.upcase}</b>\nKalo daftar ini ga update, mohon kasih tau <code>@mpermperpisang</code> yaa
 Jumlah: #{count} orang"

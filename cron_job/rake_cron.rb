@@ -8,7 +8,7 @@ require 'net/scp'
 token = '364913393:AAFCJX2v0syzQaF8632xmX1HD-xpUprIyuo'
 #@chat_id = '-192957413' #testing bot local
 #@chat_id='-317359831' #testing bot staging
-#@chat_id='-310122724' #bbm bot announcements
+#@chat_id='-310122724' #bbm-dana bot announcements
 
 bot = Telegram::Bot::Client.new(token)
 
