@@ -22,12 +22,19 @@ module Bot
         @db = Connection.new
 
         deploy = @db.check_deploy(@space)
-        book_staging = deploy.size.zero? ? nil : deploy.first['deploy_branch']
+        @book_staging = deploy.size.zero? ? nil : deploy.first['deploy_branch']
 
-        book_staging.nil? ? @db.deploy(@space, @username) : @db.update_deploy(@space, @username)
+        @book_staging.nil? ? @db.deploy(@space, @username) : @db.update_deploy(@space, @username)
+        @book_staging.nil? ? request_deploy : list_request
+      end
 
-        @bot.api.send_message(chat_id: @id, text: msg_deploy(@username, @space), parse_mode: 'HTML')
-        Bot::Command::ListRequest.new(@token, @id, @bot, @message, @txt).list_deploy_request
+      def request_deploy
+        @bot.api.send_message(chat_id: @chatid, text: msg_deploy(@username, @space), parse_mode: 'HTML')
+        Bot::Command::ListRequest.new(@token, @chatid, @bot, @message, @txt).list_deploy_request
+      end
+
+      def list_request
+        @bot.api.send_message(chat_id: @chatid, text: list_request_access)
       end
     end
   end

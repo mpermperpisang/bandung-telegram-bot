@@ -133,7 +133,11 @@ def deployed
 end
 
 def msg_list_request(list)
-  "List of deploy requests :\n\n#{list}\n\n@mpermperpisang @rezaldy08"
+  "List of deploy requests\n\n#{list}\n\n@mpermperpisang @rezaldy08"
+end
+
+def list_request_access
+  'Branch is already in list. Click /list_request, please'
 end
 
 def cancel_empty(user, branch)
@@ -283,7 +287,7 @@ def msg_reminder_people(day, name, user)
 end
 
 def msg_invalid_squad(squad, user)
-  "<code>#{squad.upcase}</code> squad apa tuch, Kak @#{user}?
+  "<code>#{squad.upcase.strip}</code> squad apa tuch, Kak @#{user}?
 Aku cuma tau squad <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b> (Apps) dan <b>DISCO</b>"
 end
 

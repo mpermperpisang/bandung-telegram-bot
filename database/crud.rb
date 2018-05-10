@@ -20,7 +20,7 @@ class Connection
   end
 
   def done_booking(stg)
-    @client.query("select book_name, book_from_id from booking_staging where book_staging='#{stg}'")
+    @client.query("select book_name, book_status, book_from_id from booking_staging where book_staging='#{stg}'")
   end
 
   def done_staging(stg)

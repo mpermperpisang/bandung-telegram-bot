@@ -4,7 +4,9 @@ module Bot
     class Hi5 < Command
       def check_text
         @squad = @space.nil? ? nil : @space.strip
-        check_user_spam if ['/hi5', "/hi5@#{ENV['BOT_REMINDER']}", "/hi5 #{@squad}"].include?(@txt)
+        check_user_spam if [
+          '/hi5', "/hi5@#{ENV['BOT_REMINDER']}", "/hi5 #{@squad}", "/hi5@#{ENV['BOT_REMINDER']} #{@squad}"
+        ].include?(@txt)
       end
 
       def check_user_spam
