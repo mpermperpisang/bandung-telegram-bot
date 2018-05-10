@@ -36,6 +36,7 @@ module Bot
         key_squad
         inline_keyboard
         @bot.api.send_message(chat_id: @fromid, text: choosing_squad(@username), reply_markup: @markup)
+        @bot.api.send_message(chat_id: @fromid, text: msg_invalid_hi5, parse_mode: 'HTML')
       rescue StandardError
         @bot.api.send_message(chat_id: @id, text: private_message(@username))
       end
