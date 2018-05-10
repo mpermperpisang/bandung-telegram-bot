@@ -43,6 +43,10 @@ module Bot
 
       def reminder_done(name)
         @db = Connection.new
+        @dday = Day.new
+
+        day_name = @db.check_day(name)
+        @day = day_name.size.zero? ? nil : day_name.first['day']
         @name = name
 
         user = @db.check_people(@name)
