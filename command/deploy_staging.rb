@@ -20,7 +20,7 @@ module Bot
 
         staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
         @branch = @space.nil? ? nil : @space.strip
-        return if @is_branch.empty?(@bot, @id, @branch, @txt, @username)
+        return if @is_branch.empty?(@bot, @chatid, @branch, @txt, @username)
 
         @send.check_new_staging(@chatid, @username, @staging)
         staging == 'new' ? @bot.api.send_message(@send.message) : check_user_qa
@@ -29,7 +29,7 @@ module Bot
       def check_user_qa
         @is_user = User.new
 
-        check_stg_booked unless @is_user.quality_assurance?(@bot, @id, @username, @txt)
+        check_stg_booked unless @is_user.quality_assurance?(@bot, @chatid, @username, @txt)
       end
 
       def check_stg_booked
@@ -52,7 +52,7 @@ module Bot
         if @book_name.nil?
           @bot.api.send_message(chat_id: @chatid, text: msg_block_deploy(@username))
         else
-          @send.err_deploy_chat(@id, @username, @staging, @book_name)
+          @send.err_deploy_chat(@chatid, @username, @staging, @book_name)
           @bot.api.send_message(@send.message)
         end
         send_to_id
@@ -62,7 +62,7 @@ module Bot
         @send.err_deploy_from(@from_id, @username, @staging, @book_name)
         @bot.api.send_message(@send.message)
       rescue StandardError => e
-        p "#{e}\n#{from_id} #{book_name} belum japri jenkins bot"
+        p "#{e}\n#{@from_id} #{@book_name} belum japri jenkins bot"
       end
 
       def check_requester
@@ -131,13 +131,17 @@ module Bot
       def queueing_deployment
         case @type_queue
         when 'deploy'
-          @send.queue_deployment(@id, @username, @staging, @req, @name, @queue_cap)
+          @send.queue_deployment(@@chatid, @username, @staging, @req, @name, @queue_cap)
           @bot.api.send_message(@send.message)
-          Bot::Command::Deployment.new(@token, @id, @bot, @message, @txt).deployment_staging
+          Bot::Command::Deployment.new(@token, @chatid, @bot, @message, @txt).deployment_staging
         when 'lock', 'start', 'stop', 'restart'
-          @bot.api.send_message(chat_id: @id, text: msg_queue_cap(@type_queue, @staging, @queue_cap), parse_mode: 'HTML')
+          @bot.api.send_message(chat_id: @chatid,
+                                text: msg_queue_cap(@type_queue, @staging, @queue_cap),
+                                parse_mode: 'HTML')
         when 'migrate', 'reindex', 'precompile'
-          @bot.api.send_message(chat_id: @id, text: msg_queue_rake(@type_queue, @staging, @queue_rake), parse_mode: 'HTML')
+          @bot.api.send_message(chat_id: @chatid,
+                                text: msg_queue_rake(@type_queue, @staging, @queue_rake),
+                                parse_mode: 'HTML')
         end
       end
     end
