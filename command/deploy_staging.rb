@@ -74,8 +74,8 @@ module Bot
         define_queue
         define_ip
 
-        @req = @space.nil? ? @msg.bot_name : @txt
-        check_req_branch = @db.list_requester(@req)
+        check_branch_cap_rake
+        check_req_branch = @db.list_requester(@brc)
         request_branch = check_req_branch.first['deploy_request'] unless check_req_branch.size.zero?
         requester = check_req_branch.size > 0 ? request_branch : nil
 
@@ -84,6 +84,12 @@ module Bot
         check_deploy_queue if @name.nil? || @name == 'None'
         @db.list_queue(@username, @chatid, @ip_stg, @staging, @req, @def_queue) unless @name.nil?
         queueing_deployment
+      end
+
+      def check_branch_cap_rake
+        @base_comm = @msg.bot_name + @staging
+        @brc = @space.nil? ? @base_comm : @txt
+        @req = @space.nil? ? @base_comm : @space
       end
 
       def define_queue
@@ -118,8 +124,8 @@ module Bot
         results_cap = @db.number_queue_cap
         @queue_cap = results_cap.count
 
-        p results_rake = @db.number_queue_rake
-        p @queue_rake = results_rake.count
+        results_rake = @db.number_queue_rake
+        @queue_rake = results_rake.count
       end
 
       def queueing_deployment

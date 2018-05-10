@@ -20,7 +20,7 @@ class MessageText
     @booking_name = txt[/\/[a-z]*_{0}/]
     @squad_name = txt[/\s[a-zA-Z][^\s]+/]
     @sprint = txt[/\s[a-zA-Z](.*)/]
-    @space = txt[/\s[a-zA-Z0-9][^\s]+/]
+    @space = txt[/\s[a-zA-Z0-9]{0}[a-z][^\s]+/]
     @symbol = txt[/\B@\S+/]
     @stg = txt[/\d+/] || false
   end
