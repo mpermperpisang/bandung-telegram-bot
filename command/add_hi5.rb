@@ -4,16 +4,22 @@ module Bot
     class AddHi5 < Command
       def check_text
         @squad = @space.nil? ? '' : @space.strip
-        check_squad if @txt == "/hi5 #{@squad} #{@symbol}"
+        check_squad if @txt.start_with?("/hi5 #{@squad} #{@symbol}")
       end
 
       def check_squad
+        @msg = MessageText.new
+
         @msg.bot_squad
-        check_member if @msg.squad.include?(@space.strip)
+        @msg.squad.include?(@squad) ? check_member : invalid_squad
       end
 
       def check_member
         hi5_squad unless @symbol.nil?
+      end
+
+      def invalid_squad
+        Bot::Command::Hi5.new(@token, @chatid, @bot, @message, @txt).invalid_squad
       end
 
       def hi5_squad
