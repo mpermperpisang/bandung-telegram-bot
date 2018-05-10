@@ -88,4 +88,12 @@ class SendMessage
       parse_mode: 'HTML'
     }
   end
+
+  def done_status(id, name, stg)
+    @message = {
+      chat_id: id,
+      text: msg_done_staging(name, stg),
+      parse_mode: 'HTML'
+    }
+  end
 end

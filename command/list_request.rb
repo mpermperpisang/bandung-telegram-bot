@@ -18,13 +18,14 @@ module Bot
         File.open('./require_ruby.rb', 'w+') do |f|
           i = 1
           @list_deploy.each do |row|
-            f.puts("#{i}. Requester: " + row['deploy_request'] + ', branch: ' + row['deploy_branch'])
+            f.puts("#{i}. Requester: <code>@" + row['deploy_request'] +
+                   '</code>, branch: <b>' + row['deploy_branch'] + '</b>')
             i += 1
           end
         end
 
         list_req = File.read('./require_ruby.rb')
-        @bot.api.send_message(chat_id: @chatid, text: msg_list_request(list_req))
+        @bot.api.send_message(chat_id: @chatid, text: msg_list_request(list_req), parse_mode: 'HTML')
       end
     end
   end

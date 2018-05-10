@@ -9,7 +9,16 @@ module Bot
       def check_stg_empty
         @is_staging = Staging.new
 
-        normalize_date unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
+        check_new_stg unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
+      end
+
+      def check_new_stg
+        @send = SendMessage.new
+
+        staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
+
+        @send.check_new_staging(@chatid, @username, @staging)
+        staging == 'new' ? @bot.api.send_message(@send.message) : normalize_date
       end
 
       def normalize_date
