@@ -1,1 +1,12 @@
-{"bot_attempt"=>5}
+{"hi_name"=>"@afnizarnur"}
+{"hi_name"=>"@ak_fahmi"}
+{"hi_name"=>"@amananm513"}
+{"hi_name"=>"@dianseptiana"}
+{"hi_name"=>"@ditra7"}
+{"hi_name"=>"@ivantedja"}
+{"hi_name"=>"@jsavigny"}
+{"hi_name"=>"@kucaykojek"}
+{"hi_name"=>"@Maharaniar"}
+{"hi_name"=>"@oktasalsa"}
+{"hi_name"=>"@rezaldy08"}
+{"hi_name"=>"@taufikakbar23"}
