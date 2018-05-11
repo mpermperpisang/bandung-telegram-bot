@@ -131,7 +131,7 @@ module Bot
       def queueing_deployment
         case @type_queue
         when 'deploy'
-          @send.queue_deployment(@@chatid, @username, @staging, @req, @name, @queue_cap)
+          @send.queue_deployment(@chatid, @username, @staging, @req, @name, @queue_cap)
           @bot.api.send_message(@send.message)
           Bot::Command::Deployment.new(@token, @chatid, @bot, @message, @txt).deployment_staging
         when 'lock', 'start', 'stop', 'restart'
