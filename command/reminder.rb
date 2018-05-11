@@ -37,7 +37,7 @@ module Bot
 
         @reminder = @db.remind_people(@dday.hari)
 
-        day_name = @reminder.size.zero? ? nil : open_file
+        day_name = @reminder.size.zero? ? nil : open_name
 
         @db.reset_reminder(@dday.hari)
 
@@ -45,11 +45,10 @@ module Bot
         @bot.api.send_message(chat_id: @fromid, text: see_schedule, reply_markup: @markup)
       end
 
-      def open_file
-        File.open('./require_ruby.rb', 'w+') do |f|
-          @reminder.each do |row|
-            f.puts(row['name'])
-          end
+      def open_name
+        @array = []
+        @reminder.each do |row|
+          @array.push(row['name'])
         end
       end
 
@@ -64,8 +63,7 @@ module Bot
       def list_snack
         @send = SendMessage.new
 
-        list_snack = File.read('./require_ruby.rb')
-        @send.remind_snack(@id, @dday.snack, list_snack, @username)
+        @send.remind_snack(@id, @dday.snack, @array.to_s.gsub('", "', "\n").delete('["').delete('"]'), @username)
         @bot.api.send_message(@send.message)
       end
     end
