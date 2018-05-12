@@ -15,17 +15,16 @@ module Bot
       end
 
       def listing_request
-        File.open('./require_ruby.rb', 'w+') do |f|
-          i = 1
-          @list_deploy.each do |row|
-            f.puts("#{i}. Requester: <code>@" + row['deploy_request'] +
-                   '</code>, branch: <b>' + row['deploy_branch'] + '</b>')
-            i += 1
-          end
+        @array = []
+        i = 1
+        @list_deploy.each do |row|
+          @array.push("#{i}. Requester: <code>@" + row['deploy_request'] + "</code>\n\n<b>" +
+                      row['deploy_branch'] + "</b>\n\n")
+          i += 1
         end
 
-        list_req = File.read('./require_ruby.rb')
-        @bot.api.send_message(chat_id: @chatid, text: msg_list_request(list_req), parse_mode: 'HTML')
+        @list_req = @array.to_s.delete('["').delete('"]').gsub('\n\n', "\n").gsub('\n', '').gsub(', ', '')
+        @bot.api.send_message(chat_id: @chatid, text: msg_list_request(@list_req), parse_mode: 'HTML')
       end
     end
   end

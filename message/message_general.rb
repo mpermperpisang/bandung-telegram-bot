@@ -30,8 +30,18 @@ def msg_block_deploy(user)
   "Please book the staging first, @#{user}"
 end
 
-def mention_admin
-  'Colek Kak @mpermperpisang'
+def mention_admin(bot)
+  @type = case bot
+          when 'snack'
+            "<a href='https://bit.ly/2IasjuJ'>tutorial Heavy Snack Rotation</a>"
+          when 'booking'
+            "<a href='https://bit.ly/2rE8Nvt'>tutorial Booking Staging Bot</a>"
+          when 'jenkins'
+            "<a href='https://bit.ly/2wyenFj'>tutorial QA Jenkins Bot</a>"
+          when 'todo'
+            "<a href='https://bit.ly/2Iy1Czo'>tutorial Squad Marketplace Bot</a>"
+          end
+  "Colek Kak @mpermperpisang atau baca #{@type}"
 end
 
 def send_off(bot)
@@ -205,7 +215,7 @@ def done_poin(poin)
 end
 
 def show_command
-  "Ketik /show (untuk menampilkan poin) atau klik /keyboard (untuk memilih poin)
+  "Klik /keyboard (untuk memilih poin)
 Kalau butuh bantuan, klik /help yaa
 Have a nice marketplace ☺️"
 end

@@ -39,10 +39,13 @@ module Bot
       end
 
       def edit_msg
-        @db.list_accepted_poin
-        list = File.read('./require_ruby.rb')
-        list1 = list.gsub('{"member_market"=>"', '')
-        @poin_given = list1.gsub('"}', '')
+        @result = @db.list_accepted_poin
+        @array = []
+        @result.each do |row|
+          @array.push(row['member_market'])
+        end
+
+        @poin_given = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
 
         begin
           p '+4'

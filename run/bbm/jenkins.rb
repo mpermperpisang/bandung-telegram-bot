@@ -57,7 +57,7 @@ Telegram::Bot::Client.run(@token) do |bot|
 
     chat_id.each do |id_grup|
       begin
-        @status.offline(@token, (id_grup['chat_id']).to_s, bot, mention_admin)
+        @status.offline(@token, (id_grup['chat_id']).to_s, bot, mention_admin('jenkins'))
       rescue StandardError => err
         bot.api.send_message(chat_id: @private, text: chat_not_found)
         puts err

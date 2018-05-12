@@ -45,7 +45,7 @@ Telegram::Bot::Client.run(@token) do |bot|
     puts telegram_error if e.error_code.to_s == '502'
     retry
   rescue StandardError => e
-    @status.offline(@token, @chat_id, bot, mention_admin)
+    @status.offline(@token, @chat_id, bot, mention_admin('booking'))
     bot.api.send_message(chat_id: @private, text: send_off('booking'))
     raise e
   end
