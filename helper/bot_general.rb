@@ -5,7 +5,7 @@ def new_member(message, bot)
     Bot::DBConnect.new.add_hi5('BANDUNG', @member)
   end
 rescue StandardError => e
-  puts e
+  puts "#{e} no new member in group"
 end
 
 def left_member(message, bot)
@@ -17,7 +17,7 @@ def left_member(message, bot)
     Bot::DBConnect.new.delete_people(@username)
   end
 rescue StandardError => e
-  puts e
+  puts "#{e} no left member in group"
 end
 
 def check_data(token, id, bot, message, data)
