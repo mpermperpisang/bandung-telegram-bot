@@ -1,2 +1,2 @@
-{"from_id_market"=>"276637527"}
-{"from_id_market"=>"508322522"}
+{"member_market"=>"@mmpisang", "poin_market"=>"1/2"}
+{"member_market"=>"@mpermperpisang", "poin_market"=>"40"}

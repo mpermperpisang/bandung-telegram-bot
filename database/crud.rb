@@ -164,11 +164,7 @@ class Connection
   end
 
   def message_from_id
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'").each do |row|
-        f.puts(row)
-      end
-    end
+    @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'")
   end
 
   def update_market_open

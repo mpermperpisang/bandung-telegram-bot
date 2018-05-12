@@ -24,16 +24,17 @@ module Bot
 
       def status_staging
         name = @txt.scan(/\d+/)
-        File.open('./require_ruby.rb', 'w+') do |f|
-          f.puts("Status staging\n\n")
-          name.each do |stg_name|
-            user = @db.status_staging(stg_name)
-            if user.size.zero?
-              @bot.api.send_message(chat_id: @chatid, text: stg_not_exist(stg_name), parse_mode: 'HTML')
-            else
-              f.puts("<code>staging#{stg_name}</code> : <b>" + user.first['book_status'].upcase + '</b>')
-              f.puts(user.first['book_branch'])
-              f.puts('@' + user.first['book_name'] + "\n\n")
+        @array = []
+        @array.push("Status staging\n\n")
+
+        name.each do |stg_name|
+          @user = @db.status_staging(stg_name)
+          if @user.size.zero?
+            @bot.api.send_message(chat_id: @chatid, text: stg_not_exist(stg_name), parse_mode: 'HTML')
+          else
+            @user.each do |row|
+              @array.push("<code>staging#{stg_name}</code> : <b>" + row['book_status'].upcase + "</b>\n" +
+              row['book_branch'] + "\n@" + row['book_name'] + "\n\n")
             end
           end
         end
@@ -41,8 +42,8 @@ module Bot
       end
 
       def show_status
-        list_status_stg = File.read('./require_ruby.rb')
-        @bot.api.send_message(chat_id: @chatid, text: list_status_stg, parse_mode: 'HTML') if list_status_stg =~ /:/
+        @status_stg = @array.to_s.delete('["').delete('"]').gsub('\n\n', "\n\n").gsub(', ', '').gsub('\n', "\n")
+        @bot.api.send_message(chat_id: @chatid, text: @status_stg, parse_mode: 'HTML')
       end
     end
   end
