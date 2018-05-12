@@ -31,13 +31,14 @@ Telegram::Bot::Client.run(@token) do |bot|
           check_data(@token, @chat_id, bot, message, message.data) if @is_user.spam == false
         when 'mon', 'tue', 'wed', 'thu', 'fri'
           @dday.read_day(message.data)
-          count_schedule = @db.snack_schedule(message.data)
-          amount = count_schedule.count
+          @count_schedule = @db.snack_schedule(message.data)
+          amount = @count_schedule.count
 
-          list = File.read('./require_ruby.rb')
-          line = list.gsub('{"name"=>"', '')
-          name = line.gsub('"}', '')
-          @send.day_schedule(message.from.id, @dday.day_name, name, amount)
+          @array = []
+          @count_schedule.each { |row| @array.push(row['name']) }
+
+          @name = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
+          @send.day_schedule(message.from.id, @dday.day_name, @name, amount)
           bot.api.send_message(@send.message)
         end
       when Telegram::Bot::Types::Message
@@ -68,7 +69,7 @@ Telegram::Bot::Client.run(@token) do |bot|
     puts telegram_error if e.error_code.to_s == '502'
     retry
   rescue StandardError => e
-    @status.offline(@token, @chat_id, bot, mention_admin)
+    @status.offline(@token, @chat_id, bot, mention_admin('snack'))
     bot.api.send_message(chat_id: @private, text: send_off('snack'))
     raise e
   end

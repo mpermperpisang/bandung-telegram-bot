@@ -17,28 +17,32 @@ module Bot
         @db = Connection.new
 
         @db.update_id_closed(@fromid)
-        list_poin = @db.list_poin
-        list = File.read('./require_ruby.rb')
-        list1 = list.gsub('{"member_market"=>"', '')
-        list2 = list1.gsub('", "poin_market"=>"', ' ngasih poin ')
-        list3 = list2.gsub('"}', '')
-
-        poin_number = list_poin.empty? ? empty_poin : list_poin_market(list3)
+        show_poin_market
+        poin_number = @list_poin.empty? ? empty_poin : list_poin_market(@show_poin)
         @bot.api.send_message(chat_id: @chatid, text: poin_number)
         @bot.api.send_message(chat_id: @chatid, text: next_poin)
-        @db.message_from_id
+        @from_id = @db.message_from_id
 
-        list = File.read('./require_ruby.rb')
-        list1 = list.gsub('{"from_id_market"=>"', '')
-        @line = list1.gsub('"}', '')
+        @array = []
+        @from_id.each { |row| @array.push(row['from_id_market']) }
+        @line = @array
         send_poin
       end
 
+      def show_poin_market
+        @list_poin = @db.list_poin
+        @array = []
+        @list_poin.each do |row|
+          @array.push(row['member_market'] + ' ngasih poin ' + row['poin_market'])
+        end
+        @show_poin = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
+      end
+
       def send_poin
-        if @line.nil? || @line == '' || @line == "\n"
+        if @line.nil? || @line == '' || @line == "\n" || @line.size.zero?
           @bot.api.send_message(chat_id: @fromid, text: msg_new_poin)
         else
-          @line.each_line do |id_private|
+          @line.each do |id_private|
             txt_private = case id_private
                           when "284392817\n", "366569214\n"
                             msg_new_poin

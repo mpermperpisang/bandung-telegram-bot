@@ -125,13 +125,9 @@ class Connection
     @client.query("update squad_marketplace set chat_id_market='#{id}', status_market='closed' where id_market>0")
   end
 
-  def list_poin
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select member_market, poin_market from squad_marketplace where status_market='closed'
-      and poin_market<>'0' order by member_market asc").each do |row|
-        f.puts("#{row}")
-      end
-    end
+  def list_poin 
+    @client.query("select member_market, poin_market from squad_marketplace where status_market='closed'
+                  and poin_market<>'0' order by member_market asc")
   end
 
   def check_poin_open(user)
@@ -152,11 +148,7 @@ class Connection
   end
 
   def list_accepted_poin
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select member_market from squad_marketplace where poin_market<>'0' and status_market='closed'").each do |row|
-        f.puts(row)
-      end
-    end
+    @client.query("select member_market from squad_marketplace where poin_market<>'0' and status_market='closed'")
   end
 
   def chat_market
@@ -164,11 +156,7 @@ class Connection
   end
 
   def message_from_id
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'").each do |row|
-        f.puts(row)
-      end
-    end
+    @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'")
   end
 
   def update_market_open
@@ -303,26 +291,14 @@ class Connection
   end
 
   def bandung_email
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select distinct hi_email from bandung_hi5 order by hi_email").each do |row|
-        f.puts(row)
-      end
-    end
+    @client.query("select distinct hi_email from bandung_hi5 order by hi_email")
   end
 
   def bandung_hi5_squad(squad)
     if squad.strip.upcase == 'BANDUNG'
-      File.open('./require_ruby.rb', 'w+') do |f|
-        @client.query("select distinct hi_name from bandung_hi5 order by hi_name").each do |row|
-          f.puts(row)
-        end
-      end
+      @client.query("select distinct hi_name from bandung_hi5 order by hi_name")
     else
-      File.open('./require_ruby.rb', 'w+') do |f|
-        @client.query("select hi_name from bandung_hi5 where hi_squad='#{squad.upcase}' order by hi_name").each do |row|
-          f.puts(row)
-        end
-      end
+      @client.query("select hi_name from bandung_hi5 where hi_squad='#{squad.upcase}' order by hi_name")
     end
   end
 
@@ -352,10 +328,6 @@ class Connection
   end
 
   def snack_schedule(day)
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select name from bandung_snack where fix_day='#{day}'").each do |row|
-        f.puts(row)
-      end
-    end
+    @client.query("select name from bandung_snack where fix_day='#{day}'")
   end
 end

@@ -49,7 +49,8 @@ module Bot
         list_hi5_name
 
         @team = @squad.nil? ? @txt : @squad
-        @hi5_name = @result.size.zero? ? empty_member(@team, @username) : @list3
+        @list_hi5_member = @array.to_s.gsub('", "', ' ').delete('["').delete('"]')
+        @hi5_name = @result.size.zero? ? empty_member(@team, @username) : @list_hi5_member
 
         if @hi5_name =~ /kosong/
           @bot.api.send_message(chat_id: @fromid, text: @hi5_name.to_s)
@@ -60,10 +61,8 @@ module Bot
       end
 
       def list_hi5_name
-        list_name = File.read('./require_ruby.rb')
-        list1 = list_name.gsub('{"hi_name"=>"', '')
-        list2 = list1.gsub('"}', '')
-        @list3 = list2.tr("\n", ' ')
+        @array = []
+        @result.each { |row| @array.push(row['hi_name']) }
       end
 
       def hi5_squad
@@ -79,13 +78,12 @@ module Bot
       def member_email
         @db = Connection.new
 
-        @db.bandung_email
-        list_email = File.read('./require_ruby.rb')
-        list1 = list_email.gsub('{"hi_email"=>"', '')
-        list2 = list1.gsub('"}', '')
-
+        @hi5_email = @db.bandung_email
+        @array = []
+        @hi5_email.each { |row| @array.push(row['hi_email']) }
+        @list_email = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
         @bot.api.send_message(chat_id: @message.from.id, text: 'List email squad <b>BANDUNG</b>', parse_mode: 'HTML')
-        @bot.api.send_message(chat_id: @message.from.id, text: "<code>#{list2}</code>", parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @message.from.id, text: "<code>#{@list_email}</code>", parse_mode: 'HTML')
       end
 
       def invalid_squad
