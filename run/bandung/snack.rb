@@ -21,7 +21,7 @@ Telegram::Bot::Client.run(@token) do |bot|
   begin
     bot.listen do |message|
       new_member(message, bot) # new member is coming
-      left_member(message, bot) # member is left
+      left_member(message, bot) # member is leave group
 
       case message
       when Telegram::Bot::Types::CallbackQuery
