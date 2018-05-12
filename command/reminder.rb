@@ -63,7 +63,8 @@ module Bot
       def list_snack
         @send = SendMessage.new
 
-        @send.remind_snack(@id, @dday.snack, @array.to_s.gsub('", "', "\n").delete('["').delete('"]'), @username)
+        @list = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
+        @send.remind_snack(@id, @dday.snack, @list, @username)
         @bot.api.send_message(@send.message)
       end
     end
