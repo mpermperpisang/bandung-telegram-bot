@@ -41,9 +41,7 @@ module Bot
       def edit_msg
         @result = @db.list_accepted_poin
         @array = []
-        @result.each do |row|
-          @array.push(row['member_market'])
-        end
+        @result.each { |row| @array.push(row['member_market']) }
 
         @poin_given = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
 

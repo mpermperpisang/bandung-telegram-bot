@@ -24,9 +24,7 @@ module Bot
         @from_id = @db.message_from_id
 
         @array = []
-        @from_id.each do |row|
-          @array.push(row['from_id_market'])
-        end
+        @from_id.each { |row| @array.push(row['from_id_market']) }
         @line = @array
         send_poin
       end

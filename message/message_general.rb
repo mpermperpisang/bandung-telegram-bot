@@ -368,7 +368,7 @@ def msg_edit_hi5(squad, name)
 end
 
 def list_schedule(day, name, count)
-  "Jadwal snack #{day}:\n<code>#{name}</code>\nJumlah: #{count} orang"
+  "Jadwal snack #{day}:\n<code>#{name}</code>\n\nJumlah: #{count} orang"
 end
 
 def telegram_error

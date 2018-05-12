@@ -62,9 +62,7 @@ module Bot
 
       def list_hi5_name
         @array = []
-        @result.each do |row|
-          @array.push(row['hi_name'])
-        end
+        @result.each { |row| @array.push(row['hi_name']) }
       end
 
       def hi5_squad
@@ -82,9 +80,7 @@ module Bot
 
         @hi5_email = @db.bandung_email
         @array = []
-        @hi5_email.each do |row|
-          @array.push(row['hi_email'])
-        end
+        @hi5_email.each { |row| @array.push(row['hi_email']) }
         @list_email = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
         @bot.api.send_message(chat_id: @message.from.id, text: 'List email squad <b>BANDUNG</b>', parse_mode: 'HTML')
         @bot.api.send_message(chat_id: @message.from.id, text: "<code>#{@list_email}</code>", parse_mode: 'HTML')

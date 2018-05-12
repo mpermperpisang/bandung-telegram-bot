@@ -125,13 +125,9 @@ class Connection
     @client.query("update squad_marketplace set chat_id_market='#{id}', status_market='closed' where id_market>0")
   end
 
-  def list_poin
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select member_market, poin_market from squad_marketplace where status_market='closed'
-      and poin_market<>'0' order by member_market asc").each do |row|
-        f.puts("#{row}")
-      end
-    end
+  def list_poin 
+    @client.query("select member_market, poin_market from squad_marketplace where status_market='closed'
+                  and poin_market<>'0' order by member_market asc")
   end
 
   def check_poin_open(user)
@@ -152,11 +148,7 @@ class Connection
   end
 
   def list_accepted_poin
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select member_market from squad_marketplace where poin_market<>'0' and status_market='closed'").each do |row|
-        f.puts(row)
-      end
-    end
+    @client.query("select member_market from squad_marketplace where poin_market<>'0' and status_market='closed'")
   end
 
   def chat_market
@@ -336,10 +328,6 @@ class Connection
   end
 
   def snack_schedule(day)
-    File.open('./require_ruby.rb', 'w+') do |f|
-      @client.query("select name from bandung_snack where fix_day='#{day}'").each do |row|
-        f.puts(row)
-      end
-    end
+    @client.query("select name from bandung_snack where fix_day='#{day}'")
   end
 end

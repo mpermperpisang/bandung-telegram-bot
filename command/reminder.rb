@@ -47,9 +47,7 @@ module Bot
 
       def open_name
         @array = []
-        @reminder.each do |row|
-          @array.push(row['name'])
-        end
+        @reminder.each { |row| @array.push(row['name']) }
       end
 
       def empty_snack
