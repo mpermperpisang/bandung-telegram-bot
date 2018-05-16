@@ -105,19 +105,32 @@ begin
       client.query("update deploy_staging set deploy_status='caping', deploy_date='#{@now}' where deploy_branch='#{@staging_branch}' and (deploy_status='queueing' or deploy_status='caped')")
 
       p File.read('/home/bukalapak/bot/require/ruby_cap.rb')
-      EnvBash.load("/home/bukalapak/bot/helper/jenkins/exec_cap.bash")
+      begin
+        EnvBash.load("/home/bukalapak/bot/helper/jenkins/exec_cap_deploy.bash")
+      rescue
+        EnvBash.load("/home/bukalapak/bot/helper/jenkins/exec_cap_current.bash")
+      end
 
       p @staging
       if @staging != "103"
         Net::SSH.start("#{@staging_ip}", "bukalapak", :password => "bukalapak") do |session|
-          session.scp.download! "/home/bukalapak/deploy/log/cap.log", "/home/bukalapak/bot/log"
+          begin
+            session.scp.download! "/home/bukalapak/deploy/log/cap.log", "/home/bukalapak/bot/log"
+          rescue
+            session.scp.download! "/home/bukalapak/current/log/cap.log", "/home/bukalapak/bot/log"
+          end
         end
 
         bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/bot/log/cap.log', 'text/plain'))
         text = File.read('/home/bukalapak/bot/log/cap.log')
       else
-        bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/deploy/log/cap.log', 'text/plain'))
-        text = File.read('/home/bukalapak/deploy/log/cap.log')
+        begin
+          bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/deploy/log/cap.log', 'text/plain'))
+          text = File.read('/home/bukalapak/deploy/log/cap.log')
+        rescue
+          bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/current/log/cap.log', 'text/plain'))
+          text = File.read('/home/bukalapak/current/log/cap.log')
+        end
       end
 
       if text =~ /DEPLOY FAILED/ || text =~ /rake aborted!/ || text =~ /cap aborted!/
