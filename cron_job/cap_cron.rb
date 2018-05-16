@@ -114,7 +114,11 @@ begin
       p @staging
       if @staging != "103"
         Net::SSH.start("#{@staging_ip}", "bukalapak", :password => "bukalapak") do |session|
-          session.scp.download! "/home/bukalapak/deploy/log/cap.log", "/home/bukalapak/bot/log"
+          begin
+            session.scp.download! "/home/bukalapak/deploy/log/cap.log", "/home/bukalapak/bot/log"
+          rescue
+            session.scp.download! "/home/bukalapak/current/log/cap.log", "/home/bukalapak/bot/log"
+          end
         end
 
         bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/bot/log/cap.log', 'text/plain'))

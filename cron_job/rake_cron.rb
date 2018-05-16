@@ -91,14 +91,23 @@ begin
       p @staging
       if @staging != "103"
         Net::SSH.start("staging#{@staging}.vm", "bukalapak", :password => "bukalapak") do |session|
-          session.scp.download! "/home/bukalapak/deploy/log/rake.log", "/home/bukalapak/bot/log"
+          begin
+            session.scp.download! "/home/bukalapak/deploy/log/rake.log", "/home/bukalapak/bot/log"
+          rescue
+            session.scp.download! "/home/bukalapak/current/log/rake.log", "/home/bukalapak/bot/log"
+          end
         end
 
         bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/bot/log/rake.log', 'text/plain'))
         text = File.read('/home/bukalapak/bot/log/rake.log')
       else
-        bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/deploy/log/rake.log', 'text/plain'))
-        text = File.read('/home/bukalapak/deploy/log/rake.log')
+        begin
+          bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/deploy/log/rake.log', 'text/plain'))
+          text = File.read('/home/bukalapak/deploy/log/rake.log')
+        rescue
+          bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/current/log/rake.log', 'text/plain'))
+          text = File.read('/home/bukalapak/current/log/rake.log')
+        end
       end
 
       if text =~ /DEPLOY FAILED/ || text =~ /rake aborted!/ || text =~ /cap aborted!/
