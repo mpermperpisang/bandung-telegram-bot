@@ -86,7 +86,11 @@ begin
       client.query("update deploy_staging set deploy_status='rakeing', deploy_date='#{@now}' where deploy_branch='#{@staging_branch}' and (deploy_status='queueing' or deploy_status='rakeed')")
 
       p File.read('/home/bukalapak/bot/require/ruby_rake.rb')
-      EnvBash.load("/home/bukalapak/bot/helper/jenkins/exec_rake.bash")
+      begin
+        EnvBash.load("/home/bukalapak/bot/helper/jenkins/exec_rake_deploy.bash")
+      rescue
+        EnvBash.load("/home/bukalapak/bot/helper/jenkins/exec_rake_current.bash")
+      end
 
       p @staging
       if @staging != "103"
