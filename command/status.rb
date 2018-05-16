@@ -3,7 +3,7 @@ module Bot
     # untuk melihat status staging
     class Status < Command
       def check_text
-        check_stg_empty if @txt.start_with?('/status')
+        check_stg_empty if @txt.start_with?("/status@#{ENV['BOT_BOOKING']}")
       end
 
       def check_stg_empty
