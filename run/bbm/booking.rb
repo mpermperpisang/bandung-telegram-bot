@@ -42,7 +42,7 @@ Telegram::Bot::Client.run(@token) do |bot|
     sleep(5)
     retry
   rescue Telegram::Bot::Exceptions::ResponseError => e
-    puts telegram_error if e.error_code.to_s == '502'
+    puts telegram_error if e.error_code.to_s == '502' || e.error_code.to_s == '400'
     retry
   rescue StandardError => e
     @status.offline(@token, @chat_id, bot, mention_admin('booking'))
