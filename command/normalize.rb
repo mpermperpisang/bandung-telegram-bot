@@ -21,15 +21,8 @@ module Bot
         staging == 'new' ? @bot.api.send_message(@send.message) : normalize_date
       end
 
-      def define_ip
-        @ip_stg = "staging#{@staging}.vm"
-        @ip_stg = '192.168.114.182' if @staging == '21'
-        @ip_stg = '192.168.34.46' if @staging == '51'
-        @ip_stg = '192.168.35.95' if @staging == '103'
-      end
-
       def normalize_date
-        define_ip
+        define_ip(@staging)
 
         date = DateTime.now
         @year_month_date = "#{date.strftime('%Y')}-#{date.strftime('%m')}-#{date.strftime('%d')}"

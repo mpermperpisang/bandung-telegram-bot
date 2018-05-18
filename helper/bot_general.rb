@@ -31,3 +31,10 @@ def check_data(token, id, bot, message, data)
     Bot::Command::Hi5.new(token, id, bot, message, data).hi5_member(data)
   end
 end
+
+def define_ip(stg)
+  @ip_stg = "staging#{stg}.vm"
+  @ip_stg = '192.168.114.182' if stg == '21'
+  @ip_stg = '192.168.34.46' if stg == '51'
+  @ip_stg = '192.168.35.95' if stg == '103'
+end

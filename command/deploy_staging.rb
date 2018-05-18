@@ -72,7 +72,7 @@ module Bot
 
         @type_queue = @base_command.delete('/_')
         define_queue
-        define_ip
+        define_ip(@staging)
 
         check_branch_cap_rake
         check_req_branch = @db.list_requester(@brc)
@@ -101,13 +101,6 @@ module Bot
         @def_queue = 'db:migrate' if @type_queue == 'migrate'
         @def_queue = 'elasticsearch:reindex_index' if @type_queue == 'reindex'
         @def_queue = 'assets:precompile' if @type_queue == 'precompile'
-      end
-
-      def define_ip
-        @ip_stg = "staging#{@staging}.vm"
-        @ip_stg = '192.168.114.182' if @staging == '21'
-        @ip_stg = '192.168.34.46' if @staging == '51'
-        @ip_stg = '192.168.35.95' if @staging == '103'
       end
 
       def check_deploy_queue
