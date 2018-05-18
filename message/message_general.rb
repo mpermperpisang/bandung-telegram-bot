@@ -376,7 +376,9 @@ def telegram_error
 end
 
 def msg_welcome_member(user)
-  "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku #{ENV['NAME_REMINDER']}\n🤗"
+  "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku #{ENV['NAME_REMINDER']}\n🤗
+Buat pendataan, silahkan isi tiny.cc/bukabandung yaa
+Hatur tengkyu, Kak"
 end
 
 def msg_left_member(user)
