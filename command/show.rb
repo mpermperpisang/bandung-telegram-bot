@@ -18,7 +18,7 @@ module Bot
 
         @db.update_id_closed(@fromid)
         show_poin_market
-        poin_number = @list_poin.empty? ? empty_poin : list_poin_market(@show_poin)
+        poin_number = @list_poin.size.zero? ? empty_poin : list_poin_market(@show_poin)
         @bot.api.send_message(chat_id: @chatid, text: poin_number)
         @bot.api.send_message(chat_id: @chatid, text: next_poin)
         @from_id = @db.message_from_id
