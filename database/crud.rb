@@ -330,4 +330,8 @@ class Connection
   def snack_schedule(day)
     @client.query("select name from bandung_snack where fix_day='#{day}'")
   end
+
+  def delete_member_hi5(name)
+    @client.query("delete from bandung_hi5 where hi_name='#{name}'")
+  end
 end

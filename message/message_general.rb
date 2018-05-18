@@ -374,3 +374,11 @@ end
 def telegram_error
   'Telegram stuff, dont worry'
 end
+
+def msg_welcome_member(user)
+  "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku #{ENV['NAME_REMINDER']}\n🤗"
+end
+
+def msg_left_member(user)
+  "Sayonara, Kak #{user}\nSemoga semakin sukses dan sehat selalu\nJangan lupa sama squad Bandung yaa 👋🏻"
+end
