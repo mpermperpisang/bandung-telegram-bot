@@ -45,9 +45,11 @@ module Bot
 
         @poin_given = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
 
+        @chat_id = @result.first['chat_id_market']
+
         begin
           p '+4'
-          @bot.api.edit_message_text(chat_id: @id, message_id: @msgid.first['message_id_market'].to_i + 4,
+          @bot.api.edit_message_text(chat_id: @chat_id, message_id: @msgid.first['message_id_market'].to_i + 4,
                                      text: done_poin(@poin_given))
         rescue StandardError
           rescue_one
@@ -56,7 +58,7 @@ module Bot
 
       def rescue_one
         p '+3'
-        @bot.api.edit_message_text(chat_id: @id, message_id: @msgid.first['message_id_market'].to_i + 3,
+        @bot.api.edit_message_text(chat_id: @chat_id, message_id: @msgid.first['message_id_market'].to_i + 3,
                                    text: done_poin(@poin_given))
       rescue StandardError
         rescue_two
@@ -64,7 +66,7 @@ module Bot
 
       def rescue_two
         p '+2'
-        @bot.api.edit_message_text(chat_id: @id, message_id: @msgid.first['message_id_market'].to_i + 2,
+        @bot.api.edit_message_text(chat_id: @chat_id, message_id: @msgid.first['message_id_market'].to_i + 2,
                                    text: done_poin(@poin_given))
       rescue StandardError
         last_rescue
@@ -72,7 +74,7 @@ module Bot
 
       def last_rescue
         p '+1'
-        @bot.api.edit_message_text(chat_id: @id, message_id: @msgid.first['message_id_market'].to_i + 1,
+        @bot.api.edit_message_text(chat_id: @chat_id, message_id: @msgid.first['message_id_market'].to_i + 1,
                                    text: done_poin(@poin_given))
       rescue StandardError => e
         @bot.api.send_message(chat_id: ENV['ID_PRIVATE'], text: empty_edit(e))

@@ -36,7 +36,7 @@ Telegram::Bot::Client.run(@token) do |bot|
           if command.include?(@msg.bot_name) || command.include?(@msg.bot_poin) || command.include?(@msg.command)
             @msg_id = message.message_id
 
-            @db.update_message_id(@msg_id) if @txt.start_with?('/show')
+            @db.update_message_id(@msg_id, message.chat.id) if @txt.start_with?('/show')
             todo_group(@token, @chat_id, bot, message, @txt)
             @chat.delete(bot, message.chat.id, message.message_id)
           end
