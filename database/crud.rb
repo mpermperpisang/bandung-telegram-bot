@@ -122,7 +122,7 @@ class Connection
   end
 
   def update_id_closed(id)
-    @client.query("update squad_marketplace set chat_id_market='#{id}', status_market='closed' where id_market>0")
+    @client.query("update squad_marketplace set status_market='closed' where from_id_market='#{id}' and id_market>0")
   end
 
   def list_poin 
@@ -148,11 +148,7 @@ class Connection
   end
 
   def list_accepted_poin
-    @client.query("select member_market from squad_marketplace where poin_market<>'0' and status_market='closed'")
-  end
-
-  def chat_market
-    @client.query("select distinct chat_id_market from squad_marketplace where message_id_market<>0")
+    @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed'")
   end
 
   def message_from_id
@@ -163,13 +159,17 @@ class Connection
     @client.query("update squad_marketplace set poin_market='0', status_market='open' where id_market>0")
   end
 
-  def update_message_id(id)
-    @client.query("update squad_marketplace set message_id_market='#{id}' where id_market>0")
+  def update_message_id(id, chatid)
+    @client.query("update squad_marketplace set message_id_market='#{id}', chat_id_market='#{chatid}' where id_market>0")
   end
 
   def id_get_poin(user, id)
     @client.query("update squad_marketplace set from_id_market='#{id}'
     where member_market='@#{user}' and from_id_market<>'#{id}'")
+  end
+
+  def poin_group
+    @client.query("select distinct chat_id_market from squad_marketplace")
   end
 
   def add_people(day, name)
