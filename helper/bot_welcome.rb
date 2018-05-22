@@ -8,9 +8,9 @@ module Bot
 
       def bot_start
         @bot.api.send_message(chat_id: @message.from.id, text: welcome_text(@firstname))
-      rescue StandartError => exc
+      rescue StandardError => e
         @bot.api.send_message(chat_id: ENV['ID_PRIVATE'], text: blocked_bot(@username))
-        puts exc
+        raise e
       end
     end
   end
