@@ -51,27 +51,29 @@ module BotDetail
   def help_booking
     "
     1. Requesting deploy a branch (group)
-    /deploy_request branch_name
-    Example: /deploy_request DANA-123-456-789
+    /deploy_request@#{ENV['BOT_BOOKING']} branch_name
+    Example: /deploy_request@#{ENV['BOT_BOOKING']} DANA-123-456-789
 
     2. Cancel deploy branch request (group)
-    /cancel_request branch_name
-    Example: /cancel_request DANA-123-456-789
+    /cancel_request@#{ENV['BOT_BOOKING']} branch_name
+    Example: /cancel_request@#{ENV['BOT_BOOKING']} DANA-123-456-789
 
     3. Booking staging for hard code, deploy or testing (group)
-    /booking (staging_number)
-    Example: /booking 21, /booking 51 or /booking 103
+    /booking@#{ENV['BOT_BOOKING']} (staging_number)
+    Example: /booking@#{ENV['BOT_BOOKING']} 21,
+    /booking@#{ENV['BOT_BOOKING']} 51 or /booking@#{ENV['BOT_BOOKING']} 103
 
     4. Done using staging (group)
-    /done (staging_number)
-    Example: /done 21, /done 51 or /done 103
+    /done@#{ENV['BOT_BOOKING']} (staging_number)
+    Example: /done@#{ENV['BOT_BOOKING']} 21,
+    /done@#{ENV['BOT_BOOKING']} 51 or /done@#{ENV['BOT_BOOKING']} 103
 
     5. See staging book status (group)
-    /status (staging_number)
-    Example: /status 21 51 103
+    /status@#{ENV['BOT_BOOKING']} (staging_number)
+    Example: /status@#{ENV['BOT_BOOKING']} 21 51 103
 
     6. See list of deploy branch request (group)
-    /list_request
+    /list_request@#{ENV['BOT_BOOKING']}
 
     🐾 You can use another staging, not only 21, 51 or 103"
   end
@@ -79,41 +81,50 @@ module BotDetail
   def help_jenkins
     "
     1. Deploy in specific staging (group)
-    /deploy (staging_number) (branch_name)
-    Example: /deploy 21 DANA-123, /deploy 51 DANA-456, or
-    /deploy 103 DANA-789
+    /deploy@#{ENV['BOT_JENKINS']} (staging_number) (branch_name)
+    Example: /deploy@#{ENV['BOT_JENKINS']} 21 DANA-123,
+    /deploy@#{ENV['BOT_JENKINS']} 51 DANA-456, or
+    /deploy@#{ENV['BOT_JENKINS']} 103 DANA-789
 
     2. Lock release in staging (group)
-    /lock (staging_number)
-    Example: /lock 21, /lock 51 or /lock 103
+    /lock@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /lock@#{ENV['BOT_JENKINS']} 21,
+    /lock@#{ENV['BOT_JENKINS']} 51 or /lock@#{ENV['BOT_JENKINS']} 103
 
     3. Start BackBurner in staging (group)
-    /start (staging_number)
-    Example: /start 21, /start 51 or /start 103
+    /start@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /start@#{ENV['BOT_JENKINS']} 21,
+    /start@#{ENV['BOT_JENKINS']} 51 or /start@#{ENV['BOT_JENKINS']} 103
 
     4. Restart BackBurner in staging (group)
-    /restart (staging_number)
-    Example: /restart 21, /restart 51 or /restart 103
+    /restart@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /restart@#{ENV['BOT_JENKINS']} 21,
+    /restart@#{ENV['BOT_JENKINS']} 51 or /restart@#{ENV['BOT_JENKINS']} 103
 
     5. Stop BackBurner in staging (group)
-    /stop (staging_number)
-    Example: /stop 21, /stop 51 or /stop 103
+    /stop@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /stop@#{ENV['BOT_JENKINS']} 21,
+    /stop@#{ENV['BOT_JENKINS']} 51 or /stop@#{ENV['BOT_JENKINS']} 103
 
     6. Migrate database in staging (group)
-    /migrate (staging_number)
-    Example: /migrate 21, /migrate 51 or /migrate 103
+    /migrate@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /migrate@#{ENV['BOT_JENKINS']} 21,
+    /migrate@#{ENV['BOT_JENKINS']} 51 or /migrate@#{ENV['BOT_JENKINS']} 103
 
     7. Reindex data in staging (group)
-    /reindex (staging_number)
-    Example: /reindex 21, /reindex 51 or /reindex 103
+    /reindex@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /reindex@#{ENV['BOT_JENKINS']} 21,
+    /reindex@#{ENV['BOT_JENKINS']} 51 or /reindex@#{ENV['BOT_JENKINS']} 103
 
     8. Manual assets precompile (group)
-    /precompile (staging_number)
-    Example: /precompile 21, /precompile 51 or /precompile 103
+    /precompile@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /precompile@#{ENV['BOT_JENKINS']} 21,
+    /precompile@#{ENV['BOT_JENKINS']} 51 or /precompile@#{ENV['BOT_JENKINS']} 103
 
     9. Normalize staging date
-    /normalize (staging_number)
-    Example: /normalize 21, /normalize 51, or /normalize 103
+    /normalize@#{ENV['BOT_JENKINS']} (staging_number)
+    Example: /normalize@#{ENV['BOT_JENKINS']} 21,
+    /normalize@#{ENV['BOT_JENKINS']} 51, or /normalize@#{ENV['BOT_JENKINS']} 103
 
     🐾 You can use another staging, not only 21, 51 or 103"
   end
@@ -127,41 +138,41 @@ module BotDetail
     only use mon, tue, wed, thu or fri
 
     1. Add people to snack schedule (group)
-    /add day @username
-    Example: /add mon @#{ENV['BOT_REMINDER']}
+    /add@#{ENV['BOT_REMINDER']} day @username
+    Example: /add@#{ENV['BOT_REMINDER']} mon @#{ENV['BOT_REMINDER']}
 
     2. Edit people schedule temporarily (group)
-    /edit day @username
-    Example: /edit tue @#{ENV['BOT_REMINDER']}
+    /edit@#{ENV['BOT_REMINDER']} day @username
+    Example: /edit@#{ENV['BOT_REMINDER']} tue @#{ENV['BOT_REMINDER']}
 
     3. Change snack schedule permanently (group)
-    /change day @username
-    Example: /change wed @#{ENV['BOT_REMINDER']}
+    /change@#{ENV['BOT_REMINDER']} day @username
+    Example: /change@#{ENV['BOT_REMINDER']} wed @#{ENV['BOT_REMINDER']}
 
     4. Delete people from schedule (group)
-    /delete @username
-    Example: /delete @#{ENV['BOT_REMINDER']}
+    /delete@#{ENV['BOT_REMINDER']} @username
+    Example: /delete@#{ENV['BOT_REMINDER']} @#{ENV['BOT_REMINDER']}
 
     5. Cancel people from bring snack (group)
-    /cancel @username
-    Example: /cancel @#{ENV['BOT_REMINDER']}
+    /cancel@#{ENV['BOT_REMINDER']} @username
+    Example: /cancel@#{ENV['BOT_REMINDER']} @#{ENV['BOT_REMINDER']}
 
     6. People brought the snack (group)
-    /done or /done @username
-    Example: /done, /done @#{ENV['BOT_REMINDER']}
+    /done@#{ENV['BOT_REMINDER']} or /done@#{ENV['BOT_REMINDER']} @username
+    Example: /done@#{ENV['BOT_REMINDER']}, /done@#{ENV['BOT_REMINDER']} @#{ENV['BOT_REMINDER']}
 
     7. Free people from snack schedule (group)
-    /holiday command or /holiday @username
+    /holiday@#{ENV['BOT_REMINDER']} command or /holiday@#{ENV['BOT_REMINDER']} @username
     Example: /holiday @all, /holiday @#{ENV['BOT_REMINDER']}
 
     8. Remind snack schedule (group)
-    /reminder
+    /reminder@#{ENV['BOT_REMINDER']}
 
     9. Bring back normal schedule (group)
-    /normal
+    /normal@#{ENV['BOT_REMINDER']}
 
     10. List HI5 of Bandung squad member (both)
-    /hi5
+    /hi5@#{ENV['BOT_REMINDER']}
 
     <a href='https://bukalapak.atlassian.net/wiki/spaces/BS/pages/347046333/Snack+Schedule'>CHECK SCHEDULE</a>
 
@@ -171,15 +182,11 @@ module BotDetail
 
   def help_todo
     "
-    1. Send poin with fibonnaci number (private)
-    1/2, 1, 2, 3, 5, 8, 13, 20, 40, 100, kopi, unlimited
-    0 (zero) is default number so it will not displaying
-
-    2. Displaying poin in inline keyboard (private)
+    1. Displaying poin in inline keyboard (private)
     /keyboard
 
-    3. Displaying marketplace poin result (group)
-    /show
+    2. Displaying marketplace poin result (group)
+    /show@#{ENV['BOT_TODO']}
 
     🐾 Only admin, PM and APM can show the poin"
   end
