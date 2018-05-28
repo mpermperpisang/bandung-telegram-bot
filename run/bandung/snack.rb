@@ -15,7 +15,7 @@ require './require.rb'
 @send = SendMessage.new
 
 bot_start = Telegram::Bot::Client.new(@token)
-@status.online(@token, @chat_id, bot_start, msg_weather(@today.weather, @today.poem))
+@status.online(@token, @private, bot_start, msg_weather(@today.weather, @today.poem))
 
 Telegram::Bot::Client.run(@token) do |bot|
   begin

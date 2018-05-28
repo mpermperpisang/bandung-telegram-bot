@@ -11,7 +11,7 @@ module Bot
         @msg = MessageText.new
 
         @msg.bot_squad
-        @msg.squad.include?(@squad) ? check_member : invalid_squad
+        @msg.squad.include?(@squad.downcase) ? check_member : invalid_squad
       end
 
       def check_member
