@@ -12,7 +12,7 @@ require './require.rb'
 
 bot_start = Telegram::Bot::Client.new(@token)
 p 'todo online'
-@status.online(@token, @chat_id, bot_start, '')
+@status.online(@token, @private, bot_start, '')
 
 Telegram::Bot::Client.run(@token) do |bot|
   begin
