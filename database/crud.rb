@@ -148,7 +148,7 @@ class Connection
   end
 
   def list_accepted_poin
-    @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed'")
+    @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed' order by member_market")
   end
 
   def message_from_id
