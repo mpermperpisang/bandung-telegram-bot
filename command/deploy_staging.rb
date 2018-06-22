@@ -18,7 +18,7 @@ module Bot
         @is_branch = Branch.new
         @send = SendMessage.new
 
-        staging = [*1..132].include?(@staging.to_i) ? @staging : 'new'
+        staging = [*1..134].include?(@staging.to_i) ? @staging : 'new'
         @branch = @space.nil? ? nil : @space.strip
         return if @is_branch.empty?(@bot, @chatid, @branch, @txt, @username)
 
