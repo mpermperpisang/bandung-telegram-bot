@@ -18,7 +18,7 @@ def key_poin
     [
       Telegram::Bot::Types::InlineKeyboardButton.new(text: '100', callback_data: '100'),
       Telegram::Bot::Types::InlineKeyboardButton.new(text: '☕️', callback_data: 'kopi'),
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: '〰', callback_data: 'unlimited')
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: '∞', callback_data: 'unlimited')
     ]
   ]
 end
@@ -45,14 +45,11 @@ def key_squad
     ],
     [
       Telegram::Bot::Types::InlineKeyboardButton.new(text: 'ART', callback_data: 'art'),
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'CORE', callback_data: 'core')
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'DISCO', callback_data: 'disco')
     ],
     [
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'DISCO', callback_data: 'disco'),
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Core', callback_data: 'core'),
       Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Bandung', callback_data: 'bandung')
-    ],
-    [
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Email', callback_data: 'email')
     ]
   ]
 end
