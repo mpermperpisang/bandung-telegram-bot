@@ -2,7 +2,7 @@
 class Day
   attr_reader :day_name
   attr_reader :hari
-  attr_reader :snack
+  attr_reader :day
 
   def read_today
     @today = Date.today
@@ -11,7 +11,7 @@ class Day
   end
 
   def read_day(day)
-    @day_name = case day.strip
+    @day_name = case day.strip.downcase
                 when 'mon'
                   'Senin'
                 when 'tue'
