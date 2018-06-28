@@ -1,7 +1,8 @@
 require 'telegram/bot'
 require 'mysql2'
 
-token = '494935542:AAFNlMJbldeNp8KouAdk42b8Ut4WDv312l4'
+token = '494935542:AAFMIFbCSWzbaMQ4u-aP9OCFihyo6bpW8O4'
+
 #@chat_id = '-192957413' #testing bot local
 #@chat_id='-317359831' #testing bot staging
 @chat_id='-148800628' #TeleTubis

@@ -24,7 +24,7 @@ module Bot
 
         @dday.read_today
         remind_schedule
-        @dday.snack == 'Libur' ? weekend_snack : weekdays_snack
+        @dday.day_name == 'Libur' ? weekend_snack : weekdays_snack
       end
 
       def weekend_snack
@@ -60,9 +60,12 @@ module Bot
 
       def list_snack
         @send = SendMessage.new
+        @dday = Day.new
 
         @list = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
-        @send.remind_snack(@id, @dday.snack, @list, @username)
+        @dday.read_today
+        @dday.read_day(@dday.day)
+        @send.remind_snack(@id, @dday.day_name, @list, @username)
         @bot.api.send_message(@send.message)
       end
     end
