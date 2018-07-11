@@ -65,6 +65,10 @@ def error_dev(user)
   "Sorry @#{user}, only BE or FE can request deploy to staging"
 end
 
+def error_admin(user)
+  "@#{user}, maap anda belum beruntung :p (kudu ama admin/PM/APM/QAM/EM)"
+end
+
 def error_qa(user)
   "Sorry @#{user}, you're not QA or at least you're not added in QA list yet 😬
 Private message @mpermperpisang, please
@@ -293,7 +297,7 @@ def msg_reminder_people(day, name, user)
   "Ayoyo ojo lali. Daftar yang belum bawa hari #{day}
 #{name}
 
-*yang merasa belum diwajibkan untuk membawa snake, abaikan saja pesan ini\nby : <code>@#{user}</code>"
+*minimum snack/orang Rp. 20000 yaa, Kak 😘\nby : <code>@#{user}</code>"
 end
 
 def msg_invalid_squad(squad, user)
@@ -340,8 +344,10 @@ end
 
 def msg_invalid_hi5
   "Tapi kalau maksud Kakak buat nambahin anggota ke daftar HI5, formatnya salah, Kak
-Squad Bandung yang ada saat ini: <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b> (Apps) dan <b>DISCO</b>
+Squad Bandung yang ada saat ini: <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b> dan <b>DISCO</b>
 Contoh buat nambahin username ke daftar HI5\n\n<code>/hi5 dana @username1 @username2</code>
+
+Kakak juga bisa ketik <code>/hi5 bandung</code>, kalau ndak mau mention se-Bukalapak Bandung di grup Teletubis
 
 🐾 Kalau ada perubahan squad di Bandung tolong kasih tau @mpermperpisang yaa"
 end
