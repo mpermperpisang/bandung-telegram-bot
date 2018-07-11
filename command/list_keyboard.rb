@@ -49,7 +49,7 @@ def key_squad
     ],
     [
       Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Core', callback_data: 'core'),
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Bandung', callback_data: 'bandung')
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Bandung [Post to Teletubis]', callback_data: 'bandung')
     ]
   ]
 end

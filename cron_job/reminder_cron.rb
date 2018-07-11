@@ -66,6 +66,6 @@ else
       bot.api.send_message(chat_id: @chat_id, text: "Yeay banyak cemilan.\nSelamat menggendutkan diri, kawan-kawan\n😈")
     end
   else
-    bot.api.send_message(chat_id: @chat_id, text: "Ayoyo ojo lali. Daftar yang belum bawa hari #{@snack}\n#{name}\n\n*yang merasa belum diwajibkan untuk membawa snake, abaikan saja pesan ini")
+    bot.api.send_message(chat_id: @chat_id, text: "Ayoyo ojo lali. Daftar yang belum bawa hari #{@snack}\n#{name}\n\n*minimum snack/orang Rp. 20000 yaa, Kak 😘")
   end
 end
