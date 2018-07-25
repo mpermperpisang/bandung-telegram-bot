@@ -100,7 +100,7 @@ def blocked_bot(user)
 end
 
 def welcome_text(user)
-  "Selamat datang, #{user}\nSilahkan ketik /help untuk tahu informasi lebih lanjut yaa"
+  "Selamat datang, #{user}\nSilahkan klik /help untuk tahu informasi lebih lanjut yaa"
 end
 
 def msg_queue_cap(type, stg, queue)
@@ -196,8 +196,9 @@ def empty_edit(error)
   "There is no message to edit, please check @mpermperpisang\n#{error}"
 end
 
-def list_poin_market(poin)
+def list_poin_market(poin, count)
   "Poin for marketplace\n======================================\n#{poin}\n
+Jumlah perolehan per poin : #{count}
 colek @ak_fahmi @Maharaniar"
 end
 
@@ -214,12 +215,12 @@ def msg_new_poin
   "Menampilkan poin\nSilahkan cek rame-rame di grup BBM-DANA Bot Announcements yaa"
 end
 
-def done_poin(poin)
-  "Yang sudah memberikan poin:\n#{poin}\n\nKalau sudah selesai, klik /show yaa, Kak"
+def done_poin(count, poin)
+  "Yang sudah memberikan poin <b>#{count}</b> orang:\n#{poin}\n\nKalau sudah selesai, klik /show yaa, Kak"
 end
 
 def show_command
-  "Klik /keyboard (untuk memilih poin)
+  "Klik /keyboard (untuk menampilkan keyboard dan memilih poin)
 Kalau butuh bantuan, klik /help yaa
 Have a nice marketplace ☺️"
 end
@@ -382,11 +383,12 @@ def telegram_error
 end
 
 def msg_welcome_member(user)
-  "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku #{ENV['NAME_REMINDER']}\n🤗\n
-Buat pendataan, silahkan isi (comment) tiny.cc/bukabandung yaa
+  "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_REMINDER']}</b>\n🤗\n
+Buat pendataan anggota grup TeleTubis, silahkan isi (comment) tiny.cc/bukabandung yaa
 Hatur tengkyu, Kak"
 end
 
 def msg_left_member(user)
-  "Sayonara, Kak #{user}\nSemoga semakin sukses dan sehat selalu\nJangan lupa sama squad Bandung yaa 👋🏻"
+  "Sayonara, Kak <b>#{user}</b>\nSemoga semakin sukses dan sehat selalu\nJangan lupa sama squad Bandung yaa 👋🏻\n
+Colek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
 end

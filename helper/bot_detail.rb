@@ -51,11 +51,11 @@ module BotDetail
   def help_booking
     "
     1. Requesting deploy a branch (group)
-    /deploy_request@#{ENV['BOT_BOOKING']} branch_name
+    /deploy_request@#{ENV['BOT_BOOKING']} (branch_name)
     Example: /deploy_request@#{ENV['BOT_BOOKING']} DANA-123-456-789
 
     2. Cancel deploy branch request (group)
-    /cancel_request@#{ENV['BOT_BOOKING']} branch_name
+    /cancel_request@#{ENV['BOT_BOOKING']} (branch_name)
     Example: /cancel_request@#{ENV['BOT_BOOKING']} DANA-123-456-789
 
     3. Booking staging for hard code, deploy or testing (group)
@@ -121,7 +121,7 @@ module BotDetail
     Example: /precompile@#{ENV['BOT_JENKINS']} 21,
     /precompile@#{ENV['BOT_JENKINS']} 51 or /precompile@#{ENV['BOT_JENKINS']} 103
 
-    9. Normalize staging date
+    9. Normalize staging date (group)
     /normalize@#{ENV['BOT_JENKINS']} (staging_number)
     Example: /normalize@#{ENV['BOT_JENKINS']} 21,
     /normalize@#{ENV['BOT_JENKINS']} 51, or /normalize@#{ENV['BOT_JENKINS']} 103
@@ -163,7 +163,7 @@ module BotDetail
 
     7. Free people from snack schedule (group)
     /holiday@#{ENV['BOT_REMINDER']} command or /holiday@#{ENV['BOT_REMINDER']} @username
-    Example: /holiday @all, /holiday @#{ENV['BOT_REMINDER']}
+    Example: /holiday@#{ENV['BOT_REMINDER']} @all, /holiday@#{ENV['BOT_REMINDER']} @#{ENV['BOT_REMINDER']}
 
     8. Remind snack schedule (group)
     /reminder@#{ENV['BOT_REMINDER']}

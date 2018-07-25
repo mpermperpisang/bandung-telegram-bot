@@ -151,6 +151,58 @@ class Connection
     @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed' order by member_market")
   end
 
+  def list_accepted_poin
+    @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed' order by member_market")
+  end
+
+  def list_poin_half
+    @client.query("select poin_market from squad_marketplace where poin_market='1/2'")
+  end
+
+  def list_poin_one
+    @client.query("select poin_market from squad_marketplace where poin_market='1'")
+  end
+
+  def list_poin_two
+    @client.query("select poin_market from squad_marketplace where poin_market='2'")
+  end
+
+  def list_poin_three
+    @client.query("select poin_market from squad_marketplace where poin_market='3'")
+  end
+
+  def list_poin_five
+    @client.query("select poin_market from squad_marketplace where poin_market='5'")
+  end
+
+  def list_poin_eight
+    @client.query("select poin_market from squad_marketplace where poin_market='8'")
+  end
+
+  def list_poin_thirteen
+    @client.query("select poin_market from squad_marketplace where poin_market='13'")
+  end
+
+  def list_poin_twenty
+    @client.query("select poin_market from squad_marketplace where poin_market='20'")
+  end
+
+  def list_poin_fourty
+    @client.query("select poin_market from squad_marketplace where poin_market='40'")
+  end
+
+  def list_poin_hundred
+    @client.query("select poin_market from squad_marketplace where poin_market='100'")
+  end
+
+  def list_poin_coffee
+    @client.query("select poin_market from squad_marketplace where poin_market='kopi'")
+  end
+
+  def list_poin_unlimited
+    @client.query("select poin_market from squad_marketplace where poin_market='unlimited'")
+  end
+
   def message_from_id
     @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'")
   end
