@@ -44,7 +44,11 @@ class MessageText
   end
 
   def bot_user
-    @admin = %w[mpermperpisang ak_fahmi tomifadlan teguhn duvadilon Primawansatrio Maharaniar desikur rezanurhakim AlifiaWardoyo prihardono]
+    @admin = %w[
+      mpermperpisang ak_fahmi tomifadlan teguhn duvadilon
+      Primawansatrio Maharaniar desikur rezanurhakim
+      AlifiaWardoyo prihardono ivan_nugraha
+    ]
     @pm = %w[mpermperpisang ak_fahmi Maharaniar]
   end
 
