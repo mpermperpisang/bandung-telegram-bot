@@ -3,7 +3,7 @@ module Bot
     # mengubah jadwal snack secara permanent, dan harus mengubah confluence juga
     class Change < Command
       def check_text
-        check_user_spam if @txt.start_with?('/change')
+        check_user_spam if @txt.start_with?('/move')
       end
 
       def check_user_spam
@@ -36,22 +36,29 @@ module Bot
       def check_user_snack
         @db = Connection.new
 
-        check_user = @db.check_people(@symbol)
-        name = check_user.size.zero? ? nil : check_user.first['name']
+        @dday = @txt.scan(/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+\s@[a-z^]+/)
 
-        name.nil? ? empty_snack : change_snack
+        @dday.each do |day_name|
+          day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
+          move_name = day_name[/\B@\S+/]
+
+          check_user = @db.check_people(move_name)
+          @snack_name = check_user.size.zero? ? nil : check_user.first['name']
+
+          @snack_name.nil? ? empty_snack(name) : change_snack(day, move_name)
+        end
       end
 
-      def empty_snack
-        @bot.api.send_message(chat_id: @id, text: empty_people(@symbol), parse_mode: 'HTML')
+      def empty_snack(name)
+        @bot.api.send_message(chat_id: @id, text: empty_people(name), parse_mode: 'HTML')
       end
 
-      def change_snack
+      def change_snack(day, name)
         @dday = Day.new
 
-        @dday.read_day(@space)
-        @db.change_people(@space, @symbol)
-        @bot.api.send_message(chat_id: @id, text: msg_change_people(@username, @symbol, @dday.day_name), parse_mode: 'HTML')
+        @dday.read_day(day)
+        @db.change_people(day, name)
+        @bot.api.send_message(chat_id: @id, text: msg_change_people(@username, name, @dday.day_name), parse_mode: 'HTML')
       end
     end
   end

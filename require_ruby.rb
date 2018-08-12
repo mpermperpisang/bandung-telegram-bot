@@ -1,1 +1,1 @@
-{"bot_attempt"=>4}
+{"bot_attempt"=>12}

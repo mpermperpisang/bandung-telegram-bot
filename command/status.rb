@@ -38,7 +38,7 @@ module Bot
             end
           end
         end
-        show_status
+        show_status if @array.to_s != "[\"Status staging\\n\\n\"]"
       end
 
       def show_status

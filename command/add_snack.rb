@@ -36,22 +36,49 @@ module Bot
       def check_user_snack
         @db = Connection.new
 
-        check_user = @db.check_people(@symbol)
-        name = check_user.size.zero? ? nil : check_user.first['name']
+        @dday = @txt.scan(/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+\s@[a-z^]+/)
 
-        name.nil? ? add_snack : duplicate_snack
+        @array_nil = []
+        @day_nil = []
+        @array_dupe = []
+
+        @dday.each do |day_name|
+          @day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
+          @add_name = day_name[/\B@\S+/]
+
+          check_user = @db.check_people(@add_name)
+          @snack_name = check_user.size.zero? ? nil : check_user.first['name']
+          @day_nil.push(@day) if @snack_name.nil?
+          @snack_name.nil? ? @array_nil.push(@add_name) : @array_dupe.push(@add_name)
+
+        end
+        add_snack unless @array_nil.empty?
+        duplicate_snack unless @array_dupe.empty?
       end
 
       def add_snack
         @dday = Day.new
 
-        @dday.read_day(@space)
-        @db.add_people(@space, @symbol)
-        @bot.api.send_message(chat_id: @id, text: msg_add_people(@username, @symbol, @dday.day_name), parse_mode: 'HTML')
+        @dday_nil = []
+        @arr_list = []
+        i = 0
+
+        @array_nil.each do |add_name|
+          @dday.read_day(@day_nil[i])
+          @db.add_people(@day_nil[i], add_name)
+          @dday_nil.push(@dday.day_name)
+
+          @arr_list.push("#{@array_nil[i]} bawa snack di hari <b>#{@dday_nil[i]}</b>")
+          i += 1
+        end
+
+        @list = @arr_list.to_s.delete('["').delete('"]').gsub('", "', '- ')
+        @bot.api.send_message(chat_id: @id, text: msg_add_people(@username, @list), parse_mode: 'HTML')
       end
 
       def duplicate_snack
-        @bot.api.send_message(chat_id: @id, text: msg_duplicate_add_people(@username, @symbol), parse_mode: 'HTML')
+        @list = @array_dupe.to_s.delete('["').delete('"]').gsub('", "', ', ')
+        @bot.api.send_message(chat_id: @id, text: msg_duplicate_add_people(@username, @list), parse_mode: 'HTML')
       end
     end
   end

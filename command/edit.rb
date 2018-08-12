@@ -37,22 +37,29 @@ module Bot
       def check_user_snack
         @db = Connection.new
 
-        check_user = @db.check_people(@symbol)
-        name = check_user.size.zero? ? nil : check_user.first['name']
+        @dday = @txt.scan(/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+\s@[a-z^]+/)
 
-        name.nil? ? empty_snack : edit_snack
+        @dday.each do |day_name|
+          day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
+          edit_name = day_name[/\B@\S+/]
+
+          check_user = @db.check_people(edit_name)
+          @snack_name = check_user.size.zero? ? nil : check_user.first['name']
+
+          @snack_name.nil? ? empty_snack(edit_name) : edit_snack(day, edit_name)
+        end
       end
 
-      def edit_snack
+      def edit_snack(day, name)
         @dday = Day.new
 
-        @dday.read_day(@space)
-        @db.edit_people(@space, @symbol)
-        @bot.api.send_message(chat_id: @id, text: msg_edit_people(@username, @symbol, @dday.day_name), parse_mode: 'HTML')
+        @dday.read_day(day)
+        @db.edit_people(day, name)
+        @bot.api.send_message(chat_id: @id, text: msg_edit_people(@username, name, @dday.day_name), parse_mode: 'HTML')
       end
 
-      def empty_snack
-        @bot.api.send_message(chat_id: @id, text: empty_people(@symbol), parse_mode: 'HTML')
+      def empty_snack(name)
+        @bot.api.send_message(chat_id: @id, text: empty_people(name), parse_mode: 'HTML')
       end
     end
   end

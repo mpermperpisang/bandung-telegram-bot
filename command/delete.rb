@@ -40,7 +40,7 @@ module Bot
 
       def delete_snack(name)
         @db.delete_people(name)
-        @bot.api.send_message(chat_id: @id, text: msg_delete_people(name))
+        @bot.api.send_message(chat_id: @id, text: msg_delete_people(name), parse_mode: 'HTML')
       end
 
       def empty_snack(name)

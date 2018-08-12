@@ -147,7 +147,7 @@ def deployed
 end
 
 def msg_list_request(list)
-  "List of deploy requests\n\n#{list}\n\n@mpermperpisang @rezaldy08"
+  "List of deploy requests\n\n#{list}\n\n@mpermperpisang @rezaldy08 @ihsanhsn"
 end
 
 def list_request_access
@@ -234,20 +234,21 @@ def error_general_day
 end
 
 def error_day(com)
-  error_general_day + " <code>#{com} mon @username</code>"
+  error_general_day + " <code>#{com} mon @username tue @username wed @username thu @username fri @username</code>"
 end
 
 def msg_weather(weather, poem)
   "Hari ini katanya sih cuacanya #{weather} loh#{poem} 🤗"
 end
 
-def msg_add_people(user, name, day)
-  "Cihuy <code>@#{user}</code> nambahin #{name} buat bawa snack di hari #{day}
+def msg_add_people(user, name)
+    "Cihuy <code>@#{user}</code> nambahin jadwal #{name}
+
 Catat juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end
 
 def msg_edit_people(user, name, day)
-  "Oi oi oi #{name} jadwal snacknya udah diganti sama <code>@#{user}</code> jadi hari #{day} yaa"
+  "Oi oi oi #{name}, jadwalmu sementara dipindah sama <code>@#{user}</code> ke hari #{day} yaa"
 end
 
 def error_spam(user)
@@ -267,7 +268,8 @@ def empty_snack(com, user)
 end
 
 def msg_delete_people(user)
-  "ByBy #{user}"
+  "ByBy #{user}
+Colek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
 end
 
 def msg_reminder_schedule(day, user)
@@ -323,12 +325,12 @@ def msg_holiday_people(user)
 end
 
 def msg_normal_snack
-  "Snack sudah kembali sesuai jadwal di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+  "Snack sudah kembali sesuai dengan jadwal di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end
 
 def msg_change_people(user, name, day)
-  "Haeyo #{name}, sekarang jadwalnya udah diganti sama <code>@#{user}</code> jadi hari #{day}
-Ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+  "Haeyo #{name}, hari #{day} jadi jadwalmu yang baru yaa, selamat tinggal pada jadwal lama
+Kak @#{user} ojo lali ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end
 
 def private_message(user)
