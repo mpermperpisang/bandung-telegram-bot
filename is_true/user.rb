@@ -46,7 +46,7 @@ class User
     count_spam = check_spammer(user, data)
     @attempt = count_spam.size.zero? ? nil : count_spam.first['bot_attempt']
 
-    @count = @msg.admin.include?(user) ? 25 : 1
+    @count = @msg.admin.include?(user) ? 100 : 1
     @last_count = @count + 1
 
     check_user_spam(bot, id, user, message, data)

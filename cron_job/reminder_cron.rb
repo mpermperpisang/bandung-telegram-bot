@@ -4,7 +4,7 @@ require 'mysql2'
 token = '494935542:AAFMIFbCSWzbaMQ4u-aP9OCFihyo6bpW8O4'
 #@chat_id = '-192957413' #testing bot local
 #@chat_id = '-317359831' #testing bot staging
-@chat_id = '-148800628' #TeleTubis
+@chat_id = '-148800628' #Bukalapak.bdg
 
 bot = Telegram::Bot::Client.new(token)
 @today = Date.today
@@ -46,7 +46,7 @@ else
   list = File.read('./require_ruby.rb')
   line = list.gsub('{"name"=>"','')
   name = line.gsub('"}','')
-  
+
   case name
   when nil, ""
     File.open('./require_ruby.rb', 'w+') do |f|

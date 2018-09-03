@@ -3,7 +3,7 @@ module Bot
     # menampilkan daftar anggota hi5 squad Bandung
     class Hi5 < Command
       def check_text
-        @squad = @space.nil? ? nil : @space.strip
+        @squad = @squad_name.nil? ? nil : @squad_name.strip
         check_user_spam if [
           '/hi5', "/hi5@#{ENV['BOT_REMINDER']}", "/hi5 #{@squad}", "/hi5@#{ENV['BOT_REMINDER']} #{@squad}"
         ].include?(@txt)
@@ -21,7 +21,7 @@ module Bot
         @msg = MessageText.new
         @msg.bot_squad
 
-        @squad = @space.nil? ? nil : @space.strip
+        @squad = @squad_name.nil? ? nil : @squad_name.strip
 
         if @squad.nil?
           show_keyboard
@@ -53,7 +53,7 @@ module Bot
         @hi5_name = @result.size.zero? ? empty_member(@team, @username) : @list_hi5_member
 
         if @hi5_name =~ /kosong/
-          @bot.api.send_message(chat_id: @fromid, text: @hi5_name.to_s)
+          @bot.api.send_message(chat_id: @fromid, text: @hi5_name.to_s, parse_mode: 'HTML')
         else
           @choose_squad = @squad.nil? ? @txt : @squad
           hi5_squad unless @choose_squad.nil?
@@ -68,7 +68,7 @@ module Bot
       def hi5_squad
         if @choose_squad.casecmp('BANDUNG').zero?
           @bot.api.send_message(chat_id: @id, text: list_hi5(@choose_squad, @count) + by_user(@username), parse_mode: 'HTML')
-          @bot.api.send_message(chat_id: @id, text: @hi5_name.to_s)
+          @bot.api.send_message(chat_id: @id, text: @hi5_name.to_s + "\n\n" + update_bukabandung, parse_mode: 'HTML')
         else
           @bot.api.send_message(chat_id: @fromid, text: list_hi5(@choose_squad, @count), parse_mode: 'HTML')
           @bot.api.send_message(chat_id: @fromid, text: "<code>#{@hi5_name}</code>", parse_mode: 'HTML')
@@ -87,7 +87,7 @@ module Bot
       end
 
       def invalid_squad
-        @bot.api.send_message(chat_id: @id, text: msg_invalid_squad(@space, @username), parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @id, text: msg_invalid_squad(@squad_name, @username), parse_mode: 'HTML')
       end
     end
   end

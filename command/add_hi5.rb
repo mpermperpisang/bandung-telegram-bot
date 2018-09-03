@@ -3,7 +3,7 @@ module Bot
     # untuk menghapus, menambah atau mengedit anggota ke daftar hi5
     class AddHi5 < Command
       def check_text
-        @squad = @space.nil? ? '' : @space.strip
+        @squad = @squad_name.nil? ? '' : @squad_name.strip
         check_squad if @txt.start_with?("/hi5 #{@squad} #{@symbol}")
       end
 
@@ -25,7 +25,7 @@ module Bot
       def hi5_squad
         @db = Connection.new
 
-        check_hi5_name = @db.check_hi5(@space.strip, @symbol)
+        check_hi5_name = @db.check_hi5(@squad_name.strip, @symbol)
         list_hi5_name = check_hi5_name.size.zero? ? nil : check_hi5_name.first['hi_name']
 
         name = @txt.scan(/\B@\S+/)
@@ -44,18 +44,18 @@ module Bot
       end
 
       def add_hi5
-        @db.add_hi5(@space, @name)
-        @bot.api.send_message(chat_id: @fromid, text: msg_add_hi5(@space, @name), parse_mode: 'HTML')
+        @db.add_hi5(@squad_name, @name)
+        @bot.api.send_message(chat_id: @fromid, text: msg_add_hi5(@squad_name, @name), parse_mode: 'HTML')
       end
 
       def edit_hi5
-        @db.edit_hi5(@space, @name)
-        @bot.api.send_message(chat_id: @fromid, text: msg_edit_hi5(@space, @name), parse_mode: 'HTML')
+        @db.edit_hi5(@squad_name, @name)
+        @bot.api.send_message(chat_id: @fromid, text: msg_edit_hi5(@squad_name, @name), parse_mode: 'HTML')
       end
 
       def delete_hi5(name)
-        @db.delete_hi5(@space, name)
-        @bot.api.send_message(chat_id: @fromid, text: msg_delete_hi5(@space, name), parse_mode: 'HTML')
+        @db.delete_hi5(@squad_name, name)
+        @bot.api.send_message(chat_id: @fromid, text: msg_delete_hi5(@squad_name, name), parse_mode: 'HTML')
       end
     end
   end

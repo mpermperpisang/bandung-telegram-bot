@@ -48,8 +48,12 @@ def key_squad
       Telegram::Bot::Types::InlineKeyboardButton.new(text: 'DISCO', callback_data: 'disco')
     ],
     [
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Core', callback_data: 'core'),
-      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Bandung [Post to Teletubis]', callback_data: 'bandung')
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'BUMBLEBEE', callback_data: 'bumblebee'),
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'NOOB', callback_data: 'noob')
+    ],
+    [
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'CORE', callback_data: 'core'),
+      Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Bandung [Post to Bukalapak.bdg]', callback_data: 'bandung')
     ]
   ]
 end

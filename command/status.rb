@@ -33,12 +33,17 @@ module Bot
             @bot.api.send_message(chat_id: @chatid, text: stg_not_exist(stg_name), parse_mode: 'HTML')
           else
             @user.each do |row|
+              if row['book_status'] == "booked"
+                mention = "\n@#{mention}" + row['book_name']
+              elsif row['book_status'] == "done"
+                mention = "<pre>@#{mention}" + row['book_name'] + "</pre>"
+              end
               @array.push("<code>staging#{stg_name}</code> : <b>" + row['book_status'].upcase + "</b>\n" +
-              row['book_branch'] + "\n@" + row['book_name'] + "\n\n")
+              row['book_branch'] + "#{mention}\n\n")
             end
           end
         end
-        show_status
+        show_status if @array.to_s != "[\"Status staging\\n\\n\"]"
       end
 
       def show_status

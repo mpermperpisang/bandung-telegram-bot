@@ -1,9 +1,9 @@
 module Bot
   class Command
-    # untuk menambahkan orang ke jadwal snack
-    class AddSnack < Command
+    # mengubah jadwal snack secara permanent, dan harus mengubah confluence juga
+    class Change < Command
       def check_text
-        check_user_spam if @txt.start_with?("/add@#{ENV['BOT_REMINDER']}")
+        check_user_spam if @txt.start_with?('/move')
       end
 
       def check_user_spam
@@ -40,46 +40,46 @@ module Bot
 
         @array_nil = []
         @day_nil = []
-        @array_dupe = []
+        @array_exist = []
 
         @dday.each do |day_name|
           @day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
-          @add_name = day_name[/\B@\S+/]
+          @move_name = day_name[/\B@\S+/]
 
-          unless (@array_nil.include? @add_name) || (@array_dupe.include? @add_name)
-            check_user = @db.check_people(@add_name)
+          unless (@array_exist.include? @move_name) || (@array_nil.include? @move_name)
+            check_user = @db.check_people(@move_name)
             @snack_name = check_user.size.zero? ? nil : check_user.first['name']
-            @day_nil.push(@day) if @snack_name.nil?
-            @snack_name.nil? ? @array_nil.push(@add_name) : @array_dupe.push(@add_name)
+            @day_nil.push(@day) unless @snack_name.nil?
+            @snack_name.nil? ? @array_nil.push(@move_name) : @array_exist.push(@move_name)
           end
         end
-        add_snack unless @array_nil.empty?
-        duplicate_snack unless @array_dupe.empty?
+        change_snack unless @array_exist.empty?
+        empty_snack unless @array_nil.empty?
       end
 
-      def add_snack
+      def change_snack
         @dday = Day.new
 
         @dday_nil = []
         @arr_list = []
         i = 0
 
-        @array_nil.each do |add_name|
+        @array_exist.each do |move_name|
           @dday.read_day(@day_nil[i])
-          @db.add_people(@day_nil[i], add_name)
+          @db.change_people(@day_nil[i], move_name)
           @dday_nil.push(@dday.day_name)
 
-          @arr_list.push("#{@array_nil[i]} bawa snack di hari <b>#{@dday_nil[i]}</b>")
+          @arr_list.push("#{@array_exist[i]} hari <b>#{@dday_nil[i]}</b> adalah jadwalmu yang baru")
           i += 1
         end
 
         @list = @arr_list.to_s.gsub('", "', ",\n- ").delete('["').delete('"]')
-        @bot.api.send_message(chat_id: @id, text: msg_add_people(@username, @list), parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @id, text: msg_change_people(@username, @list), parse_mode: 'HTML')
       end
 
-      def duplicate_snack
-        @list = @array_dupe.to_s.delete('["').delete('"]').gsub('", "', ', ')
-        @bot.api.send_message(chat_id: @id, text: msg_duplicate_add_people(@username, @list), parse_mode: 'HTML')
+      def empty_snack
+        @list = @array_nil.to_s.delete('["').delete('"]').gsub('", "', ', ')
+        @bot.api.send_message(chat_id: @id, text: empty_people(@list), parse_mode: 'HTML')
       end
     end
   end
