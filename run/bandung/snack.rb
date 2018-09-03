@@ -26,7 +26,7 @@ Telegram::Bot::Client.run(@token) do |bot|
       case message
       when Telegram::Bot::Types::CallbackQuery
         case message.data
-        when 'wtb', 'dana', 'art', 'core', 'disco', 'bandung', 'email'
+        when 'wtb', 'dana', 'art', 'core', 'disco', 'bandung', 'bumblebee', 'noob'
           @is_user.spammer?(bot, @chat_id, message.from.username, message, message.data)
           check_data(@token, @chat_id, bot, message, message.data) if @is_user.spam == false
         when 'mon', 'tue', 'wed', 'thu', 'fri'
@@ -48,7 +48,7 @@ Telegram::Bot::Client.run(@token) do |bot|
 
         if @is_group.not_private_chat?(message.chat.type)
           command = [
-            '/add', '/edit', '/delete', '/reminder', '/cancel', '/done', '/holiday', '/normal', '/move', '/hi5',
+            '/add', '/plat', '/edit', '/delete', '/reminder', '/cancel', '/done', '/holiday', '/normal', '/move', '/hi5',
             "/help@#{ENV['BOT_REMINDER']}"
           ]
 

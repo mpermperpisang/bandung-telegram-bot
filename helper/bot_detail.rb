@@ -130,7 +130,7 @@ module BotDetail
     <b>/done@#{ENV['BOT_REMINDER']} or /done@#{ENV['BOT_REMINDER']} @username</b>
 
     7. Free people from snack schedule (group)
-    <b>/holiday@#{ENV['BOT_REMINDER']} all or /holiday@#{ENV['BOT_REMINDER']} @username1 @username2</b>
+    <b>/holiday@#{ENV['BOT_REMINDER']} @all or /holiday@#{ENV['BOT_REMINDER']} @username1 @username2</b>
 
     8. Remind snack schedule (group)
     <b>/reminder@#{ENV['BOT_REMINDER']}</b>
@@ -141,9 +141,12 @@ module BotDetail
     10. List HI5 of Bandung squad member (both)
     <b>/hi5@#{ENV['BOT_REMINDER']}</b>
 
+    11. List vehicles of members (both)
+    <b>/plat@#{ENV['BOT_REMINDER']}</b>
+
     <a href='https://bukalapak.atlassian.net/wiki/spaces/BS/pages/347046333/Snack+Schedule'>CHECK SCHEDULE</a>
 
-    🐾 Only admin/PM/APM/EM/QAM can do add, edit, change, 
+    🐾 Only admin/PM/APM/EM/QAM can do add, edit, change,
     delete & holiday 😎"
   end
 

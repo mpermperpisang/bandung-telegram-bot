@@ -242,13 +242,16 @@ def msg_weather(weather, poem)
 end
 
 def msg_add_people(user, name)
-    "Cihuy <code>@#{user}</code> nambahin jadwal #{name}
-
-Catat juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+    "Cihuy <code>@#{user}</code> nambahin jadwal
+- #{name}
+\nCatat juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa
+Dan baca juga aturan per-snack-an di link tersebut 🙏🏻"
 end
 
-def msg_edit_people(user, name, day)
-  "Oi oi oi #{name}, jadwalmu sementara dipindah sama <code>@#{user}</code> ke hari #{day} yaa"
+def msg_edit_people(user, name)
+  "Oi oi oi
+- #{name}
+\nBy <code>@#{user}</code>"
 end
 
 def error_spam(user)
@@ -267,9 +270,22 @@ def empty_snack(com, user)
   "Nice try @#{user} but useless\n" + error_general_empty(com)
 end
 
+def empty_vehicle(user)
+  "Ni hao, Kak @#{user}
+Mau ngecek pemilik kendaraan yaa? Formatnya <pre>/plat A 123 BC D 456 EF G 789 HI</pre>"
+end
+
+def add_empty_vehicle(user)
+  "Ni hao, Kak @#{user}
+Mau nambahin/ngehapus data pemilik kendaraan yaa? Formatnya
+<code>/plat @username1 mobil/motor A 123 BC
+@username2 mobil/motor D 456 EF
+@username3 mobil/motor G 789 HI</code>"
+end
+
 def msg_delete_people(user)
   "ByBy #{user}
-Colek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
+\nColek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukasnack yaa 😙"
 end
 
 def msg_reminder_schedule(day, user)
@@ -300,12 +316,12 @@ def msg_reminder_people(day, name, user)
   "Ayoyo ojo lali. Daftar yang belum bawa hari #{day}
 #{name}
 
-*minimum snack/orang Rp. 20000 yaa, Kak 😘\nby : <code>@#{user}</code>"
+*minimum snack/orang Rp. 20000 yaa, Kak 😘\nBy <code>@#{user}</code>"
 end
 
 def msg_invalid_squad(squad, user)
   "<code>#{squad.upcase.strip}</code> squad apa tuch, Kak @#{user}?
-Aku cuma tau squad <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b> (Apps) dan <b>DISCO</b>"
+Aku cuma tau squad <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b>, <b>DISCO</b>, <b>BUMBLEBEE</b> dan <b>NOOB</b>"
 end
 
 def holiday_schedule
@@ -328,13 +344,15 @@ def msg_normal_snack
   "Snack sudah kembali sesuai dengan jadwal di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end
 
-def msg_change_people(user, name, day)
-  "Haeyo #{name}, hari #{day} jadi jadwalmu yang baru yaa, selamat tinggal pada jadwal lama
-Kak @#{user} ojo lali ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
+def msg_change_people(user, name)
+  "Haeyo 
+- #{name}
+\nSelamat tinggal pada jadwal lama 👋🏻👋🏻👋🏻
+\nKak @#{user} ojo lali ubah juga di <a href='https://bit.ly/2FBKhA4'>CONFLUENCE</a> yaa"
 end
 
 def private_message(user)
-  "Tolong japri aku dulu yaa, Kak #{user} buat tau list Hi5nya"
+  "Tolong japri aku dulu yaa, Kak @#{user} buat tau list Hi5nya"
 end
 
 def by_user(user)
@@ -347,10 +365,10 @@ end
 
 def msg_invalid_hi5
   "Tapi kalau maksud Kakak buat nambahin anggota ke daftar HI5, formatnya salah, Kak
-Squad Bandung yang ada saat ini: <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b> dan <b>DISCO</b>
+Squad Bandung yang ada saat ini: <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b>, <b>DISCO</b>, <b>BUMBLEBEE</b> dan <b>NOOB</b>
 Contoh buat nambahin username ke daftar HI5\n\n<code>/hi5 dana @username1 @username2</code>
 
-Kakak juga bisa ketik <code>/hi5 bandung</code>, kalau ndak mau mention se-Bukalapak Bandung di grup Teletubis
+Kakak juga bisa ketik <code>/hi5 bandung</code>, kalau ndak mau mention se-Bukalapak Bandung di grup Bukalapak.bdg
 
 🐾 Kalau ada perubahan squad di Bandung tolong kasih tau @mpermperpisang yaa"
 end
@@ -361,15 +379,15 @@ Jumlah: #{count} orang"
 end
 
 def empty_member(squad, user)
-  "Stok anggota squad #{squad.upcase} lagi kosong, Kak @#{user}"
+  "Stok anggota squad <b>#{squad.upcase}</b> lagi kosong, Kak @#{user}"
 end
 
 def msg_delete_hi5(squad, name)
-  "Berhasil menghapus #{name} di squad #{squad.upcase.strip}"
+  "Berhasil menghapus #{name} di squad <b>#{squad.upcase.strip}</b>"
 end
 
 def msg_add_hi5(squad, name)
-  "Berhasil menambahkan #{name} di squad #{squad.upcase.strip}"
+  "Berhasil menambahkan #{name} di squad <b>#{squad.upcase.strip}</b>"
 end
 
 def msg_edit_hi5(squad, name)
@@ -384,13 +402,41 @@ def telegram_error
   'Telegram stuff, dont worry'
 end
 
-def msg_welcome_member(user)
+def msg_welcome_member(user, group)
   "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_REMINDER']}</b>\n🤗\n
-Buat pendataan anggota grup TeleTubis, silahkan isi (comment) tiny.cc/bukabandung yaa
-Hatur tengkyu, Kak"
+Buat pendataan anggota grup #{group}, silahkan tulis <b>COMMENT</b> di tiny.cc/bukabandung yaa
+
+Hatur tengkyu, Kak 🙏🏻"
 end
 
 def msg_left_member(user)
   "Sayonara, Kak <b>#{user}</b>\nSemoga semakin sukses dan sehat selalu\nJangan lupa sama squad Bandung yaa 👋🏻\n
 Colek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
+end
+
+def forbid_vehicle(user, name)
+  "Woy #{name} 😘, kendaraannya tolong dipindah yaa karena menghalangi kendaraan Kak @#{user}"
+end
+
+def empty_owner(user, plat)
+  "Halo Kakak-kakak di Bukalapak Bandung, ada yang merasa memiliki kendaraan dengan plat nomor <b>#{plat.upcase}</b>?\n
+Tolong pisan yaa dipindahkan karena menghalangi kendaraan Kak @#{user} 🙏🏻\n\n
+Dan mohon update plat nomor kendaraannya masing-masing di tiny.cc/bukabandung
+atau japri aku lalu ketik <code>/plat</code>"
+end
+
+def same_vehicle(user)
+  "Sama plat nomor kendaraan sendiri lupa, Kak @#{user}? 🤔"
+end
+
+def update_bukabandung
+  "<b>YUK YUK UPDATE DATA KALIAN DI</b> tiny.cc/bukabandung 😎"
+end
+
+def adding_vehicle(vehicle)
+  "Berhasil menambahkan daftar kendaraan sebagai berikut:\n- #{vehicle}"
+end
+
+def deleting_vehicle(vehicle)
+  "Berhasil menghapus daftar kendaraan sebagai berikut:\n- #{vehicle}"
 end

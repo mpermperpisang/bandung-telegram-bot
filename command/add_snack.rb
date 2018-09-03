@@ -36,7 +36,7 @@ module Bot
       def check_user_snack
         @db = Connection.new
 
-        @dday = @txt.scan(/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+\s@[a-z^]+/)
+        @dday = @txt.scan(/\s[a-zA-Z0-9]{0}[a-zA-Z0][^\s]+\s@[a-zA-Z0-9_^]+/)
 
         @array_nil = []
         @day_nil = []
@@ -46,11 +46,12 @@ module Bot
           @day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
           @add_name = day_name[/\B@\S+/]
 
-          check_user = @db.check_people(@add_name)
-          @snack_name = check_user.size.zero? ? nil : check_user.first['name']
-          @day_nil.push(@day) if @snack_name.nil?
-          @snack_name.nil? ? @array_nil.push(@add_name) : @array_dupe.push(@add_name)
-
+          unless (@array_nil.include? @add_name) || (@array_dupe.include? @add_name)
+            check_user = @db.check_people(@add_name)
+            @snack_name = check_user.size.zero? ? nil : check_user.first['name']
+            @day_nil.push(@day) if @snack_name.nil?
+            @snack_name.nil? ? @array_nil.push(@add_name) : @array_dupe.push(@add_name)
+          end
         end
         add_snack unless @array_nil.empty?
         duplicate_snack unless @array_dupe.empty?
@@ -72,7 +73,7 @@ module Bot
           i += 1
         end
 
-        @list = @arr_list.to_s.delete('["').delete('"]').gsub('", "', '- ')
+        @list = @arr_list.to_s.gsub('", "', ",\n- ").delete('["').delete('"]')
         @bot.api.send_message(chat_id: @id, text: msg_add_people(@username, @list), parse_mode: 'HTML')
       end
 

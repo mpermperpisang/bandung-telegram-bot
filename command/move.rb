@@ -36,29 +36,50 @@ module Bot
       def check_user_snack
         @db = Connection.new
 
-        @dday = @txt.scan(/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+\s@[a-z^]+/)
+        @dday = @txt.scan(/\s[a-zA-Z0-9]{0}[a-zA-Z0][^\s]+\s@[a-zA-Z0-9_^]+/)
+
+        @array_nil = []
+        @day_nil = []
+        @array_exist = []
 
         @dday.each do |day_name|
-          day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
-          move_name = day_name[/\B@\S+/]
+          @day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
+          @move_name = day_name[/\B@\S+/]
 
-          check_user = @db.check_people(move_name)
-          @snack_name = check_user.size.zero? ? nil : check_user.first['name']
-
-          @snack_name.nil? ? empty_snack(name) : change_snack(day, move_name)
+          unless (@array_exist.include? @move_name) || (@array_nil.include? @move_name)
+            check_user = @db.check_people(@move_name)
+            @snack_name = check_user.size.zero? ? nil : check_user.first['name']
+            @day_nil.push(@day) unless @snack_name.nil?
+            @snack_name.nil? ? @array_nil.push(@move_name) : @array_exist.push(@move_name)
+          end
         end
+        change_snack unless @array_exist.empty?
+        empty_snack unless @array_nil.empty?
       end
 
-      def empty_snack(name)
-        @bot.api.send_message(chat_id: @id, text: empty_people(name), parse_mode: 'HTML')
-      end
-
-      def change_snack(day, name)
+      def change_snack
         @dday = Day.new
 
-        @dday.read_day(day)
-        @db.change_people(day, name)
-        @bot.api.send_message(chat_id: @id, text: msg_change_people(@username, name, @dday.day_name), parse_mode: 'HTML')
+        @dday_nil = []
+        @arr_list = []
+        i = 0
+
+        @array_exist.each do |move_name|
+          @dday.read_day(@day_nil[i])
+          @db.change_people(@day_nil[i], move_name)
+          @dday_nil.push(@dday.day_name)
+
+          @arr_list.push("#{@array_exist[i]} hari <b>#{@dday_nil[i]}</b> adalah jadwalmu yang baru")
+          i += 1
+        end
+
+        @list = @arr_list.to_s.gsub('", "', ",\n- ").delete('["').delete('"]')
+        @bot.api.send_message(chat_id: @id, text: msg_change_people(@username, @list), parse_mode: 'HTML')
+      end
+
+      def empty_snack
+        @list = @array_nil.to_s.delete('["').delete('"]').gsub('", "', ', ')
+        @bot.api.send_message(chat_id: @id, text: empty_people(@list), parse_mode: 'HTML')
       end
     end
   end

@@ -1,7 +1,7 @@
 # Untuk membaca text yang dikirimkan oleh user
 class MessageText
   attr_reader :bot_name, :bot_troll, :booking_name, :stg, :req, :deploy, :bot_poin, :squad_name
-  attr_reader :sprint, :space, :symbol, :command, :base_command
+  attr_reader :sprint, :space, :symbol, :command, :base_command, :vehicle_no, :owner, :type, :plat
   #------------------------
   attr_reader :host, :host_remote, :username, :user, :password
   #------------------------
@@ -18,11 +18,15 @@ class MessageText
 
   def bot_attr(txt)
     @booking_name = txt[/\/[a-z]*_{0}/]
-    @squad_name = txt[/\s[a-zA-Z][^\s]+/]
+    @squad_name = txt[/\s[a-zA-Z0-9_ ]+/]
     @sprint = txt[/\s[a-zA-Z](.*)/]
     @space = txt[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
     @symbol = txt[/\B@\S+/]
     @stg = txt[/\d+/] || false
+    @vehicle_no = txt[/[a-zA-Z]{1,}\s[0-9]*\s[a-zA-Z]+/]
+    @owner = txt[/\B@\S+/]
+    @type = txt[/[mobil|motor]{5}/]
+    @plat = txt[/[a-zA-Z]{1,}\s[0-9]*\s[a-zA-Z]+/]
   end
 
   def bot_command(txt)
@@ -45,9 +49,10 @@ class MessageText
 
   def bot_user
     @admin = %w[
-      mpermperpisang tomifadlan ak_fahmi teguhn duvadilon
-      Primawansatrio Maharaniar desikur rezanurhakim ivan_nugraha
-      prihardono AlifiaWardoyo
+      mpermperpisang
+      tomifadlan ak_fahmi teguhn duvadilon ndnstt
+      Primawansatrio Maharaniar desikur rezanurhakim ivan_nugraha riasyahnovita
+      AlifiaWardoyo prihardono setianegarabt
     ]
     @pm = %w[mpermperpisang ak_fahmi Maharaniar]
   end
@@ -65,7 +70,7 @@ class MessageText
   end
 
   def bot_squad
-    @squad = %w[wtb dana art core disco bandung email]
+    @squad = ['wtb', 'dana', 'art', 'core', 'disco', 'bumblebee', 'noob', 'bandung']
   end
 
   def weekdays

@@ -29,22 +29,37 @@ module Bot
       def check_user_snack
         @db = Connection.new
 
-        name = @txt.scan(/\B@\S+/)
-        name.each do |delete_name|
-          user = @db.check_people(delete_name)
-          name = user.size.zero? ? nil : user.first['name']
+        @array = []
+        @array_nil = []
+        @array_status = []
 
-          name.nil? ? empty_snack(delete_name) : delete_snack(delete_name)
+        @name = @txt.scan(/\B@\S+/)
+        @name.each do |delete_name|
+          unless (@array.include? delete_name) || (@array_nil.include? delete_name)
+            user = @db.check_people(delete_name)
+            @user = user.size.zero? ? nil : user.first['name']
+            @array.push(delete_name) unless @user.nil?
+            @array_nil.push(delete_name) if @user.nil?
+            @array_status.push(user.first['status']) unless @user.nil?
+          end
         end
+
+        empty_snack unless @array_nil.empty?
+        delete_snack unless @array.empty?
       end
 
-      def delete_snack(name)
-        @db.delete_people(name)
-        @bot.api.send_message(chat_id: @id, text: msg_delete_people(name), parse_mode: 'HTML')
+      def delete_snack
+        @array.each do |name|
+          @db.delete_people(name)
+        end
+
+        @list = @array.to_s.delete('["').delete('"]').gsub('", "', ', ')
+        @bot.api.send_message(chat_id: @id, text: msg_delete_people(@list), parse_mode: 'HTML')
       end
 
-      def empty_snack(name)
-        @bot.api.send_message(chat_id: @id, text: empty_people(name), parse_mode: 'HTML')
+      def empty_snack
+        @list = @array_nil.to_s.delete('["').delete('"]').gsub('", "', ', ')
+        @bot.api.send_message(chat_id: @id, text: empty_people(@list), parse_mode: 'HTML')
       end
     end
   end

@@ -27,6 +27,11 @@ module Bot
       @staging = @msg.stg
       @base_command = @msg.base_command
       @sprint = @msg.sprint
+      @vehicle_number = @msg.vehicle_no
+      @squad_name = @msg.squad_name
+      @ve_owner = @msg.owner
+      @ve_type = @msg.type
+      @ve_plat = @msg.plat
     end
   end
 end

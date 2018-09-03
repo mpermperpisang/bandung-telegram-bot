@@ -286,6 +286,14 @@ class Connection
     @client.query("select name, status from bandung_snack where name='#{name}'")
   end
 
+  def check_vehicle(number)
+    @client.query("select distinct ve_name from bandung_vehicle where ve_number='#{number.upcase}'")
+  end
+
+  def check_dupe_vehicle(number, name, type)
+    @client.query("select ve_name from bandung_vehicle where ve_number='#{number.upcase}' and ve_name='#{name}' and ve_type='#{type}'")
+  end
+
   def edit_people(day, name)
     @client.query("update bandung_snack set day='#{day.strip}' where name='#{name}'")
   end
@@ -385,5 +393,13 @@ class Connection
 
   def delete_member_hi5(name)
     @client.query("delete from bandung_hi5 where hi_name='#{name}'")
+  end
+
+  def add_vehicle(name, type, number)
+    @client.query("insert into bandung_vehicle (ve_name, ve_type, ve_number) values ('#{name}', '#{type}', '#{number.upcase}')")
+  end
+
+  def delete_vehicle(name, type, number)
+    @client.query("delete from bandung_vehicle where ve_name='#{name}' and ve_type='#{type}' and ve_number='#{number.upcase}'")
   end
 end
