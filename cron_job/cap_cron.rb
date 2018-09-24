@@ -21,7 +21,7 @@ begin
     line = File.read('/home/bukalapak/bandung-telegram-bot/require/helper_cap.rb')
     line1 = line.gsub('{"chat_id"=>"', '')
     line2 = line1.gsub("\n", '')
-    p @chat_id = line2.gsub('"}', '')
+    @chat_id = line2.gsub('"}', '')
 
     File.open('/home/bukalapak/bandung-telegram-bot/require/ruby_cap.rb', 'w+') do |f|
       client.query("select deploy_ip from deploy_staging where deploy_status='queueing' and (deploy_type='deploy' or deploy_type='lock:release' or deploy_type='backburner:start' or deploy_type='backburner:restart' or deploy_type='backburner:stop') order by deploy_date asc limit 1").each do |row|
@@ -61,7 +61,7 @@ begin
     line = File.read('/home/bukalapak/bandung-telegram-bot/require/helper_cap.rb')
     line1 = line.gsub('{"deploy_stg"=>"', '')
     line2 = line1.gsub('"}', '')
-    p @staging = line2.gsub("\n", '')
+    @staging = line2.gsub("\n", '')
 
     File.open('/home/bukalapak/bandung-telegram-bot/require/helper_cap.rb', 'w+') do |f|
       client.query("select deploy_type from deploy_staging where deploy_status='queueing' and (deploy_type='deploy' or deploy_type='lock:release' or deploy_type='backburner:start' or deploy_type='backburner:restart' or deploy_type='backburner:stop') order by deploy_date asc limit 1").each do |row|
@@ -104,14 +104,14 @@ begin
 
       client.query("update deploy_staging set deploy_status='caping', deploy_date='#{@now}' where deploy_branch='#{@staging_branch}' and (deploy_status='queueing' or deploy_status='caped')")
 
-      p File.read('/home/bukalapak/bandung-telegram-bot/require/ruby_cap.rb')
+      p File.read('/home/bukalapak/bandung-telegram-bot/require/ruby_cap.rb') unless File.read('/home/bukalapak/bandung-telegram-bot/require/ruby_cap.rb').empty?
       begin
         EnvBash.load("/home/bukalapak/bandung-telegram-bot/helper/jenkins/exec_cap_deploy.bash")
       rescue
         EnvBash.load("/home/bukalapak/bandung-telegram-bot/helper/jenkins/exec_cap_current.bash")
       end
 
-      p @staging
+      p @staging if @staging != ""
       if @staging != "103"
         Net::SSH.start("#{@staging_ip}", "bukalapak", :password => "bukalapak") do |session|
           begin

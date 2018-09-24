@@ -1,5 +1,7 @@
 def snack_group(token, id, bot, msg, txt)
   Bot::Command::AddSnack.new(token, id, bot, msg, txt).check_text
+  Bot::Command::AddAdmin.new(token, id, bot, msg, txt).check_text
+  Bot::Command::ListAdmin.new(token, id, bot, msg, txt).check_text
   Bot::Command::CallOwner.new(token, id, bot, msg, txt).check_text
   Bot::Command::Edit.new(token, id, bot, msg, txt).check_text
   Bot::Command::Delete.new(token, id, bot, msg, txt).check_text
@@ -19,4 +21,6 @@ def snack_private(token, id, bot, msg, txt)
   Bot::Command::Hi5.new(token, id, bot, msg, txt).check_text
   Bot::Command::AddHi5.new(token, id, bot, msg, txt).check_text
   Bot::Command::AddVehicle.new(token, id, bot, msg, txt).check_text
+  Bot::Command::AddAdmin.new(token, id, bot, msg, txt).check_text
+  Bot::Command::AddSquad.new(token, id, bot, msg, txt).check_text
 end

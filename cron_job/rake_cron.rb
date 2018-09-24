@@ -24,7 +24,7 @@ begin
     line = File.read('/home/bukalapak/bandung-telegram-bot/require/helper_rake.rb')
     line1 = line.gsub('{"chat_id"=>"', '')
     line2 = line1.gsub("\n", '')
-    p @chat_id = line2.gsub('"}', '')
+    @chat_id = line2.gsub('"}', '')
 
     File.open('/home/bukalapak/bandung-telegram-bot/require/ruby_rake.rb', 'w+') do |f|
       client.query("select deploy_ip from deploy_staging where deploy_status='queueing' and (deploy_type='db:migrate' or deploy_type='elasticsearch:reindex_index' or deploy_type='assets:precompile') order by deploy_date asc limit 1").each do |row|
@@ -64,7 +64,7 @@ begin
     line = File.read('/home/bukalapak/bandung-telegram-bot/require/helper_rake.rb')
     line1 = line.gsub('{"deploy_stg"=>"', '')
     line2 = line1.gsub('"}', '')
-    p @staging = line2.gsub("\n", '')
+    @staging = line2.gsub("\n", '')
 
     unless @staging == nil || @staging == ""
       bot.api.send_message(chat_id: @chat_id, text: "Begin exec rake action <b>staging#{@staging}</b>", parse_mode: 'HTML')
@@ -85,14 +85,14 @@ begin
 
       client.query("update deploy_staging set deploy_status='rakeing', deploy_date='#{@now}' where deploy_branch='#{@staging_branch}' and (deploy_status='queueing' or deploy_status='rakeed')")
 
-      p File.read('/home/bukalapak/bandung-telegram-bot/require/ruby_rake.rb')
+      p File.read('/home/bukalapak/bandung-telegram-bot/require/ruby_rake.rb') unless File.read('/home/bukalapak/bandung-telegram-bot/require/ruby_rake.rb').empty?
       begin
         EnvBash.load("/home/bukalapak/bandung-telegram-bot/helper/jenkins/exec_rake_deploy.bash")
       rescue
         EnvBash.load("/home/bukalapak/bandung-telegram-bot/helper/jenkins/exec_rake_current.bash")
       end
 
-      p @staging
+      p @staging if @staging != ""
       if @staging != "103"
         Net::SSH.start("staging#{@staging}.vm", "bukalapak", :password => "bukalapak") do |session|
           begin

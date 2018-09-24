@@ -5,6 +5,14 @@ def new_member(message, bot)
     @member = "@#{message.new_chat_members[0].username}"
     bot.api.send_message(chat_id: message.chat.id, text: msg_welcome_member(@member, message.chat.title), parse_mode: 'HTML')
     @db.add_hi5('BANDUNG', @member)
+    check_user = @db.check_onboarding(@member)
+    new_member = check_user.size.zero? ? nil : check_user.first['on_username']
+    if new_member.nil?
+      @db.hi_new_member(@member)
+    else
+      @db.update_new_member(@member)
+    end
+    bot.api.send_message(chat_id: message.chat.id, text: onboarding_member(@member), parse_mode: 'HTML')
   end
 rescue StandardError => e
   puts "#{e} no new member in group"
@@ -19,6 +27,7 @@ def left_member(message, bot)
     bot.api.send_message(chat_id: message.chat.id, text: msg_left_member(@member), parse_mode: 'HTML')
     @db.delete_member_hi5(@username)
     @db.delete_people(@username)
+    @db.delete_admin(@username)
   end
 rescue StandardError => e
   puts "#{e} no left member in group"
