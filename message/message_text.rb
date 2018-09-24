@@ -48,12 +48,15 @@ class MessageText
   end
 
   def bot_user
-    @admin = %w[
-      mpermperpisang
-      tomifadlan ak_fahmi teguhn duvadilon ndnstt
-      Primawansatrio Maharaniar desikur rezanurhakim ivan_nugraha riasyahnovita
-      AlifiaWardoyo prihardono setianegarabt
-    ]
+    @db = Connection.new
+
+    @admin = []
+
+    @admin_check = @db.list_admin
+    @admin_check.each do |name|
+      @admin.push(name['adm_username'])
+    end
+
     @pm = %w[mpermperpisang ak_fahmi Maharaniar]
   end
 
@@ -70,7 +73,14 @@ class MessageText
   end
 
   def bot_squad
-    @squad = ['wtb', 'dana', 'art', 'core', 'disco', 'bumblebee', 'noob', 'bandung']
+    @db = Connection.new
+
+    @squad = []
+
+    @squad_check = @db.list_squad
+    @squad_check.each do |squad|
+      @squad.push(squad['squad_name'])
+    end
   end
 
   def weekdays

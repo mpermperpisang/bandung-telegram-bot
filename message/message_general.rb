@@ -320,8 +320,13 @@ def msg_reminder_people(day, name, user)
 end
 
 def msg_invalid_squad(squad, user)
+  @msg = MessageText.new
+  @msg.bot_squad
+
+  @list = @msg.squad.to_s.gsub('", "', ", ").delete('["').delete('"]')
+
   "<code>#{squad.upcase.strip}</code> squad apa tuch, Kak @#{user}?
-Aku cuma tau squad <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b>, <b>DISCO</b>, <b>BUMBLEBEE</b> dan <b>NOOB</b>"
+Aku cuma tau squad <b>#{@list.upcase}</b>"
 end
 
 def holiday_schedule
@@ -364,11 +369,16 @@ def choosing_squad(user)
 end
 
 def msg_invalid_hi5
+  @msg = MessageText.new
+  @msg.bot_squad
+
+  @list = @msg.squad.to_s.gsub('", "', ", ").delete('["').delete('"]')
+
   "Tapi kalau maksud Kakak buat nambahin anggota ke daftar HI5, formatnya salah, Kak
-Squad Bandung yang ada saat ini: <b>WTB</b>, <b>DANA</b>, <b>ART</b>, <b>CORE</b>, <b>DISCO</b>, <b>BUMBLEBEE</b> dan <b>NOOB</b>
+Squad Bandung yang ada saat ini: <b>#{@list.upcase}</b>
 Contoh buat nambahin username ke daftar HI5\n\n<code>/hi5 dana @username1 @username2</code>
 
-Kakak juga bisa ketik <code>/hi5 bandung</code>, kalau ndak mau mention se-Bukalapak Bandung di grup Bukalapak.bdg
+Kakak juga bisa japri aku lalu ketik <code>/hi5 bandung</code>, kalau ndak mau mention se-Bukalapak Bandung di grup Bukalapak.bdg
 
 🐾 Kalau ada perubahan squad di Bandung tolong kasih tau @mpermperpisang yaa"
 end
@@ -439,4 +449,59 @@ end
 
 def deleting_vehicle(vehicle)
   "Berhasil menghapus daftar kendaraan sebagai berikut:\n- #{vehicle}"
+end
+
+def msg_add_admin(name)
+  "Berhasil menambahkan nama berikut sebagai admin snack:\n- #{name}"
+end
+
+def msg_dupe_admin(name)
+  "Duplikasi admin:\n- #{name}"
+end
+
+def msg_list_admin(user, name)
+  "Halo, Kak @#{user}. Kakak bisa minta bantuan tentang snack ke admin/PM/APM/EM/QAM di bawah ini yaa:
+<code>- #{name}</code>"
+end
+
+def msg_add_squad(squad)
+  "Berhasil menambahkan squad:\n- #{squad.upcase}"
+end
+
+def msg_dupe_squad(squad)
+  "Duplikasi squad:\n- #{squad.upcase}"
+end
+
+def onboarding_member(name)
+  "Kak #{name}, yuk perkenalan dulu. Tolong tuliskan biodata dengan format seperti ini :
+
+🐾 Nama panggilan : 
+🐾 Job title : 
+🐾 Squad : 
+🐾 Pekerjaan atau Pendidikan terakhir : 
+🐾 Status : 
+🐾 Hobi : 
+🐾 Motto : 
+
+dan terakhir upload foto Kakak juga yaa 🤗"
+end
+
+def msg_onboarding(user, name)
+  "Kak @#{user}, mohon isi <b>#{name}</b> yaa. Formatnya seperti ini :
+
+🐾 Nama panggilan : 
+🐾 Job title : 
+🐾 Squad : 
+🐾 Pekerjaan atau Pendidikan terakhir : 
+🐾 Status : 
+🐾 Hobi : 
+🐾 Motto : 
+  
+dan terakhir upload foto Kakak juga yaa 🤗
+*chat ini tidak akan hilang kalau belum kirim format biodata seperti di atas 😈"
+end
+
+def msg_welcome_new_member(name, username)
+  "Halo Kakak-kakak di squad Bandung, mohon bimbing Kak <b>#{name}</b> yaa 🙏🏻
+Jangan ragu bertanya kepada para sesepuh di grup ini yaa, Kak @#{username}"
 end

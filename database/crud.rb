@@ -125,7 +125,7 @@ class Connection
     @client.query("update squad_marketplace set status_market='closed' where from_id_market='#{id}' and id_market>0")
   end
 
-  def list_poin 
+  def list_poin
     @client.query("select member_market, poin_market from squad_marketplace where status_market='closed'
                   and poin_market<>'0' order by member_market asc")
   end
@@ -286,6 +286,10 @@ class Connection
     @client.query("select name, status from bandung_snack where name='#{name}'")
   end
 
+  def check_admin(name)
+    @client.query("select adm_username from admin_snack where adm_username='#{name}'")
+  end
+
   def check_vehicle(number)
     @client.query("select distinct ve_name from bandung_vehicle where ve_number='#{number.upcase}'")
   end
@@ -401,5 +405,45 @@ class Connection
 
   def delete_vehicle(name, type, number)
     @client.query("delete from bandung_vehicle where ve_name='#{name}' and ve_type='#{type}' and ve_number='#{number.upcase}'")
+  end
+
+  def add_admin_snack(name)
+    @client.query("insert into admin_snack (adm_username) values ('#{name}')")
+  end
+
+  def delete_admin(name)
+    @client.query("delete from admin_snack where adm_username='#{name}'")
+  end
+
+  def list_admin
+    @client.query("select * from admin_snack order by adm_username asc")
+  end
+
+  def check_squad(squad)
+    @client.query("select * from bandung_squad where squad_name='#{squad}'")
+  end
+
+  def add_bandung_squad(squad)
+    @client.query("insert into bandung_squad (squad_name) values ('#{squad.strip}')")
+  end
+
+  def list_squad
+    @client.query("select * from bandung_squad order by squad_name asc")
+  end
+
+  def hi_new_member(name)
+    @client.query("insert into onboarding_member (on_username) value ('#{name}')")
+  end
+
+  def update_new_member(name)
+    @client.query("update onboarding_member set on_flag='false' where on_username='#{name}'")
+  end
+
+  def done_onboarding(name)
+    @client.query("update onboarding_member set on_flag='true' where on_username='@#{name}'")
+  end
+
+  def check_onboarding(name)
+    @client.query("select * from onboarding_member where on_username='#{name}'")
   end
 end
