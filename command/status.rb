@@ -3,22 +3,41 @@ module Bot
     # untuk melihat status staging
     class Status < Command
       def check_text
-        check_stg_empty if @txt.start_with?("/status@#{ENV['BOT_BOOKING']}")
+        check_stg_empty if @txt.start_with?("/status_staging")
       end
 
       def check_stg_empty
+        @db = Connection.new
+
+        if @squad_name != nil
+          @array = []
+
+          name = @db.list_staging_squad(@squad_name.strip)
+          name.each do |stg|
+            @array.push(stg['book_staging'])
+          end
+          @array.empty? ? empty_squad : staging_list(@array)
+        elsif @staging == false
+          staging_empty
+        end
+      end
+
+      def empty_squad
+        @bot.api.send_message(chat_id: @chatid, text: empty_staging_squad(@squad_name.strip, @username), parse_mode: 'HTML')
+      end
+
+      def staging_empty
         @is_staging = Staging.new
 
         check_staging unless @is_staging.empty?(@bot, @chatid, @staging, @username, @command)
       end
 
       def check_staging
-        @db = Connection.new
+        p '5'
         @send = SendMessage.new
 
         max_stg = @db.check_max_stg
         stg_number = max_stg.first['book_staging'].to_s.gsub('book_','')
-
         staging = [*1..stg_number.to_i].include?(@staging.to_i) ? @staging : 'new'
 
         @send.check_new_staging(@chatid, @username, @staging)
@@ -30,7 +49,12 @@ module Bot
       end
 
       def status_staging
-        name = @txt.scan(/\d+/)
+        @name = @txt.scan(/\d+/)
+
+        staging_list(@name)
+      end
+
+      def staging_list(name)
         @array = []
         @array.push("Status staging\n\n")
 

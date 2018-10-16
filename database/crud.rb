@@ -455,4 +455,24 @@ class Connection
   def add_new_staging(stg)
     @client.query("update booking_staging set book_staging='book_#{stg}' where book_name='book'")
   end
+  
+  def check_staging(stg)
+  	@client.query("select * from booking_staging where book_staging=#{stg} and book_squad!=''")
+  end
+  
+  def check_stg_exist(stg)
+  	@client.query("select * from booking_staging where book_staging=#{stg}")
+  end
+  
+  def add_staging_squad(stg, squad)
+  	@client.query("insert into booking_staging (book_staging, book_squad) values ('#{stg}', '#{squad.upcase}')")
+  end
+  
+  def update_staging_squad(stg, squad)
+  	@client.query("update booking_staging set book_squad='#{squad.upcase}' where book_staging='#{stg}'")
+  end
+  
+  def list_staging_squad(squad)
+    @client.query("select * from booking_staging where book_squad='#{squad.upcase}'")
+  end
 end

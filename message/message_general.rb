@@ -1,7 +1,9 @@
 def empty_staging(com, user)
   @comm = com
   @user = user
-  @comm.start_with?('/status') ? empty_status : empty_general
+  @comm.start_with?('/status_staging') ? empty_status : empty_general
+  return if @comm.start_with?('/add_staging')
+  empty_number
 end
 
 def general_empty_stg
@@ -13,6 +15,10 @@ def empty_general
 end
 
 def empty_status
+  general_empty_stg + "\nExample: <code>#{@comm} 21 51 103 or #{@comm} DANA</code>"
+end
+
+def empty_number
   general_empty_stg + "\nExample: <code>#{@comm} 21 51 103</code>"
 end
 
@@ -20,8 +26,7 @@ def stg_not_exist(stg)
   general_stg = 'dilihat statusnya' if @txt.start_with?('/status')
   general_stg = 'di-done-kan' if @txt.start_with?('/done')
   "Belum pernah ada yang booking <code>staging#{stg}.vm</code>, jadi ga bisa " + general_stg + ", Kak
-  
-Langsung ketik ajah <code>/booking #{stg}</code>"
+\nLangsung ketik ajah <code>/booking #{stg}</code>"
 end
 
 def chat_not_found
@@ -52,6 +57,10 @@ end
 
 def empty_branch(comm, user)
   "@#{user} forgot to type the branch 😒\nExample: <code>#{comm} master</code>"
+end
+
+def msg_format_add_stg(comm, user)
+	"Format is invalid, @#{user} 😒\nExample: <code>#{comm} DANA 21 51 103</code>"
 end
 
 def new_staging(name, staging)
@@ -522,4 +531,21 @@ end
 def no_oncall(user)
   "Libur dulu atuh, Kak @#{user}
 Kasihan Kakak BEnya dicolek-colek pas weekend"
+end
+
+def msg_dupe_stg_squad(stg, squad)
+  "Staging #{stg} sudah pernah terdaftar sebagai staging squad #{squad.upcase}"
+end
+
+def msg_add_stg_squad(stg, squad, user)
+  "Staging #{stg} sudah ditambahkan ke daftar squad #{squad.upcase} yaa, Kak @#{user}"
+end
+
+def msg_update_stg_squad(stg, squad, user)
+  "Staging #{stg} sudah diubah menjadi staging milik squad #{squad.upcase} yaa, Kak @#{user}"
+end
+
+def empty_staging_squad(squad, user)
+  "Belum ada daftar staging di squad #{squad.upcase}
+Tambahin yuk Kak @#{user} caranya ketik ajah <code>/add_staging</code>"
 end

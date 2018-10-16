@@ -24,8 +24,8 @@ Telegram::Bot::Client.run(@token) do |bot|
 
         if @is_group.not_private_chat?(message.chat.type)
           command = [
-            '/deploy_request', '/cancel_request', '/done', '/list_request', '/booking', '/status', '/oncall',
-            "/help@#{ENV['BOT_BOOKING']}"
+            '/deploy_request', '/cancel_request', '/done', '/list_request', '/booking', '/status_staging', '/oncall',
+            '/add_staging', "/help@#{ENV['BOT_BOOKING']}"
           ]
 
           if command.include?(@msg.bot_name) || command.include?(@msg.booking_name) || command.include?(@msg.command)
@@ -41,9 +41,9 @@ Telegram::Bot::Client.run(@token) do |bot|
     puts e
     sleep(5)
     retry
-  rescue Telegram::Bot::Exceptions::ResponseError => e
-    puts telegram_error if e.error_code.to_s == '502' || e.error_code.to_s == '400'
-    retry
+  #rescue Telegram::Bot::Exceptions::ResponseError => e
+    #puts telegram_error if e.error_code.to_s == '502' || e.error_code.to_s == '400'
+    #retry
   rescue StandardError => e
     @status.offline(@token, @chat_id, bot, mention_admin('booking'))
     bot.api.send_message(chat_id: @private, text: send_off('booking'))
