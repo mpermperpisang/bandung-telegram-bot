@@ -22,7 +22,7 @@ class MessageText
     @sprint = txt[/\s[a-zA-Z](.*)/]
     @space = txt[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
     @symbol = txt[/\B@\S+/]
-    @stg = txt[/\d+/] || false
+    @stg = txt[/\s\d+/] || false
     @vehicle_no = txt[/[a-zA-Z]{1,}\s[0-9]*\s[a-zA-Z]+/]
     @owner = txt[/\B@\S+/]
     @type = txt[/[mobil|motor]{5}/]
@@ -57,7 +57,7 @@ class MessageText
       @admin.push(name['adm_username'])
     end
 
-    @pm = %w[mpermperpisang ak_fahmi Maharaniar]
+    @pm = %w[mpermperpisang ak_fahmi Maharaniar ditra7]
   end
 
   def quality_assurance

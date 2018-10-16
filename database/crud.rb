@@ -28,6 +28,7 @@ class Connection
   end
 
   def list_requester(branch)
+    p branch
     @client.query("select deploy_request from deploy_staging where deploy_branch='#{branch.strip}'
     and deploy_status='requesting'")
   end
@@ -445,5 +446,13 @@ class Connection
 
   def check_onboarding(name)
     @client.query("select * from onboarding_member where on_username='#{name}'")
+  end
+
+  def check_max_stg
+    @client.query("select book_staging from booking_staging where book_name='book'")
+  end
+
+  def add_new_staging(stg)
+    @client.query("update booking_staging set book_staging='book_#{stg}' where book_name='book'")
   end
 end

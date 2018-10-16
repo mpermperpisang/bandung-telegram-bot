@@ -127,7 +127,8 @@ begin
         begin
           bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/deploy/log/cap.log', 'text/plain'))
           text = File.read('/home/bukalapak/deploy/log/cap.log')
-        rescue
+        rescue Exception => e
+          puts e
           bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/current/log/cap.log', 'text/plain'))
           text = File.read('/home/bukalapak/current/log/cap.log')
         end

@@ -24,7 +24,7 @@ Telegram::Bot::Client.run(@token) do |bot|
 
         if @is_group.not_private_chat?(message.chat.type)
           command = [
-            '/deploy_request', '/cancel_request', '/done', '/list_request', '/booking', '/status',
+            '/deploy_request', '/cancel_request', '/done', '/list_request', '/booking', '/status', '/oncall',
             "/help@#{ENV['BOT_BOOKING']}"
           ]
 
