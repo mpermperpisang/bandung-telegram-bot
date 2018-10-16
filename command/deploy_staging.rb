@@ -17,13 +17,21 @@ module Bot
       def next_stg_not_empty
         @is_branch = Branch.new
         @send = SendMessage.new
+        @db = Connection.new
 
-        staging = [*1..134].include?(@staging.to_i) ? @staging : 'new'
+        max_stg = @db.check_max_stg
+        stg_number = max_stg.first['book_staging'].to_s.gsub('book_','')
+
+        staging = [*1..stg_number.to_i].include?(@staging.to_i) ? @staging : 'new'
         @branch = @space.nil? ? nil : @space.strip
         return if @is_branch.empty?(@bot, @chatid, @branch, @txt, @username)
 
         @send.check_new_staging(@chatid, @username, @staging)
-        staging == 'new' ? @bot.api.send_message(@send.message) : check_user_qa
+        if staging == 'new'
+          @bot.api.send_message(@send.message)
+          @db.add_new_staging(@staging)
+        end
+        check_user_qa
       end
 
       def check_user_qa
@@ -87,8 +95,8 @@ module Bot
       end
 
       def check_branch_cap_rake
-        @base_comm = @msg.bot_name + @staging
-        @brc = @space.nil? ? @base_comm : @txt
+        p @base_comm = @msg.bot_name + @staging
+        @brc = @space.nil? ? @base_comm : @sprint
         @req = @space.nil? ? @base_comm : @space
       end
 
@@ -124,7 +132,8 @@ module Bot
       def queueing_deployment
         case @type_queue
         when 'deploy'
-          @send.queue_deployment(@chatid, @username, @staging, @req, @name, @queue_cap)
+          @queue = @queue_cap.nil? ? '1' : @queue_cap
+          @send.queue_deployment(@chatid, @username, @staging, @req, @name, @queue)
           @bot.api.send_message(@send.message)
           Bot::Command::Deployment.new(@token, @chatid, @bot, @message, @txt).deployment_staging
         when 'lock', 'start', 'stop', 'restart'

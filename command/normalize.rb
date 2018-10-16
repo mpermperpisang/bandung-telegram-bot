@@ -14,11 +14,19 @@ module Bot
 
       def check_new_stg
         @send = SendMessage.new
+        @db = Connection.new
 
-        staging = [*1..134].include?(@staging.to_i) ? @staging : 'new'
+        max_stg = @db.check_max_stg
+        stg_number = max_stg.first['book_staging'].to_s.gsub('book_','')
+
+        staging = [*1..stg_number.to_i].include?(@staging.to_i) ? @staging : 'new'
 
         @send.check_new_staging(@chatid, @username, @staging)
-        staging == 'new' ? @bot.api.send_message(@send.message) : normalize_date
+        if staging == 'new'
+          @bot.api.send_message(@send.message)
+          @db.add_new_staging(@staging)
+        end
+        normalize_date
       end
 
       def normalize_date

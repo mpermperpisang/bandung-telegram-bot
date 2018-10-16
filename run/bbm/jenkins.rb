@@ -12,17 +12,7 @@ require './require.rb'
 
 bot_start = Telegram::Bot::Client.new(@token)
 p 'jenkins online'
-chat_id = @db.message_chat_id
-
-chat_id.each do |id_grup|
-  begin
-    @status.online(@token, (id_grup['chat_id']).to_s, bot_start, '')
-  rescue StandardError => e
-    p id_grup['chat_id']
-    bot_start.api.send_message(chat_id: @private, text: chat_not_found)
-    puts e
-  end
-end
+@status.online(@token, @private, bot_start, '')
 
 Telegram::Bot::Client.run(@token) do |bot|
   begin

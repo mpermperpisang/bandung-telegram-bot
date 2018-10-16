@@ -21,7 +21,7 @@ module Bot
         count_poin
         zero_poin
 
-        @count = "  #{@c_half} #{@c_one} #{@c_two}
+        @count = "  #{@c_half}  #{@c_one}  #{@c_two}
 #{@c_three}  #{@c_five}  #{@c_eight}
 #{@c_thirteen}  #{@c_twenty}  #{@c_fourty}
 #{@c_hundred}  #{@c_coffee}  #{@c_unlimited}  "

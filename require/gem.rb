@@ -8,5 +8,7 @@ require 'require_all'
 require 'open_weather'
 require 'json'
 require 'parallel'
+require 'google/apis/sheets_v4'
+require 'googleauth'
 
 Dotenv.load

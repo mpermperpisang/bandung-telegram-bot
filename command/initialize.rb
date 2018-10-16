@@ -24,7 +24,11 @@ module Bot
       @space = @msg.space
       @symbol = @msg.symbol
       @command = @msg.command
-      @staging = @msg.stg
+      if @msg.stg.nil? || @msg.stg == false
+        @staging = @msg.stg
+      else
+        @staging = @msg.stg.strip
+      end
       @base_command = @msg.base_command
       @sprint = @msg.sprint
       @vehicle_number = @msg.vehicle_no

@@ -19,7 +19,9 @@ end
 def stg_not_exist(stg)
   general_stg = 'dilihat statusnya' if @txt.start_with?('/status')
   general_stg = 'di-done-kan' if @txt.start_with?('/done')
-  "Belum pernah ada yang booking <code>staging#{stg}.vm</code>, jadi ga bisa " + general_stg + ', Kak'
+  "Belum pernah ada yang booking <code>staging#{stg}.vm</code>, jadi ga bisa " + general_stg + ", Kak
+  
+Langsung ketik ajah <code>/booking #{stg}</code>"
 end
 
 def chat_not_found
@@ -53,8 +55,7 @@ def empty_branch(comm, user)
 end
 
 def new_staging(name, staging)
-  "<code>staging#{staging}.vm</code> staging baru yaa, Kak @#{name}?
-Bilang ke Kak @mpermperpisang dulu yaa buat ditambahin ke daftar 😉"
+  "Cihuy ada staging baru. staging#{staging}.vm sudah ditambahkan ke daftar yaa, Kak @#{name}"
 end
 
 def error_deploy(user, staging, name)
@@ -503,5 +504,22 @@ end
 
 def msg_welcome_new_member(name, username)
   "Halo Kakak-kakak di squad Bandung, mohon bimbing Kak <b>#{name}</b> yaa 🙏🏻
-Jangan ragu bertanya kepada para sesepuh di grup ini yaa, Kak @#{username}"
+Jangan ragu bertanya kepada para sesepuh di grup ini yaa, Kak @#{username}
+
+Satu lagi, ojo lali <b>COMMENT</b> data diri Kakak di tiny.cc/bukabandung yaa 😊"
+end
+
+def be_oncall(user, name)
+  "Summoning #{name}
+Ayo Kak semangat yaa dalam bertugas 😙🍕🍕🍕"
+end
+
+def empty_oncall(user)
+  "On call hari ini belum ditentukan, Kak @#{user}
+Bisa tanya ke Kak @Maharaniar buat jadwalnya yaa"
+end
+
+def no_oncall(user)
+  "Libur dulu atuh, Kak @#{user}
+Kasihan Kakak BEnya dicolek-colek pas weekend"
 end
