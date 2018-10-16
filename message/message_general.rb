@@ -2,8 +2,6 @@ def empty_staging(com, user)
   @comm = com
   @user = user
   @comm.start_with?('/status_staging') ? empty_status : empty_general
-  return if @comm.start_with?('/add_staging')
-  empty_number
 end
 
 def general_empty_stg
@@ -16,10 +14,6 @@ end
 
 def empty_status
   general_empty_stg + "\nExample: <code>#{@comm} 21 51 103 or #{@comm} DANA</code>"
-end
-
-def empty_number
-  general_empty_stg + "\nExample: <code>#{@comm} 21 51 103</code>"
 end
 
 def stg_not_exist(stg)
