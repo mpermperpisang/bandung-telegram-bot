@@ -64,6 +64,14 @@ class SendMessage
       parse_mode: 'HTML'
     }
   end
+  
+  def stg_invalid_format(id, com, name)
+  	@message = {
+      chat_id: id,
+      text: msg_format_add_stg(com, name),
+      parse_mode: 'HTML'
+    }
+  end
 
   def err_day_snack(id, com)
     @message = {

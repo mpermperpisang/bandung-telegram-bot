@@ -1,4 +1,4 @@
-# Untuk memerika apakah branch kosong
+# Untuk memeriksa apakah branch kosong
 class Branch
   def empty?(bot, id, branch, com, name)
     @send = SendMessage.new
