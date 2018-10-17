@@ -9,7 +9,7 @@ module Bot
       def check_format
       	@is_squad = Squad.new
 
-        return if @is_squad.empty?(@bot, @message.chat.id, @squad_name, @txt, @username)
+        return if @is_squad.empty?(@bot, @message.chat.id, @squad_name, @base_command, @username)
         check_staging
       end
 

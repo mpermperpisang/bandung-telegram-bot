@@ -31,7 +31,7 @@ class MessageText
 
   def bot_command(txt)
     @command = txt[/\/[a-z]\S+/]
-    @base_command = txt[/\/[a-z]\w+_/] || txt[/\/[a-z]\w+/]
+    @base_command = txt[/\/[a-z]\w+/]
   end
 
   def exc_text(txt)
