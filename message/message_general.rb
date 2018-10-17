@@ -1,4 +1,4 @@
-qdef empty_staging(com, user)
+def empty_staging(com, user)
   @comm = com
   @user = user
   @comm.start_with?('/status_staging') ? empty_status : empty_general
