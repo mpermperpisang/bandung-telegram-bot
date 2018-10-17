@@ -8,9 +8,7 @@ module Bot
 
       def check_stg_empty
         @db = Connection.new
-        
-        p @squad_name 
-        p @staging
+
         if @squad_name != nil
           @array = []
 
@@ -68,7 +66,7 @@ module Bot
               if row['book_status'] == "booked"
                 mention = "\n@#{mention}" + row['book_name']
               elsif row['book_status'] == "done"
-                mention = "<pre>@#{mention}" + row['book_name'] + "</pre>"
+                mention = "\n<pre>@#{mention}" + row['book_name'] + "</pre>"
               end
               @array.push("<code>staging#{stg_name}</code> : <b>" + row['book_status'].upcase + "</b>\n" +
               row['book_branch'] + "#{mention}\n\n")
