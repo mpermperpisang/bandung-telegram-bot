@@ -8,8 +8,11 @@ module Bot
 
       def check_stg_empty
         @db = Connection.new
-
+        
+        p @squad_name 
+        p @staging
         if @squad_name != nil
+        	p '1'
           @array = []
 
           name = @db.list_staging_squad(@squad_name.strip)
@@ -17,7 +20,8 @@ module Bot
             @array.push(stg['book_staging'])
           end
           @array.empty? ? empty_squad : staging_list(@array)
-        elsif @staging == false
+        elsif @squad_name == nil
+        	p '2'
           staging_empty
         end
       end
@@ -33,7 +37,6 @@ module Bot
       end
 
       def check_staging
-        p '5'
         @send = SendMessage.new
 
         max_stg = @db.check_max_stg
