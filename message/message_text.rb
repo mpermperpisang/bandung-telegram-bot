@@ -18,7 +18,7 @@ class MessageText
 
   def bot_attr(txt)
     @booking_name = txt[/\/[a-z]*_{0}/]
-    @squad_name = txt[/\s[a-zA-Z0-9_ ]+/]
+    @squad_name = txt[/\s[a-zA-Z_ ]+/]
     @sprint = txt[/\s[a-zA-Z](.*)/]
     @space = txt[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
     @symbol = txt[/\B@\S+/]
