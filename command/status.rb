@@ -12,7 +12,6 @@ module Bot
         p @squad_name 
         p @staging
         if @squad_name != nil
-        	p '1'
           @array = []
 
           name = @db.list_staging_squad(@squad_name.strip)
@@ -21,7 +20,6 @@ module Bot
           end
           @array.empty? ? empty_squad : staging_list(@array)
         elsif @squad_name == nil
-        	p '2'
           staging_empty
         end
       end
