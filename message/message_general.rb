@@ -519,7 +519,7 @@ end
 
 def empty_oncall(user)
   "On call hari ini belum ditentukan, Kak @#{user}
-Bisa tanya ke Kak @Maharaniar buat jadwalnya yaa"
+Bisa tanya ke Kak @Maharaniar buat jadwalnya yaa (http://tiny.cc/danaoncall)"
 end
 
 def no_oncall(user)
