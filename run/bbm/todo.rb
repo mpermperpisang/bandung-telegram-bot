@@ -55,6 +55,7 @@ Telegram::Bot::Client.run(@token) do |bot|
   rescue StandardError => e
     @status.offline(@token, @chat_id, bot, mention_admin('todo'))
     bot.api.send_message(chat_id: @private, text: send_off('todo'))
-    raise e
+    puts e
+    retry
   end
 end
