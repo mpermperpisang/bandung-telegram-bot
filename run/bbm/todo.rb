@@ -47,15 +47,17 @@ Telegram::Bot::Client.run(@token) do |bot|
     end
   rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
     puts e
-    sleep(5)
+    sleep(25)
     retry
   rescue Telegram::Bot::Exceptions::ResponseError => e
     puts telegram_error if e.error_code.to_s == '502' || e.error_code.to_s == '400'
+    sleep(25)
     retry
   rescue StandardError => e
     @status.offline(@token, @chat_id, bot, mention_admin('todo'))
     bot.api.send_message(chat_id: @private, text: send_off('todo'))
     puts e
+    sleep(25)
     retry
   end
 end
