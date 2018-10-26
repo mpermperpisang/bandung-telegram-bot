@@ -37,10 +37,11 @@ Telegram::Bot::Client.run(@token) do |bot|
     end
   rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
     puts e
-    sleep(5)
+    sleep(25)
     retry
   rescue Telegram::Bot::Exceptions::ResponseError => e
     puts telegram_error if e.error_code.to_s == '502' || e.error_code.to_s == '400'
+    sleep(25)
     retry
   rescue StandardError => e
     chat_id = @db.message_chat_id
