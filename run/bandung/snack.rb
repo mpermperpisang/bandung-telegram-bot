@@ -60,7 +60,7 @@ Telegram::Bot::Client.run(@token) do |bot|
           snack_private(@token, message.from.id, bot, message, @txt)
         end
       end
-
+=begin
       @array = []
 
       check_member = @db.check_onboarding("@#{message.from.username}")
@@ -87,6 +87,7 @@ Telegram::Bot::Client.run(@token) do |bot|
       unless @array.empty? && @check.nil?
         bot.api.send_message(chat_id: message.chat.id, text: msg_onboarding(message.from.username, @list), parse_mode: 'HTML') if @check == "false"
       end
+=end
     end
   rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
     puts e
