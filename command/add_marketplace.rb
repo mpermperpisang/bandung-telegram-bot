@@ -10,7 +10,7 @@ module Bot
       	@send = SendMessage.new
       	
       	if @symbol.nil?
-      	  @send.empty_member(@message.chat.title, @command)
+      	  @send.empty_member(@chatid, @txt)
       	  @bot.api.send_message(@send.message)
       	else	
           check_member_marketplace

@@ -544,8 +544,8 @@ def empty_staging_squad(squad, user)
 Tambahin yuk Kak @#{user} caranya ketik ajah <code>/add_staging</code>"
 end
 
-def error_empty_member
-	"Formatnya salah <code>/add_marketplace @username1 @username2 @username3</code>"
+def error_empty_member(comm)
+	"Formatnya salah, Kak\n<code>#{comm} @username1 @username2 @username3</code>"
 end
 
 def msg_add_marketplace(user, group)

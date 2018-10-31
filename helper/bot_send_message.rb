@@ -84,7 +84,7 @@ class SendMessage
   def empty_member(id, com)
     @message = {
       chat_id: id,
-      text: error_empty_member,
+      text: error_empty_member(com),
       parse_mode: 'HTML'
     }
   end
