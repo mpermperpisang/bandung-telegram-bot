@@ -28,7 +28,6 @@ class Connection
   end
 
   def list_requester(branch)
-    p branch
     @client.query("select deploy_request from deploy_staging where deploy_branch='#{branch.strip}'
     and deploy_status='requesting'")
   end
@@ -122,98 +121,94 @@ class Connection
     @client.query("select * from booking_staging where book_staging='#{stg}'")
   end
 
-  def update_id_closed(id)
-    @client.query("update squad_marketplace set status_market='closed' where from_id_market='#{id}' and id_market>0")
+  def update_id_closed(id, group)
+    @client.query("update squad_marketplace set status_market='closed' where from_id_market='#{id}' and id_market>0 and member_market='#{group}' and choose_market=1")
   end
 
-  def list_poin
+  def list_poin(group)
     @client.query("select member_market, poin_market from squad_marketplace where status_market='closed'
-                  and poin_market<>'0' order by member_market asc")
+                  and poin_market<>'0' and group_market='#{group}' and choose_market=1 order by member_market asc")
   end
 
   def check_poin_open(user)
-    @client.query("select status_market from squad_marketplace where status_market='open' and member_market='@#{user}'")
+    @client.query("select status_market from squad_marketplace where status_market='open' and member_market='@#{user}' and choose_market=1")
   end
 
   def check_member_market(user)
-    @client.query("select member_market from squad_marketplace where member_market='@#{user}'")
+    @client.query("select member_market from squad_marketplace where member_market='@#{user}' and choose_market=1")
   end
 
-  def show_message_id
-    @client.query("select distinct message_id_market from squad_marketplace where message_id_market<>0")
+  def show_message_id(user)
+    @client.query("select distinct message_id_market from squad_marketplace where message_id_market<>0 and choose_market=1 and member_market='@#{user}'")
   end
 
   def update_market_closed(poin, user)
     @client.query("update squad_marketplace set poin_market='#{poin}', status_market='closed'
-    where member_market='@#{user}'")
+    where member_market='@#{user}' and choose_market=1")
   end
 
-  def list_accepted_poin
-    @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed' order by member_market")
+  def list_accepted_poin(user)
+    @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed' and choose_market=1 and member_market='@#{user}' order by member_market")
   end
 
-  def list_accepted_poin
-    @client.query("select distinct member_market, chat_id_market from squad_marketplace where poin_market<>'0' and status_market='closed' order by member_market")
+  def list_poin_half(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='1/2' and group_market='#{group}'")
   end
 
-  def list_poin_half
-    @client.query("select poin_market from squad_marketplace where poin_market='1/2'")
+  def list_poin_one(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='1' and group_market='#{group}'")
   end
 
-  def list_poin_one
-    @client.query("select poin_market from squad_marketplace where poin_market='1'")
+  def list_poin_two(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='2' and group_market='#{group}'")
   end
 
-  def list_poin_two
-    @client.query("select poin_market from squad_marketplace where poin_market='2'")
+  def list_poin_three(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='3' and group_market='#{group}'")
   end
 
-  def list_poin_three
-    @client.query("select poin_market from squad_marketplace where poin_market='3'")
+  def list_poin_five(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='5' and group_market='#{group}'")
   end
 
-  def list_poin_five
-    @client.query("select poin_market from squad_marketplace where poin_market='5'")
+  def list_poin_eight(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='8' and group_market='#{group}'")
   end
 
-  def list_poin_eight
-    @client.query("select poin_market from squad_marketplace where poin_market='8'")
+  def list_poin_thirteen(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='13' and group_market='#{group}'")
   end
 
-  def list_poin_thirteen
-    @client.query("select poin_market from squad_marketplace where poin_market='13'")
+  def list_poin_twenty(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='20' and group_market='#{group}'")
   end
 
-  def list_poin_twenty
-    @client.query("select poin_market from squad_marketplace where poin_market='20'")
+  def list_poin_fourty(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='40' and group_market='#{group}'")
   end
 
-  def list_poin_fourty
-    @client.query("select poin_market from squad_marketplace where poin_market='40'")
+  def list_poin_hundred(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='100' and group_market='#{group}'")
   end
 
-  def list_poin_hundred
-    @client.query("select poin_market from squad_marketplace where poin_market='100'")
+  def list_poin_coffee(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='kopi' and group_market='#{group}'")
   end
 
-  def list_poin_coffee
-    @client.query("select poin_market from squad_marketplace where poin_market='kopi'")
+  def list_poin_unlimited(group)
+    @client.query("select poin_market from squad_marketplace where poin_market='unlimited' and group_market='#{group}'")
   end
 
-  def list_poin_unlimited
-    @client.query("select poin_market from squad_marketplace where poin_market='unlimited'")
+  def message_from_id(group)
+    @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0' and group_market='#{group}'")
   end
 
-  def message_from_id
-    @client.query("select distinct from_id_market from squad_marketplace where poin_market<>'0'")
+  def update_market_open(group)
+    @client.query("update squad_marketplace set poin_market='0', status_market='open' where id_market>0 and group_market='#{group}' and choose_market=1")
   end
 
-  def update_market_open
-    @client.query("update squad_marketplace set poin_market='0', status_market='open' where id_market>0")
-  end
-
-  def update_message_id(id, chatid)
-    @client.query("update squad_marketplace set message_id_market='#{id}', chat_id_market='#{chatid}' where id_market>0")
+  def update_message_id(id, chatid, group)
+    @client.query("update squad_marketplace set message_id_market='#{id}', chat_id_market='#{chatid}' where id_market>0 and group_market='#{group}'")
   end
 
   def id_get_poin(user, id)
@@ -474,5 +469,29 @@ class Connection
   
   def list_staging_squad(squad)
     @client.query("select * from booking_staging where book_squad='#{squad.upcase}'")
+  end
+  
+  def check_marketplace(group, member)
+  	@client.query("select * from squad_marketplace where member_market='#{member}' and group_market='#{group}'")
+  end
+  
+  def add_member_market(group, member)
+  	@client.query("insert into squad_marketplace (member_market, group_market) values ('#{member}', '#{group}')")
+  end
+  
+  def check_id_member
+  	@client.query("select * from squad_marketplace")
+  end
+  
+  def check_count_member(user)
+  	@client.query("select distinct group_market, from_id_market from squad_marketplace where member_market='#{user}'")
+  end
+  
+  def on_squad(user, squad)
+  	@client.query("update squad_marketplace set choose_market=0 where member_market='#{user}' and group_market<>'#{squad}'")
+  end
+  
+  def update_choose_market(squad)
+  	@client.query("update squad_marketplace set choose_market=1 where group_market='#{squad}'")
   end
 end

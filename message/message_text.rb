@@ -57,7 +57,7 @@ class MessageText
       @admin.push(name['adm_username'])
     end
 
-    @pm = %w[mpermperpisang ak_fahmi Maharaniar ditra7]
+    @pm = %w[mpermperpisang ak_fahmi Maharaniar ditra7 Fadhlimaulidri]
   end
 
   def quality_assurance
