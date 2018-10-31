@@ -28,27 +28,35 @@ module Bot
         check_member = @db.check_member_market(@username)
 
         member = check_member.size.zero? ? not_member_market : next_chance
-        @bot.api.send_message(chat_id: @fromid, text: member)
+        @bot.api.send_message(chat_id: @fromid, text: member, parse_mode: 'HTML')
       end
 
       def member_exist
         @bot.api.send_message(chat_id: @fromid, text: accepted_poin)
         @db.update_market_closed(@txt, @username)
-        @msgid = @db.show_message_id
+        @msgid = @db.show_message_id(@username)
         edit_msg unless @msgid.nil?
       end
 
       def edit_msg
-        @result = @db.list_accepted_poin
+        @result = @db.list_accepted_poin(@username)
 
         @array = []
+        @chat_arr = []
         @result.each { |row| @array.push(row['member_market']) }
 
-        @count = @result.count
-        @poin_given = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
+        @poin = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
+        
+        File.open("./file/require_ruby#{@result.first['chat_id_market']}.rb", 'a') do |f|
+          f.puts(@poin)
+        end
+        
+        @poin_given = File.read("./file/require_ruby#{@result.first['chat_id_market']}.rb")
+        @chat_arr.push(@poin_given)
+        @count = @chat_arr.to_s.scan(/@+/).count
 
         @chat_id = @result.first['chat_id_market']
-
+          
         begin
           p '+4'
           @bot.api.edit_message_text(chat_id: @chat_id, message_id: @msgid.first['message_id_market'].to_i + 4,

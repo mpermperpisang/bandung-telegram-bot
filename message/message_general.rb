@@ -193,7 +193,7 @@ Silahkan pilih poin di bawah ini atau klik /keyboard'
 end
 
 def not_member_market
-  'Kakak belum terdaftar untuk ikut marketplace\nCoba tanya ke Kak @mpermperpisang ajah yaa'
+  "Kakak belum terdaftar untuk ikut marketplace\nCoba tanya ke Kak @mpermperpisang ajah yaa"
 end
 
 def empty_edit(error)
@@ -210,17 +210,17 @@ def empty_poin
   'Belum ada orang yang memberikan poin untuk marketplace'
 end
 
-def msg_new_poin_member
-  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM-DANA Bot Announcements yaa\n
-Kloter sudah dibuka, tunggu aba-aba dari PM/APM yaa"
+def msg_new_poin_member(group)
+  "Menampilkan poin\nSilahkan cek rame-rame di grup <b>#{group}</b> yaa\n
+Kloter sudah dibuka, tunggu aba-aba dari PM/APM/Scrum master yaa"
 end
 
-def msg_new_poin
-  "Menampilkan poin\nSilahkan cek rame-rame di grup BBM-DANA Bot Announcements yaa"
+def msg_new_poin(group)
+  "PERSIAPAN MARKETPLACE\nSilahkan cek rame-rame di grup <b>#{group}</b> yaa"
 end
 
 def done_poin(count, poin)
-  "Yang sudah memberikan poin <b>#{count}</b> orang:\n#{poin}\n\nKalau sudah selesai, klik /show yaa, Kak"
+  "Yang sudah memberikan poin <b>#{count}</b> orang\n#{poin}\n\nKalau sudah selesai, klik /show yaa, Kak"
 end
 
 def show_command
@@ -382,7 +382,7 @@ def msg_invalid_hi5
 Squad Bandung yang ada saat ini: <b>#{@list.upcase}</b>
 Contoh buat nambahin username ke daftar HI5\n\n<code>/hi5 dana @username1 @username2</code>
 
-Kakak juga bisa japri aku lalu ketik <code>/hi5 bandung</code>, kalau ndak mau mention se-Bukalapak Bandung di grup Bukalapak.bdg
+Kakak juga bisa japri aku lalu ketik <code>/hi5 bandung</code>, kalau ndak mau mention se-Bukalapak Bandung di grup
 
 🐾 Kalau ada perubahan squad di Bandung tolong kasih tau @mpermperpisang yaa"
 end
@@ -542,4 +542,20 @@ end
 def empty_staging_squad(squad, user)
   "Belum ada daftar staging di squad #{squad.upcase}
 Tambahin yuk Kak @#{user} caranya ketik ajah <code>/add_staging</code>"
+end
+
+def error_empty_member
+	"Formatnya salah <code>/add_marketplace @username1 @username2 @username3</code>"
+end
+
+def msg_add_marketplace(user, group)
+	"#{user} sudah didaftarkan ke marketplace #{group}"
+end
+
+def msg_dupe_marketplace(user, group)
+	"#{user} sudah pernah terdaftar sebagai anggota marketplace  #{group}"
+end
+
+def choose_market(list)
+	"Kakak terdaftar dalam multiple squad. Silahkan pilih mau mengikuti marketplace yang mana, dengan cara mengirimkan command dengan format <code>market pilihan_nomor</code>\n\n#{list}"
 end

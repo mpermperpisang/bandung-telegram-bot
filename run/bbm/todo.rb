@@ -28,15 +28,15 @@ Telegram::Bot::Client.run(@token) do |bot|
 
         if @is_group.not_private_chat?(message.chat.type)
           command = [
-            '/retro', '/list_retro', '/poin', '/show',
+            '/retro', '/list_retro', '/poin', '/show', 'market',
             '0', '1/2', '1', '2', '3', '5', '8', '13', '20', '40', '100',
-            'kopi', 'unlimited', "/help@#{ENV['BOT_TODO']}"
+            'kopi', 'unlimited', '/add_marketplace', "/help@#{ENV['BOT_TODO']}"
           ]
 
           if command.include?(@msg.bot_name) || command.include?(@msg.bot_poin) || command.include?(@msg.command)
             @msg_id = message.message_id
 
-            @db.update_message_id(@msg_id, message.chat.id) if @txt.start_with?('/show')
+            @db.update_message_id(@msg_id, message.chat.id, message.chat.title) if @txt.start_with?('/show')
             todo_group(@token, @chat_id, bot, message, @txt)
             @chat.delete(bot, message.chat.id, message.message_id)
           end
