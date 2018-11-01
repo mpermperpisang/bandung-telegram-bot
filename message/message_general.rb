@@ -553,7 +553,7 @@ def msg_add_marketplace(user, group)
 end
 
 def msg_dupe_marketplace(user, group)
-	"#{user} sudah pernah terdaftar sebagai anggota marketplace  #{group}"
+	"#{user} sudah pernah terdaftar sebagai anggota marketplace #{group}"
 end
 
 def choose_market(list)
