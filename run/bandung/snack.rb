@@ -94,7 +94,7 @@ Telegram::Bot::Client.run(@token) do |bot|
     sleep(25)
     retry
   rescue Telegram::Bot::Exceptions::ResponseError => e
-    puts telegram_error if e.error_code.to_s == '502' || e.error_code.to_s == '400'
+  	puts e
     sleep(25)
     retry
   rescue Mysql2::Error => e

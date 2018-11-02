@@ -310,8 +310,8 @@ class Connection
     @client.query("select status from bandung_snack where name='#{name}'")
   end
 
-  def done_people(day, name)
-    @client.query("update bandung_snack set status='sudah' where name='#{name}' and day='#{day}' and status='belum'")
+  def done_people(day, name, user)
+    @client.query("update bandung_snack set status='sudah', from_id='#{user}' where name='#{name}' and day='#{day}' and status='belum'")
   end
 
   def remind_people(day)

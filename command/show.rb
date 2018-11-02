@@ -4,9 +4,6 @@ module Bot
     class Show < Command
       def check_text
         show_poin if @txt.start_with?('/show')
-        File.open("./file/require_ruby#{@message.chat.id}.rb", 'w+') do |f|
-          f.puts('======================================')
-        end
       end
 
       def show_poin
@@ -18,7 +15,11 @@ module Bot
 
       def displaying_poin
         @db = Connection.new
-
+        
+        File.open("./file/require_ruby#{@message.chat.id}.rb", 'w+') do |f|
+          f.puts('===============================')
+        end
+        
         @db.update_id_closed(@fromid, @message.chat.title)
         show_poin_market
         count_poin
