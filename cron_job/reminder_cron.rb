@@ -2,7 +2,8 @@ require 'telegram/bot'
 require 'mysql2'
 
 token = '494935542:AAGQyOrPbfXTXmD8QIERaZgnSQS_nyvx1HM'
-#@chat_id = '-192957413' #testing bot local
+#token = '593318700:AAEXId1YyRFZZzvfoHJb5RKtcHReeLh7mCY'
+#@chat_id = '-1001479782294' #testing bot local
 #@chat_id = '-317359831' #testing bot staging
 #@chat_id = '-148800628' #Bukalapak.bdg
 @chat_id = '-1001251178097'
@@ -26,10 +27,14 @@ else
   @snack = "Libur"
 end
 
+bot.api.send_message(chat_id: @chat_id, text: "Hari #{@snack}. Sudahkah Kakak membawa snack sehat? 😊\n\n*Format baru reminder snack akan dikirimkan by japri. Yuk ketik <code>/done</code> (kalau nge-bug wassalam dah #bye)", parse_mode: 'HTML')
+
+=begin
 var = ["day=#{@day.downcase}"]
 File.open("./require_ruby.rb", "w+") do |f|
     f.puts(var)
 end
+
 if(@snack == 'Libur')
     bot.api.send_message(chat_id: @chat_id, text: "Libur eceu 😒")
 else
@@ -70,3 +75,4 @@ else
     bot.api.send_message(chat_id: @chat_id, text: "Ayoyo ojo lali. Daftar yang belum bawa hari #{@snack}\n#{name}\n\n*minimum snack/orang Rp. 20000 yaa, Kak 😘")
   end
 end
+=end

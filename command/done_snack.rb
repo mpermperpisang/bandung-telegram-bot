@@ -36,8 +36,8 @@ module Bot
         when 'libur'
           @bot.api.send_message(chat_id: @id, text: msg_holiday_spam(@username, @name), parse_mode: 'HTML')
         when 'belum'
-          @db.done_people(@day, @name)
-          @bot.api.send_message(chat_id: @id, text: msg_done_people(@name))
+          @db.done_people(@day, @name, @fromid)
+          @bot.api.send_message(chat_id: ENV['ID_REMINDER'], text: msg_done_people(@name))
         end
       end
 

@@ -201,7 +201,7 @@ def empty_edit(error)
 end
 
 def list_poin_market(poin, count)
-  "Poin for marketplace\n======================================\n#{poin}\n
+  "Poin for marketplace\n===============\n#{poin}\n
 Jumlah perolehan per poin : #{count}
 colek @ak_fahmi @Maharaniar"
 end
