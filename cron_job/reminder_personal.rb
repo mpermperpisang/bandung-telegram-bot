@@ -71,7 +71,7 @@ if(@snack != 'Libur')
 	  end
 	rescue StandardError => e
 	  puts e
-	  @list_member = client.query("select name from bandung_snack where day='#{@day.downcase}' and (from_id='' or from_id is null) and name='@mpermperpisang'")
+	  @list_member = client.query("select name from bandung_snack where day='#{@day.downcase}' and (from_id='' or from_id is null)")
 	  
 	  @array = []
 	  
@@ -82,7 +82,7 @@ if(@snack != 'Libur')
 	  @list = @array.to_s.gsub('", "', ", ").delete('["').delete('"]')
 	  bot.api.send_message(chat_id: @chat_id, text: "Untuk Kakakku tersayang (#{@list})
 	  
-Tolong jangan blokir aku yaa. Aku mau japri loh padahal 😢")
+Tolong jangan blokir aku yaa. Aku mau japri loh padahal 😢 (plis <b>/(slash)done</b> juga yaa)", parse_mode: 'HTML')
 	end
   end
 end

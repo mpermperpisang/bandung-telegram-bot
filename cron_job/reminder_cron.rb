@@ -30,11 +30,6 @@ end
 bot.api.send_message(chat_id: @chat_id, text: "Hari #{@snack}. Sudahkah Kakak membawa snack sehat? 😊\n\n*Format baru reminder snack akan dikirimkan by japri. Yuk ketik <code>/done</code> (kalau nge-bug wassalam dah #bye)", parse_mode: 'HTML')
 
 =begin
-var = ["day=#{@day.downcase}"]
-File.open("./require_ruby.rb", "w+") do |f|
-    f.puts(var)
-end
-
 if(@snack == 'Libur')
     bot.api.send_message(chat_id: @chat_id, text: "Libur eceu 😒")
 else
