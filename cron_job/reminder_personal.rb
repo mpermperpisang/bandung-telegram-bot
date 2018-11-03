@@ -64,25 +64,30 @@ if(@snack != 'Libur')
 	    
 	    @from_all.each do |all|
 	      @all_id = all['from_id']
-   	      bot.api.send_message(chat_id: @all_id, text: "Hi Kak, udah ngemil cakep hari ini? Yuk intip di meja snack ada apa ajah karena semua sudah bawa snacknya 😙") unless name.nil? || name == ""
+   	      bot.api.send_message(chat_id: @all_id, text: "Hi Kak, udah ngemil cakep hari ini? Yuk intip di meja snack ada apa ajah karena semua sudah bawa snacknya 😙") unless name.nil? || name == "" || @all_id.nil? || @all_id.empty? || @all_id == ""
    	    end
 	  else
 	    bot.api.send_message(chat_id: @id, text: "Belum bawa snack yaa, Kak? Jadwal Kakak hari ini loh. Ditunggu yaa <code>/done</code> nya 😘\n\n*minimum snack/orang Rp. 20000 yaa, Kak", parse_mode: 'HTML')
 	  end
-	rescue StandardError => e
-	  puts e
-	  @list_member = client.query("select name from bandung_snack where day='#{@day.downcase}' and (from_id='' or from_id is null)")
+	end
+  rescue StandardError => e
+	puts e
+	@list_member = client.query("select name from bandung_snack where day='#{@day.downcase}' and (from_id='' or from_id is null)")
 	  
-	  @array = []
+	@array = []
 	  
-	  @list_member.each do |member|
-	  	@array.push("#{member['name']}")
-	  end
+	@list_member.each do |member|
+	  @array.push("#{member['name']}")
+	end
 	  
-	  @list = @array.to_s.gsub('", "', ", ").delete('["').delete('"]')
+	@list = @array.to_s.gsub('", "', ", ").delete('["').delete('"]')
+	  
+	if @list_member.size.zero?
+	  bot.api.send_message(chat_id: @chat_id, text: "Halo Kakak-kakak, mau ngingetin ajah nih. Plis jangan blokir aku yaa. Soalnya biar aku bisa japri kalian 😉")
+	else
 	  bot.api.send_message(chat_id: @chat_id, text: "Untuk Kakakku tersayang (#{@list})
 	  
-Tolong jangan blokir aku yaa. Aku mau japri loh padahal 😢 (plis <b>/(slash)done</b> juga yaa)", parse_mode: 'HTML')
-	end
+Plis /(slash)done yaa dan jangan blokir aku biar aku bisa ngirim private message ke kalian ☺️", parse_mode: 'HTML')
+    end
   end
 end
