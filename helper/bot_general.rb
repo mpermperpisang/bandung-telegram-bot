@@ -3,7 +3,6 @@ def new_member(message, bot)
 
   unless message.new_chat_members[0].is_bot == true
     @member = "@#{message.new_chat_members[0].username}"
-    bot.api.send_message(chat_id: message.chat.id, text: msg_welcome_member(@member, message.chat.title), parse_mode: 'HTML')
     @db.add_hi5('BANDUNG', @member)
     check_user = @db.check_onboarding(@member)
     new_member = check_user.size.zero? ? nil : check_user.first['on_username']
@@ -12,7 +11,8 @@ def new_member(message, bot)
     else
       @db.update_new_member(@member)
     end
-    bot.api.send_message(chat_id: message.chat.id, text: onboarding_member(@member), parse_mode: 'HTML')
+    bot.api.send_message(chat_id: message.chat.id, text: msg_welcome_member(@member, message.chat.title), parse_mode: 'HTML')
+    bot.api.send_message(chat_id: message.new_chat_members[0].id, text: onboarding_member(@member), parse_mode: 'HTML')
   end
 rescue StandardError => e
   puts "#{e} no new member in group"

@@ -420,6 +420,9 @@ def msg_welcome_member(user, group)
   "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_REMINDER']}</b>\n🤗\n
 Buat pendataan anggota grup #{group}, silahkan tulis <b>COMMENT</b> di tiny.cc/bukabandung yaa
 
+<b>CEK JAPRIANKU JUGA YAA</b>, Kak 😁
+*sebelum di woy ama kakak admin yang galak 👀
+
 Hatur tengkyu, Kak 🙏🏻"
 end
 
@@ -485,13 +488,11 @@ def onboarding_member(name)
 🐾 Pekerjaan atau Pendidikan terakhir : 
 🐾 Status : 
 🐾 Hobi : 
-🐾 Motto : 
-
-dan terakhir upload foto Kakak juga yaa 🤗"
+🐾 Motto : "
 end
 
 def msg_onboarding(user, name)
-  "Kak @#{user}, mohon isi <b>#{name}</b> yaa. Formatnya seperti ini :
+  "Kak @#{user}, mohon isi <b>#{name}</b> dengan benar yaa (tidak boleh ada karakter selain huruf dan angka). Formatnya seperti ini :
 
 🐾 Nama panggilan : 
 🐾 Job title : 
@@ -500,8 +501,7 @@ def msg_onboarding(user, name)
 🐾 Status : 
 🐾 Hobi : 
 🐾 Motto : 
-  
-dan terakhir upload foto Kakak juga yaa 🤗
+
 *chat ini tidak akan hilang kalau belum kirim format biodata seperti di atas 😈"
 end
 
@@ -510,6 +510,10 @@ def msg_welcome_new_member(name, username)
 Jangan ragu bertanya kepada para sesepuh di grup ini yaa, Kak @#{username}
 
 Satu lagi, ojo lali <b>COMMENT</b> data diri Kakak di tiny.cc/bukabandung yaa 😊"
+end
+
+def input_buka_bandung
+  "Mohon isi biodata Kakak di tiny.cc/bukabandung juga yaa"
 end
 
 def be_oncall(user, name)
