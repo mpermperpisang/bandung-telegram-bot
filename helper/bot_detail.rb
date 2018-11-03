@@ -61,11 +61,16 @@ module BotDetail
 
     4. Done using staging (GROUP)
     <b>/done@#{ENV['BOT_BOOKING']} staging_number</b>
+    
+    5. Add staging to squad (GROUP)
+    <b>/add_staging@#{ENV['BOT_BOOKING']} squad_name staging_number1 staging_number2 staging_number3</b>
 
-    5. See staging book status (GROUP)
+    6. See staging book status (GROUP)
     <b>/status@#{ENV['BOT_BOOKING']} staging_number1 staging_number2 staging_number3</b>
+    or
+    <b>/status@#{ENV['BOT_BOOKING']} squad_name</b>
 
-    6. See list of deploy branch request (GROUP)
+    7. See list of deploy branch request (GROUP)
     <b>/list_request@#{ENV['BOT_BOOKING']}</b>
 
     🐾 You can use another staging, not only DANA staging"
@@ -124,16 +129,16 @@ module BotDetail
     <b>/move@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
 
     4. Delete people from schedule (GROUP)
-    <b>/delete@#{ENV['BOT_REMINDER']} @username1 @username2</b>
+    <b>/delete@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
 
     5. Cancel people from bring snack (GROUP)
-    <b>/cancel@#{ENV['BOT_REMINDER']} @username1 @username2</b>
+    <b>/cancel@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
 
-    6. People brought the snack (GROUP)
+    6. People brought the snack (BOTH)
     <b>/done@#{ENV['BOT_REMINDER']} or /done@#{ENV['BOT_REMINDER']} @username</b>
 
     7. Free people from snack schedule (GROUP)
-    <b>/holiday@#{ENV['BOT_REMINDER']} @all or /holiday@#{ENV['BOT_REMINDER']} @username1 @username2</b>
+    <b>/holiday@#{ENV['BOT_REMINDER']} @all or /holiday@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
 
     8. Remind snack schedule (GROUP)
     <b>/reminder@#{ENV['BOT_REMINDER']}</b>
@@ -148,13 +153,13 @@ module BotDetail
     <b>/plat@#{ENV['BOT_REMINDER']}</b>
 
     12. Add admin snack (PRIVATE)
-    <b>/admin@#{ENV['BOT_REMINDER']} @username1 @username2</b>
+    <b>/admin@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
 
     13. See the list of admin snack (GROUP)
     <b>/list_admin@#{ENV['BOT_REMINDER']}</b>
 
     14. Add new squad into Bandung (PRIVATE)
-    <b>/squad@#{ENV['BOT_REMINDER']} squad_name1 squad_name2</b>
+    <b>/squad@#{ENV['BOT_REMINDER']} squad_name1 squad_name2 squad_name3</b>
 
     <a href='https://bukalapak.atlassian.net/wiki/spaces/BS/pages/347046333/Snack+Schedule'>CHECK SCHEDULE</a>
 
@@ -164,10 +169,13 @@ module BotDetail
 
   def help_todo
     "
-    1. Displaying poin in inline keyboard (PRIVATE)
-    <b>/keyboard</b>
+    1. Add squad to marketplace (GROUP)
+    <b>/add_marketplace@#{ENV['BOT_TODO']} @username1 @username2 @username3</b>
+    
+    2. Displaying poin in inline keyboard (PRIVATE)
+    <b>/keyboard@#{ENV['BOT_TODO']}</b>
 
-    2. Displaying marketplace poin result (GROUP)
+    3. Displaying marketplace poin result (GROUP)
     <b>/show@#{ENV['BOT_TODO']}</b>
 
     🐾 Only admin, PM and APM can show the poin"
