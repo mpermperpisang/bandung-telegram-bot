@@ -34,7 +34,7 @@ end
 def mention_admin(bot)
   @type = case bot
           when 'snack'
-            "<a href='https://bit.ly/2IasjuJ'>tutorial Heavy Snack Rotation</a>"
+            "<a href='https://bit.ly/2IasjuJ'>tutorial Heavy Snack Rotation Bot</a>"
           when 'booking'
             "<a href='https://bit.ly/2rE8Nvt'>tutorial Booking Staging Bot</a>"
           when 'jenkins'
@@ -420,7 +420,7 @@ def msg_welcome_member(user, group)
   "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_REMINDER']}</b>\n🤗\n
 Buat pendataan anggota grup #{group}, silahkan tulis <b>COMMENT</b> di tiny.cc/bukabandung yaa
 
-<b>CEK JAPRIANKU JUGA YAA</b>, Kak 😁
+<b>CEK JAPRIANKU JUGA YAA (Kakak harus japri aku duluan dan klik Start yaa)</b>, Kak 😁
 *sebelum di woy ama kakak admin yang galak 👀
 
 Hatur tengkyu, Kak 🙏🏻"
@@ -513,7 +513,7 @@ Satu lagi, ojo lali <b>COMMENT</b> data diri Kakak di tiny.cc/bukabandung yaa �
 end
 
 def input_buka_bandung
-  "Mohon isi biodata Kakak di tiny.cc/bukabandung juga yaa"
+  "Mohon isi (kasih <b>COMMENT</b>) biodata Kakak di tiny.cc/bukabandung juga yaa"
 end
 
 def be_oncall(user, name)
