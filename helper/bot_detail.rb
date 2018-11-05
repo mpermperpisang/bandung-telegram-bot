@@ -138,7 +138,9 @@ module BotDetail
     <b>/done@#{ENV['BOT_REMINDER']} or /done@#{ENV['BOT_REMINDER']} @username</b>
 
     7. Free people from snack schedule (GROUP)
-    <b>/holiday@#{ENV['BOT_REMINDER']} @all or /holiday@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
+    <b>/holiday@#{ENV['BOT_REMINDER']} @all
+    or
+    /holiday@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
 
     8. Remind snack schedule (GROUP)
     <b>/reminder@#{ENV['BOT_REMINDER']}</b>

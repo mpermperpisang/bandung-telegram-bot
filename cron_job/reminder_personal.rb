@@ -83,11 +83,16 @@ if(@snack != 'Libur')
 	@list = @array.to_s.gsub('", "', ", ").delete('["').delete('"]')
 	  
 	if @list_member.size.zero?
-	  bot.api.send_message(chat_id: @chat_id, text: "Halo Kakak-kakak, mau ngingetin ajah nih. Plis jangan blokir aku yaa. Soalnya biar aku bisa japri kalian 😉")
+	  bot.api.send_message(chat_id: @chat_id, text: "Halo Kakak-kakak, mau ngingetin ajah nih.
+
+1. Japri aku dan ketik Start
+2. Jangan blokir aku biar aku bisa ngirim private message ke kalian 😉")
 	else
 	  bot.api.send_message(chat_id: @chat_id, text: "Untuk Kakakku tersayang (#{@list})
 	  
-Plis /(slash)done yaa dan jangan blokir aku biar aku bisa ngirim private message ke kalian ☺️", parse_mode: 'HTML')
+1. Plis <code>/done</code> yaa
+2. Japri aku dan ketik Start
+3. Jangan blokir aku biar aku bisa ngirim private message ke kalian ☺️", parse_mode: 'HTML')
     end
   end
 end
