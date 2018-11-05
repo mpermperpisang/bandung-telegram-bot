@@ -556,8 +556,16 @@ def msg_add_marketplace(user, group)
 	"#{user} sudah didaftarkan ke marketplace #{group}"
 end
 
+def msg_delete_marketplace(user, group)
+	"#{user} sudah dihapus dari marketplace #{group}"
+end
+
 def msg_dupe_marketplace(user, group)
 	"#{user} sudah pernah terdaftar sebagai anggota marketplace #{group}"
+end
+
+def msg_empty_marketplace(user, group)
+	"Di dalam marketplace #{group} tidak ada anggota dengan nama #{user}"
 end
 
 def choose_market(list)

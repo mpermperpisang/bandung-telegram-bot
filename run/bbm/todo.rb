@@ -30,7 +30,8 @@ Telegram::Bot::Client.run(@token) do |bot|
           command = [
             '/retro', '/list_retro', '/poin', '/show', 'market',
             '0', '1/2', '1', '2', '3', '5', '8', '13', '20', '40', '100',
-            'kopi', 'unlimited', '/add_marketplace', "/help@#{ENV['BOT_TODO']}"
+            'kopi', 'unlimited', '/add_marketplace', '/delete_marketplace',
+            "/help@#{ENV['BOT_TODO']}"
           ]
 
           if command.include?(@msg.bot_name) || command.include?(@msg.bot_poin) || command.include?(@msg.command)

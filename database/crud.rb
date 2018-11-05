@@ -479,6 +479,10 @@ class Connection
   	@client.query("insert into squad_marketplace (member_market, group_market) values ('#{member}', '#{group}')")
   end
   
+  def delete_member_market(group, member)
+  	@client.query("delete from squad_marketplace where member_market='#{member}' and group_market='#{group}'")
+  end
+  
   def check_id_member
   	@client.query("select * from squad_marketplace")
   end
