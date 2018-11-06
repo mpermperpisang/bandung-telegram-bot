@@ -1,6 +1,6 @@
 module Bot
   class Command
-    # untuk menambahkan orang ke jadwal snack
+    # untuk memilih marketplace jika terdaftar lebih dari 1 squad
     class Market < Command
       def check_text
         choose_market_squad if @txt.downcase.start_with?("market")

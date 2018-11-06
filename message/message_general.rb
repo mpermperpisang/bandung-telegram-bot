@@ -193,7 +193,7 @@ Silahkan pilih poin di bawah ini atau klik /keyboard'
 end
 
 def not_member_market
-  "Kakak belum terdaftar untuk ikut marketplace\nCoba tanya ke Kak @mpermperpisang ajah yaa"
+  "Kakak belum terdaftar untuk ikut marketplace\nCoba minta ke Scrum Master-nya untuk /add_marketplace yaa"
 end
 
 def empty_edit(error)
@@ -202,8 +202,7 @@ end
 
 def list_poin_market(poin, count)
   "Poin for marketplace\n===============\n#{poin}\n
-Jumlah perolehan per poin : #{count}
-colek @ak_fahmi @Maharaniar"
+Jumlah perolehan per poin : #{count}"
 end
 
 def empty_poin
@@ -212,7 +211,7 @@ end
 
 def msg_new_poin_member(group)
   "Menampilkan poin\nSilahkan cek rame-rame di grup <b>#{group}</b> yaa\n
-Kloter sudah dibuka, tunggu aba-aba dari PM/APM/Scrum master yaa"
+Kloter sudah dibuka, tunggu aba-aba dari Scrum Master yaa"
 end
 
 def msg_new_poin(group)
