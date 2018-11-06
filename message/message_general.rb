@@ -419,7 +419,7 @@ def msg_welcome_member(user, group)
   "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_REMINDER']}</b>\n🤗\n
 Buat pendataan anggota grup #{group}, silahkan tulis <b>COMMENT</b> di tiny.cc/bukabandung yaa
 
-<b>CEK JAPRIANKU JUGA YAA (Kakak harus japri aku duluan dan klik Start yaa)</b>, Kak 😁
+<b>CEK JAPRIANKU JUGA YAA (Kakak harus japri @#{ENV['BOT_REMINDER']} duluan dan klik Start yaa)</b>, Kak 😁
 *sebelum di woy ama kakak admin yang galak 👀
 
 Hatur tengkyu, Kak 🙏🏻"
