@@ -151,7 +151,7 @@ def deployed
 end
 
 def msg_list_request(list)
-  "List of deploy requests\n\n#{list}\n\n@mpermperpisang @rezaldy08 @ihsanhsn"
+  "List of deploy requests\n\n#{list}\n\n@rezaldy08 @ihsanhsn @denishendriansah "
 end
 
 def list_request_access
