@@ -221,7 +221,7 @@ class Connection
   end
 
   def add_people(day, name)
-    @client.query("insert into bandung_snack values ('#{day.strip}', '#{day.strip}', '#{name}', 'belum')")
+    @client.query("insert into bandung_snack (fix_day, day, name, status) values ('#{day.strip}', '#{day.strip}', '#{name}', 'belum')")
   end
 
   def checking_spam(name, com)
