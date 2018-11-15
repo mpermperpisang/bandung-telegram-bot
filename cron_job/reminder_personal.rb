@@ -67,7 +67,7 @@ if(@snack != 'Libur')
    	      bot.api.send_message(chat_id: @all_id, text: "Hi Kak, udah ngemil cakep hari ini? Yuk intip di meja snack ada apa ajah karena semua sudah bawa snacknya 😙") unless name.nil? || name == "" || @all_id.nil? || @all_id.empty? || @all_id == ""
    	    end
 	  else
-	    bot.api.send_message(chat_id: @member_id, text: "Belum bawa snack yaa, Kak? Jadwal Kakak hari ini loh. Ditunggu yaa <code>/done</code> nya (<code>/done</code> <b>HANYA BISA VIA PRIVATE MESSAGE</b>) 😘\n\n*minimum snack/orang Rp. 20000 yaa, Kak", parse_mode: 'HTML') unless @member_id.nil?
+	    bot.api.send_message(chat_id: @member_id, text: "Belum bawa snack yaa, Kak? Jadwal Kakak hari ini loh. Ditunggu yaa <code>/done</code> nya (<code>/done</code> <b>HANYA BISA VIA PRIVATE MESSAGE</b>) 😘\n\n*minimum snack/orang Rp. 20000 yaa, Kak", parse_mode: 'HTML')
 	  end
 	end
   rescue StandardError => e
