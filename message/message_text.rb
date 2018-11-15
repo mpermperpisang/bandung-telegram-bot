@@ -68,7 +68,7 @@ class MessageText
       rizkyandika88 yudadul jassire marlilys ayynurp ananda8 izul683 tioagung annislatif devyebellika
       ferisaputra rizkibr Lamhotjm fitrirahmadhani palski tusiartihandayani petrisiamn prapto927 arifiandi
       ragapinilih agungenrico jeanclaudya fixcocandra lelimhr anisahnurh Yulinare irwinharnia Apreliamaisara
-      syarifahzura reifa fitrilarasati trimamanurung
+      syarifahzura reifa fitrilarasati trimamanurung denishendriansah
     ]
   end
 

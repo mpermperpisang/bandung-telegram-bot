@@ -44,6 +44,6 @@ end
 def define_ip(stg)
   @ip_stg = "staging#{stg}.vm"
   @ip_stg = '192.168.114.182' if stg == '21'
-  @ip_stg = '192.168.34.46' if stg == '51'
+  @ip_stg = '192.168.42.129' if stg == '51'
   @ip_stg = '192.168.35.95' if stg == '103'
 end
