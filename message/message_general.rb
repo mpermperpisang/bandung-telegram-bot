@@ -504,6 +504,10 @@ def msg_onboarding(user, name)
 *chat ini tidak akan hilang kalau belum kirim format biodata seperti di atas 😈"
 end
 
+def msg_check_private_msg(user)
+  "Kak @#{user}, please japri @#{ENV['BOT_REMINDER']} dulu yaa.. Nuhun"
+end
+
 def msg_welcome_new_member(name, username)
   "Halo Kakak-kakak di squad Bandung, mohon bimbing Kak <b>#{name}</b> yaa 🙏🏻
 Jangan ragu bertanya kepada para sesepuh di grup ini yaa, Kak @#{username}
