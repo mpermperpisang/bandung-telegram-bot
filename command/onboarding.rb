@@ -29,6 +29,7 @@ def onboarding(message, bot)
 
   @list = @array.to_s.gsub('", "', ", ").delete('["').delete('"]')
   unless @array.empty? && @check.nil?
+  	bot.api.send_message(chat_id: message.chat.id, text: msg_check_private_msg(message.from.username)) if @check == "false" and (message.chat.type == 'group' || message.chat.type == 'supergroup')
     bot.api.send_message(chat_id: message.from.id, text: msg_onboarding(message.from.username, @list), parse_mode: 'HTML') if @check == "false"
   end
 end
