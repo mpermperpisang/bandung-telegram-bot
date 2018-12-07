@@ -92,27 +92,16 @@ begin
         EnvBash.load("/home/bukalapak/bandung-telegram-bot/helper/jenkins/exec_rake_current.bash")
       end
 
-      p @staging if @staging != ""
-      if @staging != "103"
-        Net::SSH.start("staging#{@staging}.vm", "bukalapak", :password => "bukalapak") do |session|
-          begin
-            session.scp.download! "/home/bukalapak/deploy/log/rake.log", "/home/bukalapak/bandung-telegram-bot/log"
-          rescue
-            session.scp.download! "/home/bukalapak/current/log/rake.log", "/home/bukalapak/bandung-telegram-bot/log"
-          end
-        end
-
-        bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/bandung-telegram-bot/log/rake.log', 'text/plain'))
-        text = File.read('/home/bukalapak/bandung-telegram-bot/log/rake.log')
-      else
+      Net::SSH.start("staging#{@staging}.vm", "bukalapak", :password => "bukalapak") do |session|
         begin
-          bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/deploy/log/rake.log', 'text/plain'))
-          text = File.read('/home/bukalapak/deploy/log/rake.log')
+          session.scp.download! "/home/bukalapak/deploy/log/rake.log", "/home/bukalapak/bandung-telegram-bot/log"
         rescue
-          bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/current/log/rake.log', 'text/plain'))
-          text = File.read('/home/bukalapak/current/log/rake.log')
+          session.scp.download! "/home/bukalapak/current/log/rake.log", "/home/bukalapak/bandung-telegram-bot/log"
         end
       end
+
+      bot.api.send_document(chat_id: @chat_id, document: Faraday::UploadIO.new('/home/bukalapak/bandung-telegram-bot/log/rake.log', 'text/plain'))
+      text = File.read('/home/bukalapak/bandung-telegram-bot/log/rake.log')
 
       if text =~ /DEPLOY FAILED/ || text =~ /rake aborted!/ || text =~ /cap aborted!/
         status = "FAILED"
