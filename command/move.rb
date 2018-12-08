@@ -1,7 +1,7 @@
 module Bot
   class Command
-    # mengubah jadwal snack secara permanent, dan harus mengubah confluence juga
-    class Change < Command
+    # untuk mengubah jadwal snack sementara
+    class Move < Command
       def check_text
         check_user_spam if @txt.start_with?('/move')
       end
@@ -20,6 +20,7 @@ module Bot
       end
 
       def check_empty_day
+        @msg = MessageText.new
         @send = SendMessage.new
 
         @send.err_day_snack(@id, @command)
@@ -44,37 +45,37 @@ module Bot
 
         @dday.each do |day_name|
           @day = day_name[/\s[a-zA-Z0-9]{0}[a-zA-Z][^\s]+/]
-          @move_name = day_name[/\B@\S+/]
+          @edit_name = day_name[/\B@\S+/]
 
-          unless (@array_exist.include? @move_name) || (@array_nil.include? @move_name)
-            check_user = @db.check_people(@move_name)
+          unless (@array_exist.include? @edit_name) || (@array_nil.include? @edit_name)
+            check_user = @db.check_people(@edit_name)
             @snack_name = check_user.size.zero? ? nil : check_user.first['name']
             @day_nil.push(@day) unless @snack_name.nil?
-            @snack_name.nil? ? @array_nil.push(@move_name) : @array_exist.push(@move_name)
+            @snack_name.nil? ? @array_nil.push(@edit_name) : @array_exist.push(@edit_name)
           end
         end
-        change_snack unless @array_exist.empty?
+        edit_snack unless @array_exist.empty?
         empty_snack unless @array_nil.empty?
       end
 
-      def change_snack
+      def edit_snack
         @dday = Day.new
 
         @dday_nil = []
         @arr_list = []
         i = 0
 
-        @array_exist.each do |move_name|
+        @array_exist.each do |edit_name|
           @dday.read_day(@day_nil[i])
-          @db.change_people(@day_nil[i], move_name)
+          @db.edit_people(@day_nil[i], edit_name)
           @dday_nil.push(@dday.day_name)
 
-          @arr_list.push("#{@array_exist[i]} hari <b>#{@dday_nil[i]}</b> adalah jadwalmu yang baru")
+          @arr_list.push("#{@array_exist[i]} jadwalmu sementara dipindah ke hari <b>#{@dday_nil[i]}</b>")
           i += 1
         end
 
         @list = @arr_list.to_s.gsub('", "', ",\n- ").delete('["').delete('"]')
-        @bot.api.send_message(chat_id: @id, text: msg_change_people(@username, @list), parse_mode: 'HTML')
+        @bot.api.send_message(chat_id: @id, text: msg_edit_people(@username, @list), parse_mode: 'HTML')
       end
 
       def empty_snack

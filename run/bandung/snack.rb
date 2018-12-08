@@ -49,7 +49,7 @@ Telegram::Bot::Client.run(@token) do |bot|
 
         if @is_group.not_private_chat?(message.chat.type)
           command = [
-            '/add', '/plat', '/edit', '/delete', '/reminder', '/cancel', '/done', '/holiday', '/normal', '/move', '/admin', '/hi5',
+            '/add', '/plat', '/permanent', '/delete', '/reminder', '/cancel', '/done', '/holiday', '/normal', '/move', '/admin', '/hi5',
             '/list_admin', '/schedule', "/help@#{ENV['BOT_REMINDER']}"
           ]
 
