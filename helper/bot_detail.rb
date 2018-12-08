@@ -123,10 +123,10 @@ module BotDetail
     <b>/add@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
 
     2. Change people schedule TEMPORARILY (GROUP)
-    <b>/edit@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
+    <b>/move@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
 
     3. Change snack schedule PERMANENTLY (GROUP)
-    <b>/move@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
+    <b>/permanent@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
 
     4. Delete people from schedule (GROUP)
     <b>/delete@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
