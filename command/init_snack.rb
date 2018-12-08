@@ -24,4 +24,5 @@ def snack_private(token, id, bot, msg, txt)
   Bot::Command::AddVehicle.new(token, id, bot, msg, txt).check_text
   Bot::Command::AddAdmin.new(token, id, bot, msg, txt).check_text
   Bot::Command::AddSquad.new(token, id, bot, msg, txt).check_text
+  Bot::Command::SnackSchedule.new(token, id, bot, msg, txt).check_text
 end
