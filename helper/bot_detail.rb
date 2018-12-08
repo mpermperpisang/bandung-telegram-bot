@@ -163,6 +163,9 @@ module BotDetail
     14. Add new squad into Bandung (PRIVATE)
     <b>/squad@#{ENV['BOT_REMINDER']} squad_name1 squad_name2 squad_name3</b>
 
+    15. See list of snack schedule (PRIVATE)
+    <b>/schedule@#{ENV['BOT_REMINDER']}</b>
+
     <a href='https://bukalapak.atlassian.net/wiki/spaces/BS/pages/347046333/Snack+Schedule'>CHECK SCHEDULE</a>
 
     🐾 Only admin/PM/APM/EM/QAM can do add, edit, change,
