@@ -3,7 +3,7 @@ module Bot
     # untuk mengingatkan jadwal snack kalau cronjobnya bermasalah
     class SnackSchedule < Command
       def check_text
-        check_schedule if @txt.start_with?('/schedule')
+        remind_schedule if @txt.start_with?('/schedule')
       end
 
       def remind_schedule
