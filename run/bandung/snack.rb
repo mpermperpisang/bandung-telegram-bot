@@ -40,6 +40,7 @@ Telegram::Bot::Client.run(@token) do |bot|
           @name = @array.to_s.gsub('", "', "\n").delete('["').delete('"]')
           @send.day_schedule(message.from.id, @dday.day_name, @name, amount)
           bot.api.send_message(@send.message)
+          Bot::Command::SnackSchedule.new(@token, message.from.id, bot, message, @txt).remind_schedule
         end
       when Telegram::Bot::Types::Message
         @txt = message.text
