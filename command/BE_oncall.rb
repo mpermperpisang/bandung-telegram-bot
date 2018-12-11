@@ -51,17 +51,12 @@ module Bot
         range = "Oncall!#{@sheet}#{@date.to_i + 1}"
         
         response = service.get_spreadsheet_values(spreadsheet_id, range)
-        p @be
-        p @day
-        p @be = response.values.to_s.gsub('", "', ",\n- ").delete('["').delete('"]')
+        @be = response.values.to_s.gsub('", "', ",\n- ").delete('["').delete('"]')
         if @be != '' && (@day == 'Mon' || @day == 'Tue' || @day == 'Wed' || @day == 'Thu' || @day == 'Fri')
-        	p '1'
           @bot.api.send_message(chat_id: @message.chat.id, text: be_oncall(@username, @be), parse_mode: 'HTML')
         elsif (@be.nil? || @be == '') && (@day != 'Sat' || @day != 'Sun')
-        	p '2'
           @bot.api.send_message(chat_id: @message.chat.id, text: empty_oncall(@username), parse_mode: 'HTML')
         elsif @day == 'Sat' || @day == 'Sun'
-        	p '3'
           @bot.api.send_message(chat_id: @message.chat.id, text: no_oncall(@username), parse_mode: 'HTML')
         end
       end
