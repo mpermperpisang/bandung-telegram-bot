@@ -95,8 +95,7 @@ def list_deployment(list, user)
 end
 
 def empty_deployment(user)
-  "Sekarang aku lagi ngga deploy apa-apa, Kak @#{user}
-Kalau deploy, ga akan antri lama loh"
+  "Antriannya kosong, Kak @#{user}\nGo go go"
 end
 
 def blocked_bot(user)
@@ -304,7 +303,7 @@ def msg_holiday_spam(user, name)
 end
 
 def msg_done_people(user)
-  "Yeay dapat cemilan dari #{user}.\nSelamat menggendutkan diri, kawan-kawan\n😈"
+  "Yeay dapat cemilan dari Kak #{user}.\nSelamat menggendutkan diri, kawan-kawan\n😈"
 end
 
 def see_schedule
@@ -387,8 +386,7 @@ Kakak juga bisa japri aku lalu ketik <code>/hi5 bandung</code>, kalau ndak mau m
 end
 
 def list_hi5(squad, count)
-  "Hi5 squad <b>#{squad.upcase}</b>\nKalo daftar ini ga update, mohon kasih tau <code>@mpermperpisang</code> yaa
-Jumlah: #{count} orang"
+  "Hi5 squad <b>#{squad.upcase}</b>\n\nJumlah: #{count} orang"
 end
 
 def empty_member(squad, user)
@@ -420,25 +418,25 @@ def msg_welcome_member(user, group)
 Buat pendataan anggota grup #{group}, silahkan tulis <b>COMMENT</b> di tiny.cc/bukabandung yaa
 
 <b>CEK JAPRIANKU JUGA YAA (Kakak harus japri @#{ENV['BOT_REMINDER']} duluan dan klik Start yaa)</b>, Kak 😁
-*sebelum di woy ama kakak admin yang galak 👀
 
 Hatur tengkyu, Kak 🙏🏻"
 end
 
 def msg_left_member(user)
   "Sayonara, Kak <b>#{user}</b>\nSemoga semakin sukses dan sehat selalu\nJangan lupa sama squad Bandung yaa 👋🏻\n
-Colek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
+Colek Kak @lieskadia, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
 end
 
 def forbid_vehicle(user, name)
-  "Woy #{name} 😘, kendaraannya tolong dipindah yaa karena menghalangi kendaraan Kak @#{user}"
+  "Woy #{name} 😘, kendaraannya tolong dipindah yaa karena menghalangi kendaraan lain\nBy <code>@#{user}</code>"
 end
 
 def empty_owner(user, plat)
   "Halo Kakak-kakak di Bukalapak Bandung, ada yang merasa memiliki kendaraan dengan plat nomor <b>#{plat.upcase}</b>?\n
-Tolong pisan yaa dipindahkan karena menghalangi kendaraan Kak @#{user} 🙏🏻\n\n
-Dan mohon update plat nomor kendaraannya masing-masing di tiny.cc/bukabandung
-atau japri aku lalu ketik <code>/plat</code>"
+Tolong pisan yaa dipindahkan 🙏🏻\n\n
+Dan mohon update plat nomor kendaraannya masing-masing dengan cara japri aku dan ketik <code>/plat</code>
+
+By <code>@#{user}</code>"
 end
 
 def same_vehicle(user)
@@ -509,10 +507,7 @@ def msg_check_private_msg(user)
 end
 
 def msg_welcome_new_member(name, username)
-  "Halo Kakak-kakak di squad Bandung, mohon bimbing Kak <b>#{name}</b> yaa 🙏🏻
-Jangan ragu bertanya kepada para sesepuh di grup ini yaa, Kak @#{username}
-
-Satu lagi, ojo lali <b>COMMENT</b> data diri Kakak di tiny.cc/bukabandung yaa 😊"
+  "Halo Kakak-kakak di squad Bandung, mohon bimbing Kak @#{username} (<b>#{name}</b>) yaa 🙏🏻"
 end
 
 def input_buka_bandung
@@ -526,7 +521,8 @@ end
 
 def empty_oncall(user)
   "On call hari ini belum ditentukan, Kak @#{user}
-Bisa tanya ke Kak @Maharaniar buat jadwalnya yaa (http://tiny.cc/danaoncall)"
+Bisa tanya ke PM atau APM buat jadwalnya yaa (http://tiny.cc/danaoncall)
+colek @ak_fahmi @Maharaniar @Oes_Rustandi"
 end
 
 def no_oncall(user)
