@@ -5,7 +5,7 @@ require './require/gem.rb'
 Telegram::Bot::Client.run(@token) do |bot|
   bot.listen do |message|
     @id = message.chat.id
-    @first_name = message.from.first_name
+    @first_name = message.chat.first_name
 
     begin
       case message.text
