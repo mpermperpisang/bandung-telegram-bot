@@ -34,7 +34,7 @@ if(@snack != 'Libur')
   begin
     @from_member = @client.query("select from_id from bandung_snack where day='#{@day.downcase}' and status='belum'")
     @from_all = @client.query("select from_id from bandung_snack")
-    @list_member = @client.query("select name from bandung_snack where day='#{@day.downcase}' and (from_id='' or from_id is null)")
+    @list_member = @client.query("select name from bandung_snack where day='#{@day.downcase}' and (from_id='' or from_id is null) and status='belum'")
     
     @array = []
     
