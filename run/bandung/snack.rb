@@ -58,7 +58,7 @@ Telegram::Bot::Client.run(@token) do |bot|
             @chat.delete(bot, message.chat.id, message.message_id)
           end
         else
-          snack_private(@token, message.from.id, bot, message, @txt)
+          snack_private(@token, message.chat.id, bot, message, @txt)
         end
         
         onboarding(message, bot)
@@ -77,7 +77,7 @@ Telegram::Bot::Client.run(@token) do |bot|
   	sleep(5)
   	retry
   rescue StandardError => e
-    @status.offline(@token, @chat_id, bot, mention_admin('snack'))
+    #@status.offline(@token, @chat_id, bot, mention_admin('snack'))
     bot.api.send_message(chat_id: @private, text: send_off('snack'))
     raise e
   end

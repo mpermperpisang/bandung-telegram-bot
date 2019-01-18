@@ -32,7 +32,7 @@ Telegram::Bot::Client.run(@token) do |bot|
           @chat.delete(bot, message.chat.id, message.message_id)
         end
       else
-        jenkins_private(@token, message.from.id, bot, message, @txt)
+        jenkins_private(@token, message.chat.id, bot, message, @txt)
       end
     end
   rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
@@ -52,7 +52,7 @@ Telegram::Bot::Client.run(@token) do |bot|
 
     chat_id.each do |id_grup|
       begin
-        @status.offline(@token, (id_grup['chat_id']).to_s, bot, mention_admin('jenkins'))
+        #@status.offline(@token, (id_grup['chat_id']).to_s, bot, mention_admin('jenkins'))
       rescue StandardError => err
         bot.api.send_message(chat_id: @private, text: chat_not_found)
         puts err
