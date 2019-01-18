@@ -42,7 +42,7 @@ Telegram::Bot::Client.run(@token) do |bot|
             @chat.delete(bot, message.chat.id, message.message_id)
           end
         else
-          todo_private(@token, message.from.id, bot, message, @txt)
+          todo_private(@token, message.chat.id, bot, message, @txt)
         end
       end
     end
@@ -59,7 +59,7 @@ Telegram::Bot::Client.run(@token) do |bot|
   	sleep(5)
   	retry
   rescue StandardError => e
-    @status.offline(@token, @chat_id, bot, mention_admin('todo'))
+    #@status.offline(@token, @chat_id, bot, mention_admin('todo'))
     bot.api.send_message(chat_id: @private, text: send_off('todo'))
     raise e
   end
