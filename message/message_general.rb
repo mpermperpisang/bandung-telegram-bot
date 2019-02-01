@@ -499,7 +499,8 @@ def msg_onboarding(user, name)
 🐾 Hobi : 
 🐾 Motto : 
 
-*chat ini tidak akan hilang kalau belum kirim format biodata seperti di atas 😈"
+*chat ini tidak akan hilang kalau belum kirim format biodata seperti di atas 😈
+kalau ada kesulitan harap menghubungi Kak @mpermperpisang yaa #semangat"
 end
 
 def msg_check_private_msg(user)
