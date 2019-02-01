@@ -415,16 +415,15 @@ end
 
 def msg_welcome_member(user, group)
   "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_REMINDER']}</b>\n🤗\n
-Buat pendataan anggota grup #{group}, silahkan tulis <b>COMMENT</b> di tiny.cc/bukabandung yaa
+<b>CEK JAPRIANKU YAA</b> 😁 (Kakak harus japri @#{ENV['BOT_REMINDER']} duluan dan klik Start yaa)
 
-<b>CEK JAPRIANKU JUGA YAA (Kakak harus japri @#{ENV['BOT_REMINDER']} duluan dan klik Start yaa)</b>, Kak 😁
-
+Ada info penting terkait Bukalapak Bandung di message yang ku kirim ke Kakak soalnya
 Hatur tengkyu, Kak 🙏🏻"
 end
 
 def msg_left_member(user)
   "Sayonara, Kak <b>#{user}</b>\nSemoga semakin sukses dan sehat selalu\nJangan lupa sama squad Bandung yaa 👋🏻\n
-Colek Kak @lieskadia, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
+Colek Kak @lieskadia @sarassar, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukabandung yaa 😙"
 end
 
 def forbid_vehicle(user, name)
@@ -512,7 +511,8 @@ def msg_welcome_new_member(name, username)
 end
 
 def input_buka_bandung
-  "Mohon isi (kasih <b>COMMENT</b>) biodata Kakak di tiny.cc/bukabandung juga yaa"
+  "Mohon isi (kasih <b>COMMENT</b>) biodata Kakak di tiny.cc/bukabandung juga yaa
+Kemudian dapatkan info terbaru dari Bukalapak Bandung dengan subscribe official channel https://t.me/joinchat/AAAAAFScH6zPovO-LR_9nQ"
 end
 
 def be_oncall(user, name)
