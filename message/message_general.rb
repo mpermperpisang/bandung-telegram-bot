@@ -571,3 +571,8 @@ end
 def choose_market(list)
 	"Kakak terdaftar dalam multiple squad. Silahkan pilih mau mengikuti marketplace yang mana, dengan cara mengirimkan command dengan format <code>market pilihan_nomor</code>\n\n#{list}"
 end
+
+def reminder_all
+  "Sekaligus mengingatkan kepada Kakak-kakak semua untuk update datanya di tiny.cc/bukabandung
+Lalu subscribe official channel Bukalapak Bandung juga yaa\n(https://t.me/joinchat/AAAAAFScH6zPovO-LR_9nQ)"
+end

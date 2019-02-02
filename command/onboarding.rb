@@ -12,6 +12,7 @@ def onboarding(message, bot)
      @db.done_onboarding(message.from.username)
      bot.api.send_message(chat_id: ENV['ID_REMINDER'], text: msg_welcome_new_member(message.from.first_name, message.from.username), parse_mode: 'HTML') if @check == "false"
      bot.api.send_message(chat_id: ENV['ID_REMINDER'], text: "Berikut perkenalan dari Kak @#{message.from.username}\n\n#{@txt}", parse_mode: 'HTML') if @check == "false"
+     bot.api.send_message(chat_id: ENV['ID_REMINDER'], text: reminder_all, parse_mode: 'HTML') if @check == "false"
      bot.api.send_message(chat_id: message.from.id, text: input_buka_bandung, parse_mode: 'HTML') if @check == "false"
      @chat.delete(bot, message.chat.id, message.message_id) if @check == "true" or @check.nil?
   end
