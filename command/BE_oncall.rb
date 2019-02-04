@@ -13,7 +13,7 @@ module Bot
           scope: Google::Apis::SheetsV4::AUTH_SPREADSHEETS_READONLY)
         
         # Query the spreadsheet
-        spreadsheet_id = '1LNoA8XX-motCQW1rCmCQ5wyuwQJfOvb0NPUJMZa243I'
+        spreadsheet_id = ENV['SPREADSHEET']
         
         @today = Date.today
         @day = @today.strftime("%a")
