@@ -41,10 +41,10 @@ class MessageText
 
   def connection
     @host = 'localhost'
-    @host_remote = '192.168.35.95'
-    @username = 'root'
-    @user = 'bukalapak'
-    @password = 'bukalapak'
+    @host_remote = ENV['HOST_REMOTE']
+    @username = ENV['USERNAME']
+    @user = ENV['USER']
+    @password = ENV['PASSWORD']
   end
 
   def bot_user
