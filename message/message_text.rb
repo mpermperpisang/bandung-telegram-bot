@@ -62,13 +62,7 @@ class MessageText
 
   def quality_assurance
     @qa = %w[
-      mpermperpisang amananm513 rezaldy08 damarananta chyntiacw rizkika andimryn WiraPramudy luthfiswees ihsanhsn
-      nathanaelkrisna ariyohendrawan olvilora tinusagustin arsoedjono Fathirw ajengfujii irfanharies Mirzaaditya
-      mukimahrizky ardhanapn fauridhomahran andiartop dickyedg ferie993 Yudhamau arisnugraha Fadhlimaulidri
-      rizkyandika88 yudadul jassire marlilys ayynurp ananda8 izul683 tioagung annislatif devyebellika
-      ferisaputra rizkibr Lamhotjm fitrirahmadhani palski tusiartihandayani petrisiamn prapto927 arifiandi
-      ragapinilih agungenrico jeanclaudya fixcocandra lelimhr anisahnurh Yulinare irwinharnia Apreliamaisara
-      syarifahzura reifa fitrilarasati trimamanurung denishendriansah
+      mpermperpisang amananm513 rezaldy08 ihsanhsn denishendriansah
     ]
   end
 
