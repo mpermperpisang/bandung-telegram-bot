@@ -1,12 +1,8 @@
 require 'telegram/bot'
 require 'mysql2'
 
-token = '494935542:AAGQyOrPbfXTXmD8QIERaZgnSQS_nyvx1HM'
-#token = '593318700:AAEXId1YyRFZZzvfoHJb5RKtcHReeLh7mCY'
-#@chat_id = '-1001479782294' #testing bot local
-#@chat_id = '-317359831' #testing bot staging
-#@chat_id = '-148800628' #Bukalapak.bdg
-@chat_id = '-1001251178097'
+token = ENV['TOKEN_REMINDER']
+@chat_id = ENV['ID_REMINDER']
 
 bot = Telegram::Bot::Client.new(token)
 @today = Date.today
