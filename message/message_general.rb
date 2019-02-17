@@ -515,6 +515,15 @@ def input_buka_bandung
 Kemudian dapatkan info terbaru dari Bukalapak Bandung dengan subscribe official channel https://t.me/joinchat/AAAAAFScH6zPovO-LR_9nQ"
 end
 
+def all_group_list
+  "Mau gabung sama grup yang ada di Bukalapak Bandung, Kak?\n
+- https://t.me/joinchat/AJmnGxEJVPlDllU198GfIg <— Kuliner
+- https://t.me/joinchat/C3VkcA74oY2MUAL9_uVjVw <— Badminton
+- https://t.me/joinchat/HgqJSBGPu9Rl-OpceBHwUw <— Action figure
+- https://t.me/joinchat/EH0nV0kmrExNs7dmMD4fAA <— Patungan kado
+- Futsal <— Silahkan menghubungi Kak @ivantedja"
+end
+
 def be_oncall(user, name)
   "Summoning #{name}
 Ayo Kak semangat yaa dalam bertugas 😙🍕🍕🍕"
