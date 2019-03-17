@@ -517,11 +517,11 @@ end
 
 def all_group_list
   "Mau gabung sama grup yang ada di Bukalapak Bandung, Kak?\n
-- https://t.me/joinchat/AJmnGxEJVPlDllU198GfIg <— Kuliner
-- https://t.me/joinchat/C3VkcA74oY2MUAL9_uVjVw <— Badminton
-- https://t.me/joinchat/HgqJSBGPu9Rl-OpceBHwUw <— Action figure
-- https://t.me/joinchat/EH0nV0kmrExNs7dmMD4fAA <— Patungan kado
-- Futsal <— Silahkan menghubungi Kak @ivantedja"
+🐾 https://t.me/joinchat/AJmnGxEJVPlDllU198GfIg Grup Kuliner
+🐾 https://t.me/joinchat/C3VkcA74oY2MUAL9_uVjVw Grup Badminton
+🐾 https://t.me/joinchat/HgqJSBGPu9Rl-OpceBHwUw Grup Action figure
+🐾 https://t.me/joinchat/EH0nV0kmrExNs7dmMD4fAA Grup Patungan kado
+🐾 Grup Futsal. Silahkan menghubungi Kak @ivantedja"
 end
 
 def be_oncall(user, name)
