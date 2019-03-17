@@ -76,10 +76,10 @@ if(@snack != 'Libur')
 	  end
 	end
 	
-	bot.api.send_message(chat_id: @chat_id, text: "Untuk Kakakku tersayang (#{@list})
+	bot.api.send_message(chat_id: @chat_id, text: "Untuk Kakakku tersayang (#{@list}. Kalau sudah bawa snacknya harap lakukan step-step ini yaa)
 	  
 1. Japri aku
-2. Plis <code>/done</code> by private message ☺️", parse_mode: 'HTML') unless @name.nil? || @name == "" || @list.nil? || @list == ""
+2. Plis <code>/done</code> via private message ☺️", parse_mode: 'HTML') unless @name.nil? || @name == "" || @list.nil? || @list == ""
   rescue StandardError => e
 	puts e
 	puts @member_id
