@@ -1,6 +1,6 @@
 require './require/gem.rb'
 
-@token = ENV['TOKEN_REMINDER']
+@token = ENV['TOKEN_SNACK']
 
 Telegram::Bot::Client.run(@token) do |bot|
   bot.listen do |message|
