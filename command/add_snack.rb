@@ -3,7 +3,7 @@ module Bot
     # untuk menambahkan orang ke jadwal snack
     class AddSnack < Command
       def check_text
-        check_user_spam if @txt.start_with?("/add@#{ENV['BOT_REMINDER']}")
+        check_user_spam if @txt.start_with?("/add@#{ENV['BOT_SNACK']}")
       end
 
       def check_user_spam

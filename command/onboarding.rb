@@ -10,9 +10,9 @@ def onboarding(message, bot)
 
   if @txt[/^(.*(?=Nama panggilan :).*[a-zA-Z.,&()]\n.*(?=Job title :).*[a-zA-Z.,&()]\n.*(?=Squad :).*[a-zA-Z.,&()]\n(.*(?=Pekerjaan :).*[a-zA-Z0-9.,&()]\n|.*(?=Pendidikan :).*[a-zA-Z0-9.,&()]\n|.*(?=Pendidikan terakhir :).*[a-zA-Z0-9.,&()]\n|.*(?=Pekerjaan terakhir :).*[a-zA-Z0-9.,&()]\n|.*(?=Pekerjaan atau Pendidikan terakhir :).*[a-zA-Z0-9.,&()]\n).*(?=Status :).*[a-zA-Z.,&()]\n.*(?=Hobi :).*[a-zA-Z.,&()]\n.*(?=Motto :).*[a-zA-Z.,&()])$/] != nil
      @db.done_onboarding(message.from.username)
-     bot.api.send_message(chat_id: ENV['ID_REMINDER'], text: msg_welcome_new_member(message.from.first_name, message.from.username), parse_mode: 'HTML') if @check == "false"
-     bot.api.send_message(chat_id: ENV['ID_REMINDER'], text: "Berikut perkenalan dari Kak @#{message.from.username}\n\n#{@txt}", parse_mode: 'HTML') if @check == "false"
-     bot.api.send_message(chat_id: ENV['ID_REMINDER'], text: reminder_all, parse_mode: 'HTML') if @check == "false"
+     bot.api.send_message(chat_id: ENV['ID_SNACK'], text: msg_welcome_new_member(message.from.first_name, message.from.username), parse_mode: 'HTML') if @check == "false"
+     bot.api.send_message(chat_id: ENV['ID_SNACK'], text: "Berikut perkenalan dari Kak @#{message.from.username}\n\n#{@txt}", parse_mode: 'HTML') if @check == "false"
+     bot.api.send_message(chat_id: ENV['ID_SNACK'], text: reminder_all, parse_mode: 'HTML') if @check == "false"
      bot.api.send_message(chat_id: message.from.id, text: input_buka_bandung, parse_mode: 'HTML') if @check == "false"
      bot.api.send_message(chat_id: message.from.id, text: all_group_list, parse_mode: 'HTML') if @check == "false"
      @chat.delete(bot, message.chat.id, message.message_id) if @check == "true" or @check.nil?
