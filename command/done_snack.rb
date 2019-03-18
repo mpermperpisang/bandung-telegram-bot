@@ -60,7 +60,7 @@ module Bot
       end
 
       def reminder_snack
-        @bot.api.send_message(chat_id: @id, text: msg_SNACK_schedule(@dday.read_day(@day), @name))
+        @bot.api.send_message(chat_id: @id, text: msg_reminder_schedule(@dday.read_day(@day), @name))
       end
     end
   end

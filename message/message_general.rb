@@ -290,7 +290,7 @@ def msg_delete_people(user)
 \nColek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukasnack yaa 😙"
 end
 
-def msg_SNACK_schedule(day, user)
+def msg_reminder_schedule(day, user)
   "Jadwal kamu kan hari #{day}, Sayang\n#{user} lupa yaa? 😤"
 end
 
@@ -314,7 +314,7 @@ def msg_holiday_all
   'Selamat hari libur berjamaah yaa, Kak'
 end
 
-def msg_SNACK_people(day, name, user)
+def msg_reminder_people(day, name, user)
   "Ayoyo ojo lali. Daftar yang belum bawa hari #{day}
 #{name}
 
