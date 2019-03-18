@@ -8,8 +8,8 @@ module BotDetail
       ENV['NAME_JENKINS']
     when ENV['TOKEN_TODO']
       ENV['NAME_TODO']
-    when ENV['TOKEN_REMINDER']
-      ENV['NAME_REMINDER']
+    when ENV['TOKEN_SNACK']
+      ENV['NAME_SNACK']
     end
   end
 
@@ -21,8 +21,8 @@ module BotDetail
       ENV['BOT_JENKINS']
     when ENV['TOKEN_TODO']
       ENV['BOT_TODO']
-    when ENV['TOKEN_REMINDER']
-      ENV['BOT_REMINDER']
+    when ENV['TOKEN_SNACK']
+      ENV['BOT_SNACK']
     end
   end
 
@@ -43,7 +43,7 @@ module BotDetail
       help_jenkins
     when ENV['TOKEN_TODO']
       help_todo
-    when ENV['TOKEN_REMINDER']
+    when ENV['TOKEN_SNACK']
       help_snack
     end
   end
@@ -120,51 +120,51 @@ module BotDetail
     only use <b>mon</b>, <b>tue</b>, <b>wed</b>, <b>thu</b> or <b>fri</b>
 
     1. Add people to snack schedule (GROUP)
-    <b>/add@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
+    <b>/add@#{ENV['BOT_SNACK']} day1 @username day2 @username</b>
 
     2. Change people schedule TEMPORARILY (GROUP)
-    <b>/move@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
+    <b>/move@#{ENV['BOT_SNACK']} day1 @username day2 @username</b>
 
     3. Change snack schedule PERMANENTLY (GROUP)
-    <b>/permanent@#{ENV['BOT_REMINDER']} day1 @username day2 @username</b>
+    <b>/permanent@#{ENV['BOT_SNACK']} day1 @username day2 @username</b>
 
     4. Delete people from schedule (GROUP)
-    <b>/delete@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
+    <b>/delete@#{ENV['BOT_SNACK']} @username1 @username2 @username3</b>
 
     5. Cancel people from bring snack (GROUP)
-    <b>/cancel@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
+    <b>/cancel@#{ENV['BOT_SNACK']} @username1 @username2 @username3</b>
 
     6. People brought the snack (BOTH)
-    <b>/done@#{ENV['BOT_REMINDER']} or /done@#{ENV['BOT_REMINDER']} @username</b>
+    <b>/done@#{ENV['BOT_SNACK']} or /done@#{ENV['BOT_SNACK']} @username</b>
 
     7. Free people from snack schedule (GROUP)
-    <b>/holiday@#{ENV['BOT_REMINDER']} @all
+    <b>/holiday@#{ENV['BOT_SNACK']} @all
     or
-    /holiday@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
+    /holiday@#{ENV['BOT_SNACK']} @username1 @username2 @username3</b>
 
     8. Remind snack schedule (GROUP)
-    <b>/reminder@#{ENV['BOT_REMINDER']}</b>
+    <b>/reminder@#{ENV['BOT_SNACK']}</b>
 
     9. Bring back normal schedule (GROUP)
-    <b>/normal@#{ENV['BOT_REMINDER']}</b>
+    <b>/normal@#{ENV['BOT_SNACK']}</b>
 
     10. List HI5 of Bandung squad member (BOTH)
-    <b>/hi5@#{ENV['BOT_REMINDER']}</b>
+    <b>/hi5@#{ENV['BOT_SNACK']}</b>
 
     11. List vehicles of members (BOTH)
-    <b>/plat@#{ENV['BOT_REMINDER']}</b>
+    <b>/plat@#{ENV['BOT_SNACK']}</b>
 
     12. Add admin snack (PRIVATE)
-    <b>/admin@#{ENV['BOT_REMINDER']} @username1 @username2 @username3</b>
+    <b>/admin@#{ENV['BOT_SNACK']} @username1 @username2 @username3</b>
 
     13. See the list of admin snack (GROUP)
-    <b>/list_admin@#{ENV['BOT_REMINDER']}</b>
+    <b>/list_admin@#{ENV['BOT_SNACK']}</b>
 
     14. Add new squad into Bandung (PRIVATE)
-    <b>/squad@#{ENV['BOT_REMINDER']} squad_name1 squad_name2 squad_name3</b>
+    <b>/squad@#{ENV['BOT_SNACK']} squad_name1 squad_name2 squad_name3</b>
 
     15. See list of snack schedule (PRIVATE)
-    <b>/schedule@#{ENV['BOT_REMINDER']}</b>
+    <b>/schedule@#{ENV['BOT_SNACK']}</b>
 
     <a href='https://bukalapak.atlassian.net/wiki/spaces/BS/pages/347046333/Snack+Schedule'>CHECK SCHEDULE</a>
 

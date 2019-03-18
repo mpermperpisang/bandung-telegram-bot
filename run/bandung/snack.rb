@@ -1,7 +1,7 @@
 require './require.rb'
 
-@token = ENV['TOKEN_REMINDER']
-@chat_id = ENV['ID_REMINDER']
+@token = ENV['TOKEN_SNACK']
+@chat_id = ENV['ID_SNACK']
 @private = ENV['ID_PRIVATE']
 
 @status = ConnectionStatus.new
@@ -50,7 +50,7 @@ Telegram::Bot::Client.run(@token) do |bot|
         if @is_group.not_private_chat?(message.chat.type)
           command = [
             '/add', '/plat', '/permanent', '/delete', '/reminder', '/cancel', '/done', '/holiday', '/normal', '/move', '/admin', '/hi5',
-            '/list_admin', '/schedule', "/help@#{ENV['BOT_REMINDER']}"
+            '/list_admin', '/schedule', "/help@#{ENV['BOT_SNACK']}"
           ]
 
           if command.include?(@msg.bot_name) || command.include?(@msg.booking_name) || command.include?(@msg.command)

@@ -1,8 +1,8 @@
 require 'telegram/bot'
 require 'mysql2'
 
-token = ENV['TOKEN_REMINDER']
-@chat_id = ENV['ID_REMINDER']
+token = ENV['TOKEN_SNACK']
+@chat_id = ENV['ID_SNACK']
 
 bot = Telegram::Bot::Client.new(token)
   client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "bukalapak")
