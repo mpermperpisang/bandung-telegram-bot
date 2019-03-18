@@ -5,7 +5,7 @@ module Bot
       def check_text
         @squad = @squad_name.nil? ? nil : @squad_name.strip
         check_user_spam if [
-          '/hi5', "/hi5@#{ENV['BOT_REMINDER']}", "/hi5 #{@squad}", "/hi5@#{ENV['BOT_REMINDER']} #{@squad}"
+          '/hi5', "/hi5@#{ENV['BOT_SNACK']}", "/hi5 #{@squad}", "/hi5@#{ENV['BOT_SNACK']} #{@squad}"
         ].include?(@txt)
       end
 

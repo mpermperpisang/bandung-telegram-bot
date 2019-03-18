@@ -6,7 +6,7 @@ module Bot
         @message = HelpMessage.new
 
         group if @txt.start_with?("/help@#{ENV['BOT_JENKINS']}", "/help@#{ENV['BOT_BOOKING']}",
-                                  "/help@#{ENV['BOT_REMINDER']}", "/help@#{ENV['BOT_TODO']}")
+                                  "/help@#{ENV['BOT_SNACK']}", "/help@#{ENV['BOT_TODO']}")
         private if @txt == '/help'
       end
 

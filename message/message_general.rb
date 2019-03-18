@@ -290,7 +290,7 @@ def msg_delete_people(user)
 \nColek Kak @mpermperpisang, tolong hapus data Kak <b>#{user}</b> di tiny.cc/bukasnack yaa 😙"
 end
 
-def msg_reminder_schedule(day, user)
+def msg_SNACK_schedule(day, user)
   "Jadwal kamu kan hari #{day}, Sayang\n#{user} lupa yaa? 😤"
 end
 
@@ -314,7 +314,7 @@ def msg_holiday_all
   'Selamat hari libur berjamaah yaa, Kak'
 end
 
-def msg_reminder_people(day, name, user)
+def msg_SNACK_people(day, name, user)
   "Ayoyo ojo lali. Daftar yang belum bawa hari #{day}
 #{name}
 
@@ -414,8 +414,8 @@ def telegram_error
 end
 
 def msg_welcome_member(user, group)
-  "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_REMINDER']}</b>\n🤗\n
-<b>CEK JAPRIANKU YAA</b> 😁 (Kakak harus japri @#{ENV['BOT_REMINDER']} duluan dan klik Start yaa)
+  "Selamat datang di squad Bandung, Kak #{user}\nSalam kenal, namaku <b>#{ENV['NAME_SNACK']}</b>\n🤗\n
+<b>CEK JAPRIANKU YAA</b> 😁 (Kakak harus japri @#{ENV['BOT_SNACK']} duluan dan klik Start yaa)
 
 Ada info penting terkait Bukalapak Bandung di message yang ku kirim ke Kakak soalnya
 Hatur tengkyu, Kak 🙏🏻"
@@ -503,7 +503,7 @@ kalau ada kesulitan harap menghubungi Kak @mpermperpisang yaa #semangat"
 end
 
 def msg_check_private_msg(user)
-  "Kak @#{user}, please japri @#{ENV['BOT_REMINDER']} dulu yaa.. Nuhun"
+  "Kak @#{user}, please japri @#{ENV['BOT_SNACK']} dulu yaa.. Nuhun"
 end
 
 def msg_welcome_new_member(name, username)
