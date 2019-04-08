@@ -166,7 +166,7 @@ module BotDetail
     15. See list of snack schedule (PRIVATE)
     <b>/schedule@#{ENV['BOT_SNACK']}</b>
 
-    <a href='https://bukalapak.atlassian.net/wiki/spaces/BS/pages/347046333/Snack+Schedule'>CHECK SCHEDULE</a>
+    <a href='tiny.cc/bukasnack'>CHECK SCHEDULE</a>
 
     🐾 Only admin/PM/APM/EM/QAM can do add, edit, change,
     delete & holiday 😎"
