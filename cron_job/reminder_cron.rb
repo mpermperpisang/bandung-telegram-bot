@@ -23,7 +23,7 @@ else
   @snack = "Libur"
 end
 
-@client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "bukalapak")
+@client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "password")
 @client.query("use bbm_squad")
 
 File.open('./require_ruby.rb', 'w+') do |f|
