@@ -5,7 +5,7 @@ token = ENV['TOKEN_SNACK']
 @chat_id = ENV['ID_SNACK']
 
 bot = Telegram::Bot::Client.new(token)
-  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "bukalapak")
+  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "password")
     client.query("use bbm_squad")
     client.query("update bandung_snack set day='mon' where fix_day<>day and name<>'' and fix_day='mon'")
     client.query("update bandung_snack set day='tue' where fix_day<>day and name<>'' and fix_day='tue'")
