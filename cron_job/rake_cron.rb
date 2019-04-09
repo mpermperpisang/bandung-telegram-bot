@@ -13,7 +13,7 @@ token = '364913393:AAFCJX2v0syzQaF8632xmX1HD-xpUprIyuo'
 bot = Telegram::Bot::Client.new(token)
 
 begin
-  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "bukalapak")
+  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "password")
     client.query("use bbm_squad")
     File.open('/home/bukalapak/bandung-telegram-bot/require/helper_rake.rb', 'w+') do |f|
       client.query("select chat_id from deploy_staging where deploy_status='queueing' order by deploy_date asc limit 1").each do |row|
