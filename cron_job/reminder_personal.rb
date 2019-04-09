@@ -24,7 +24,7 @@ else
 end
 
 if(@snack != 'Libur')
-  @client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "bukalapak")
+  @client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "password")
   @client.query("use bbm_squad")
   
   begin
