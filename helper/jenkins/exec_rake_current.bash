@@ -1,6 +1,6 @@
 #!/bin/bash
 source /home/bukalapak/bandung-telegram-bot/require/ruby_rake.rb
-sshpass -p "bukalapak" ssh bukalapak@$ip_staging <<ENDSSH
+sshpass -p "password" ssh bukalapak@$ip_staging <<ENDSSH
   cd current
   if [ "$type" == "elasticsearch:reindex_index" ]
     then
