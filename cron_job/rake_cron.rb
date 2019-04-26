@@ -5,10 +5,7 @@ require 'dotenv'
 require 'net/ssh'
 require 'net/scp'
 
-token = '364913393:AAFCJX2v0syzQaF8632xmX1HD-xpUprIyuo'
-#@chat_id = '-192957413' #testing bot local
-#@chat_id='-317359831' #testing bot staging
-#@chat_id='-310122724' #bbm-dana bot announcements
+token = ENV['TOKEN_JENKINS']
 
 bot = Telegram::Bot::Client.new(token)
 
@@ -92,7 +89,7 @@ begin
         EnvBash.load("/home/bukalapak/bandung-telegram-bot/helper/jenkins/exec_rake_current.bash")
       end
 
-      Net::SSH.start("staging#{@staging}.vm", "bukalapak", :password => "bukalapak") do |session|
+      Net::SSH.start("staging#{@staging}.vm", "user", :password => "password") do |session|
         begin
           session.scp.download! "/home/bukalapak/deploy/log/rake.log", "/home/bukalapak/bandung-telegram-bot/log"
         rescue
